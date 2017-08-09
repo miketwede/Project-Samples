@@ -1,0 +1,9 @@
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\bin\Debug\parkingmeter.exe.config
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\bin\Debug\parkingmeter.exe
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\bin\Debug\parkingmeter.pdb
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.csprojResolveAssemblyReference.cache
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.Form1.resources
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.Properties.Resources.resources
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.csproj.GenerateResource.Cache
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.exe
+C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.pdb

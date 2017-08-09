@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfEuler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="606" Width="1146">
+    <Grid>
+        <Button Content="1" Height="23" HorizontalAlignment="Left" Margin="313,12,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" Uid="btn1" />
+        <Label Content="Find the sum of all the multiples of 3 or 5 below 1000." Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="418,12,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" Uid="txtAnswer1" />
+        <Grid Margin="10,10,-10,-10">
+            <Button Click="button2_Click" Content="2" Height="23" HorizontalAlignment="Left" Margin="714,41,0,0" Name="button2" Uid="btn2" VerticalAlignment="Top" Width="75" />
+            <Label Content="By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms." Height="28" HorizontalAlignment="Left" Margin="0,36,0,0" Name="label2" VerticalAlignment="Top" />
+            <TextBox Height="23" HorizontalAlignment="Left" Margin="814,38,0,0" Name="textBox2" Uid="txtAnswer2" VerticalAlignment="Top" Width="234" />
+            <TextBox Height="340" HorizontalAlignment="Left" Margin="6,70,0,0" Name="textBox3" VerticalAlignment="Top" Width="1042" TextWrapping="Wrap" />
+        </Grid>
+    </Grid>
+</Window>

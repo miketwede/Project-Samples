@@ -1,0 +1,12 @@
+C:\Dev\Euler\WpfEuler\WpfEuler\bin\Debug\WpfEuler.exe
+C:\Dev\Euler\WpfEuler\WpfEuler\bin\Debug\WpfEuler.pdb
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\App.g.cs
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler_MarkupCompile.cache
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.g.resources
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.Properties.Resources.resources
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.exe
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.pdb
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\Tabs.baml
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\Tabs.g.cs
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.csprojResolveAssemblyReference.cache
+C:\Dev\Euler\WpfEuler\WpfEuler\obj\x86\Debug\WpfEuler.csproj.GenerateResource.Cache

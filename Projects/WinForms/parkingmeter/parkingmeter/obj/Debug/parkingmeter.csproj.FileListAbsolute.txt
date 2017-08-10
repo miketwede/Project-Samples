@@ -7,3 +7,11 @@ C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\p
 C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.csproj.GenerateResource.Cache
 C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.exe
 C:\mike\job Search AGAIN and again\Experis\parkingmeter\parkingmeter\obj\Debug\parkingmeter.pdb
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\bin\Debug\parkingmeter.exe.config
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\bin\Debug\parkingmeter.exe
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\bin\Debug\parkingmeter.pdb
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\obj\Debug\parkingmeter.Form1.resources
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\obj\Debug\parkingmeter.Properties.Resources.resources
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\obj\Debug\parkingmeter.csproj.GenerateResource.Cache
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\obj\Debug\parkingmeter.exe
+C:\Dev\Interview quizes\parkingmeter\parkingmeter\obj\Debug\parkingmeter.pdb

@@ -1,0 +1,14 @@
+{
+  "name": "testnode",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "LogMessages.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mike twede",
+  "license": "ISC",
+  "dependencies": {
+    "index": "^0.4.0"
+  }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <!-- change this up! http://www.bootstrapcdn.com/bootswatch/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+
+    <title>JavaScript Samples : Prototypes</title>
+
+    <style type="text/css">
+        .container {
+            width: 500px;
+            clear: both;
+        }
+        .container input {
+            width: 100%;
+            clear: both;
+        }
+        </style>
+</head>
+ 
+<body>
+
+    <div class="container">
+        <form >
+            <h1> Prototype Example </h1>
+            <br><br>
+            
+            <label for="firstname">First name: </label>
+            <input type="text" name="firstname" id="firstname" value="Mickey" >
+            <br><br>
+
+            <label for="lastname">Last name: </label>
+            <input type="text" name="lastname" id="lastname" value="Mouse">
+            <br><br>
+
+            <label for="age">Age: </label>
+            <input type="text" name="age" id="age" value="39">
+            <br><br>
+
+            <label for="eyecolor">Eye color: </label>
+            <input type="text" name="eyecolor" id="eyecolor" value="blue">
+            <br><br>
+
+            <label for="name">Full name: </label>
+            <input type="text" name="name" id="name" value="Mickey Mouse">
+            <br><br>
+
+            <label for="nationality">Nationality: </label>
+            <input type="text" name="nationality" id="nationality" value="English">
+            <br><br>
+
+            <input type="button" value="Next" onclick="changePerson()">
+        </form> 
+    </div>
+
+    <script src="prototypes.js"></script>
+
+    <script>
+    
+    var personArray = new Array;
+
+    personArray[0] = new Person("Henry", "Ford", 20, "blue");
+    personArray[1] = new Person("Bob", "Scheuler", 33, "brown");
+    personArray[2] = new Person("Suzan", "Brown", 29, "green");
+    personArray[3] = new Person("George", "CaStanza", 25, "blue");
+    personArray[4] = new Person("Bob", "Hope", 99, "grey");
+    personArray[5] = new Person("Shirley", "Temple", 9, "green");
+    personArray[6] = new Person("Stephan", "Brinkley", 17, "hazel");
+    personArray[7] = new Person("Fred", "Flinstone", 35, "brown");
+    personArray[8] = new Person("Barney", "Rubble", 27, "blue");
+    personArray[9] = new Person("Steve", "Tyler", 59, "green");
+   
+    function changePerson()
+    {
+        var index = getRandomIntInclusive(0, 9);
+
+        if (document.getElementById("name").value == personArray[index].name())
+        {
+            while (document.getElementById("name").value == personArray[index].name())
+            {
+                index = getRandomIntInclusive(0, 9);
+            }
+        }
+        document.getElementById("firstname").value=personArray[index].firstName;
+        document.getElementById("lastname").value=personArray[index].lastName;
+        document.getElementById("age").value=personArray[index].age;
+        document.getElementById("eyecolor").value=personArray[index].eyeColor;
+        document.getElementById("name").value=personArray[index].name();
+        document.getElementById("nationality").value=personArray[index].nationality;       
+    }
+
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+        }
+
+
+    </script>
+    
+</body>
+ 
+</html>

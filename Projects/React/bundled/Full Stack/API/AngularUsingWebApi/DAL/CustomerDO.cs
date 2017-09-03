@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using ReactUsingWebApi.Models;
+using System.Configuration;
 
 namespace ReactUsingWebApi.DAL
 {
@@ -11,8 +12,8 @@ namespace ReactUsingWebApi.DAL
 		public List<Customer> GetCustomers()
 		{
 			List<Customer> customers = new List<Customer>();
+			string connectionString = ConfigurationManager.ConnectionStrings["CustomerDatabase"].ConnectionString;
 
-			string connectionString = "Data Source=MIKES-PC;Initial Catalog=Customers; Integrated Security=true"; // TODO: needs to go in config file
 
 			string queryString = "SELECT * from Customer C order by C.LastName, FirstName";
 

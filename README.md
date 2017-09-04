@@ -19,7 +19,8 @@ JavaScript
 
 Prototypes : Creates a person class which is then populated randomly and displayed on a form.
 
-StringToInt : A function which takes a string representation of a number and radix and returns the corresponding value. Includes input validations and error handling.
+StringToInt : A function which takes a string representation of a number and radix and returns the
+corresponding value. Includes input validations and error handling.
 ```
 
 
@@ -51,12 +52,16 @@ Various components passing properties to other components to display.
 Using properties, state and event handlers to bind data to html elements.
 
 * SPA and Routing
-Creates a single page app with multiple pages of static content and two methods, a navigation bar and html elements (buttons and anchors) for navigating between them.
+Creates a single page app with multiple pages of static content and two methods, a navigation bar and html
+elements (buttons and anchors) for navigating between them.
 
 * Full Stack
-Front end : A single page application featuring React utilizing components, routing, data binding, property usage, state management and an Axios based service for communicating with the WebApi RESTful web services.
-Middle tier : .NET/C# WebApi RESTful web services including controllers, models, Business objects, DAL methods to call stored procedures, exception handling and log4net for logging.
-Database : SQL Server stored procedures, and scripts for creating and populating the customer table as well as the stored procedures themselves.
+Front end : A single page application featuring React utilizing components, routing, data binding, property
+usage, state management and an Axios based service for communicating with the WebApi RESTful web services.
+Middle tier : .NET/C# WebApi RESTful web services including controllers, models, Business objects, DAL
+methods to call stored procedures, exception handling and log4net for logging.
+Database : SQL Server stored procedures, and scripts for creating and populating the customer table as well
+as the stored procedures themselves.
 
 
 ```
@@ -65,7 +70,8 @@ Database : SQL Server stored procedures, and scripts for creating and populating
 
 WinForms
 
-* A parking meter app that calculates the amount of time and money spent at a parking meter. Also enforces some rules such as hours of operation , no overcharges, etc.
+* A parking meter app that calculates the amount of time and money spent at a parking meter. Also enforces
+some rules such as hours of operation , no overcharges, etc.
 
 ```
 

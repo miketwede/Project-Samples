@@ -5,10 +5,14 @@ using System.Data.SqlClient;
 using ReactUsingWebApi.Models;
 using System.Configuration;
 
+using NLog;
+
 namespace ReactUsingWebApi.DAL
 {
 	public class CustomerDO
 	{
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		public Customer GetCustomerByCustomerID(int customerID)
 		{
 			Customer customer = null;
@@ -76,7 +80,7 @@ namespace ReactUsingWebApi.DAL
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine(ex.Message); // TODO: log error message
+				logger.Fatal(ex.ToString());
 				customers = null;
 				testConnection.Close();
 				return customers;
@@ -91,8 +95,6 @@ namespace ReactUsingWebApi.DAL
 				string queryString = "dbo.GetCustomers";
 				SqlCommand command = new SqlCommand(queryString, connection);
 				command.CommandType = CommandType.StoredProcedure;
-				//	command.Parameters.AddWithValue("@pricePoint", paramValue);
-
 				try
 				{
 					connection.Open();
@@ -121,8 +123,8 @@ namespace ReactUsingWebApi.DAL
 				}
 				catch (Exception ex)
 				{
-					Console.WriteLine(ex.Message); // TODO: log error message
-					customers = null;
+					logger.Fatal(ex.ToString());
+					throw;
 				}
 			}
 

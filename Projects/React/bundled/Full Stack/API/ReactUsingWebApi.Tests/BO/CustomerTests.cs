@@ -7,12 +7,18 @@ using ReactUsingWebApi.Controllers;
 using ReactUsingWebApi.BO;
 using ReactUsingWebApi.Models;
 
+//using log4net;
+//using log4net.Config;
+using NLog;
 
 namespace ReactUsingWebApi.Tests.Controllers
 {
 	[TestClass]
 	public class CustomerTests
 	{
+		//private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		[TestMethod]
 		public void GetCustomerByCustomerID()
 		{
@@ -233,7 +239,7 @@ namespace ReactUsingWebApi.Tests.Controllers
 
 		}
 
-	[TestMethod]
+		[TestMethod]
 		public void GetCustomersByFirstNameOrLastName()
 		{
 			string FirstName;
@@ -363,7 +369,6 @@ namespace ReactUsingWebApi.Tests.Controllers
 		[TestMethod]
 		public void SearchCustomersByLastName()
 		{
-			string FirstName;
 			string LastName;
 			CustomerBO customerBO = new CustomerBO();
 			List<Customer> customers = new List<Customer>();
@@ -480,7 +485,7 @@ namespace ReactUsingWebApi.Tests.Controllers
 
 			// one from first name 2 from last name
 			FirstName = "re";
-			 LastName = "Flint";
+			LastName = "Flint";
 
 			customers = customerBO.SearchCustomersByFirstNameOrLastName(FirstName, LastName);
 
@@ -521,6 +526,15 @@ namespace ReactUsingWebApi.Tests.Controllers
 			Assert.AreEqual(customers.Count, 3);
 
 
+
+		}
+
+		[TestMethod]
+		public void logfornet()
+		{
+			//log.Info("Hello logging world!");
+
+			logger.Fatal("Sample fatal error message");
 
 		}
 

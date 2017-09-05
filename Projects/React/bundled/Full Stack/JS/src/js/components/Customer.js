@@ -1,20 +1,18 @@
 import React from "react";
+import ToggleDisplay from 'react-toggle-display';
 
 export default class Customer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showAdditionalInfo: false,
-      buttonState: "none",
-      buttonText: "More info"      
+      buttonText: "More info",      
+      showMore: false     
     };
 }
   
   render() {
     console.log("in  Customer()");
     console.log("this.props", this.props);
-
-    
 
     const { row } = this.props;
     console.log("row", row);
@@ -24,23 +22,21 @@ export default class Customer extends React.Component {
     
     function toggleMoreInfo()
     {
-      if (this.state.buttonState == "none") {
-        this.setState({ buttonState: "block", buttonText: "Less info" })        
-      }
-      else {
-        this.setState({ buttonState: "none", buttonText: "More info" })        
-      }
+      this.setState({
+        showMore: !this.state.showMore,
+        buttonText: this.state.showMore ? "More info" : "Less info"
+      });
     }
 
     return (
       <div >
         <h2>Hello {name}! </h2>
-        <div id="additionalInfo" name="additionalInfo" style={{display : this.state.buttonState}} >
+        <ToggleDisplay show={this.state.showMore}>
           <h4 >Age: {row.Age} years old.</h4>
           <h4 >Address: { address }.</h4>
           <h4 >Occupation: {row.Occupation}.</h4>
           <h4 >Hobbies: {row.Hobbies}.</h4>
-        </div>
+          </ToggleDisplay>
         <button type="button" class="btn btn-default" onClick={toggleMoreInfo.bind(this)}  >{this.state.buttonText}</button>
       </div>
     );

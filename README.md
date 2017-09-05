@@ -12,6 +12,13 @@ Angular
 
 ```
 
+```
+
+ASP.NET Core
+
+
+```
+
 
 ```
 
@@ -59,7 +66,7 @@ elements (buttons and anchors) for navigating between them.
 Front end : A single page application featuring React utilizing components, routing, data binding, property
 usage, state management and an Axios based service for communicating with the WebApi RESTful web services.
 Middle tier : .NET/C# WebApi RESTful web services including controllers, models, Business objects, DAL
-methods to call stored procedures, exception handling and log4net for logging.
+methods to call stored procedures, exception handling and NLog for logging.
 Database : SQL Server stored procedures, and scripts for creating and populating the customer table as well
 as the stored procedures themselves.
 

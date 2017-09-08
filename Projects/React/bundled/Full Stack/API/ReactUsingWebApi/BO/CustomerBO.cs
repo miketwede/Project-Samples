@@ -35,15 +35,11 @@ namespace ReactUsingWebApi.BO
 						FirstName = "Fred",
 						LastName = "Flinstone",
 						MiddleInitial = "",
-						NickName = "",
 						Address1 = "",
 						Address2 = "",
 						City = "Bedrock",
 						State = "A place right out of History",
-						Zip = "",
-						Age = 39,
-						Occupation = "stone cutter",
-						Hobbies = "bowling"
+						Zip = ""
 					});
 					customers.Add(new Customer
 					{
@@ -51,15 +47,11 @@ namespace ReactUsingWebApi.BO
 						FirstName = "Wilma",
 						LastName = "Flinstone",
 						MiddleInitial = "",
-						NickName = "Wilmaaaaaaaaaa",
 						Address1 = "",
 						Address2 = "",
 						City = "Bedrock",
 						State = "A place right out of History",
-						Zip = "",
-						Age = 29,
-						Occupation = "house wife",
-						Hobbies = "spending"
+						Zip = ""
 					});
 				}
 			}

@@ -1,24 +1,34 @@
 import React, {Component} from "react";
 import {AgGridReact} from "ag-grid-react";
+import {AgGrid} from "ag-grid";
+
+// C:\Dev\React\ReactTraining\Full Stack - AG-Grid\JS\node_modules\ag-grid\dist
 
 import CustomerDetailGrid from "./CustomerDetailGrid.jsx";
+
+//import * as utility from "../utilities/Common.js";
+
 
 // pull in the ag-grid styles we're interested in
 // import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
 // import "../../../node_modules/ag-grid/dist/styles/theme-fresh.css";
 
 export default class CustomerMasterGrid extends Component {
-    
+
+
+
     constructor(props) {
         super(props);
 
-        console.log("this.props", this.props);
-
         this.state = {
             columnDefs: this.createColumnDefs(),
-            rowData: this.createRowData()
-        }
+            //rowData: this.createRowData().bind(this),
+            rowData: this.createRowData(),
+            dateFormat: "mm/dd/yyyy"
+        };
+      //  this.createRowData=this.createRowData.bind(this.state);
     }
+
 
     onGridReady(params) {
         this.gridApi = params.api;
@@ -30,7 +40,7 @@ export default class CustomerMasterGrid extends Component {
     createColumnDefs() {
         return [
             {
-                headerName: 'Name', field: 'Name', width: 100,
+                headerName: 'Name', field: 'Name', width: 100, filter: "text",
                 // left column is going to act as group column, with the expand / contract controls
                 cellRenderer: 'group',
                 // we don't want the child count - it would be one each time anyway as each parent
@@ -39,7 +49,8 @@ export default class CustomerMasterGrid extends Component {
             },
             // {headerName: "Name", field: "Name", width: 100},
             {headerName: "Phone", field: "Phone", width: 100},
-            {headerName: "Email", field: "Email", width: 125},
+            {headerName: "Email", field: "Email", width: 100},
+            {headerName: "AccountNumber", field: "AccountNumber", width: 75, filter: "text"},
             {headerName: "Address", field: "Address", width: 300}
             // {headerName: "IndividualSurvey", field: "detailRecord", width: 900}
         ];
@@ -48,15 +59,16 @@ export default class CustomerMasterGrid extends Component {
     createRowData() {
         let rowData = [];
         let rows = this.props.rows;
-
+        
         for (let i = 0; i < rows.length; i++) {
             let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
             let Phone = rows[i].PhoneNumber;
             let Email = rows[i].EmailAddress;
+            let AccountNumber = rows[i].AccountNumber;
             let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
+            let Photo = rows[i].Photo;
             let IndividualSurvey = rows[i].Demographics;
             
-            console.log("IndividualSurvey ", IndividualSurvey);
             let detailRecords = [];
             let detailRecord = {
                 TotalPurchaseYTD: IndividualSurvey.TotalPurchaseYTD,
@@ -79,10 +91,11 @@ export default class CustomerMasterGrid extends Component {
                 Name: Name,
                 Phone: Phone,
                 Email: Email,
+                AccountNumber: AccountNumber,
                 Address: Address,
+                Photo: Photo,
                 detailRecords: detailRecords
             };
-            console.log("masterRecord", masterRecord);
 
             rowData.push(masterRecord);
         }
@@ -105,8 +118,6 @@ export default class CustomerMasterGrid extends Component {
     }
 
     getNodeChildDetails(masterRecord) {
-        console.log("masterRecord", masterRecord);
-         console.log("masterRecord.detailRecords", masterRecord.detailRecords);
         
         if (masterRecord.detailRecords) {
             return {
@@ -143,6 +154,7 @@ export default class CustomerMasterGrid extends Component {
                     fullWidthCellRendererFramework={CustomerDetailGrid}
 
                     enableSorting
+                    enableFilter
                     enableColResize
 
                     // events
@@ -152,4 +164,5 @@ export default class CustomerMasterGrid extends Component {
             </div>
         )
     }
+
 };

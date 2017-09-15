@@ -26,7 +26,7 @@ module.exports = {
         test: /\.tsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'awesome-typescript-loader',
-      },
+       },
       {
         enforce: "pre",
         test: /\.js$/,

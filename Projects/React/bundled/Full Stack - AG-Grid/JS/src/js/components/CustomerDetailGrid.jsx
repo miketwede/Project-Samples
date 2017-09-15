@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {AgGridReact} from "ag-grid-react";
 
 import "./CustomerDetailGrid.css";
+import {formatDate, formatCurrency} from "../utilities/Common.js";
 
 // pull in the ag-grid styles we're interested in
 // import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
@@ -10,51 +11,22 @@ import "./CustomerDetailGrid.css";
 export default class CustomerDetailGrid extends Component {
     constructor(props) {
         super(props);
-
+console.log("this.props.node.parent.data", this.props.node.parent.data);
         this.state = {
             parentRecord: this.props.node.parent.data,
-            columnDefs: this.createColumnDefs(),
-            img: `images/${this.props.node.parent.data.image}.png`
+            // columnDefs: this.createColumnDefs(),
+            // img: `images/${this.props.node.parent.data.image}.png`
+            img: "data:image/jpeg;base64, " + this.props.node.parent.data.Photo
         };
-        console.log("this.parentRecord", this.props);
-        this.onGridReady = this.onGridReady.bind(this);
+        // this.onGridReady = this.onGridReady.bind(this);
         this.onSearchTextChange = this.onSearchTextChange.bind(this);
 
         // override the containing div so that the child grid fills the row height
         this.props.reactContainer.style.height = "100%";
     }
 
-    onGridReady(params) {
-        this.gridApi = params.api;
-        this.columnApi = params.columnApi;
-
-        this.gridApi.setRowData(this.state.parentRecord.detailRecords);
-        setTimeout(() => {
-            this.gridApi.sizeColumnsToFit();
-        })
-    }
-
     onSearchTextChange(newData) {
         this.gridApi.setQuickFilter(newData);
-    }
-
-    createColumnDefs() {
-        return [
-            {headerName: 'BirthDate', field: 'BirthDate', cellClass: 'call-record-cell'},
-            {headerName: 'Gender', field: 'Gender', cellClass: 'call-record-cell'},
-            {headerName: 'Education', field: 'Education', cellClass: 'call-record-cell'},
-            {headerName: 'Occupation', field: 'Occupation', cellClass: 'call-record-cell'},
-            {headerName: 'MaritalStatus', field: 'MaritalStatus', cellClass: 'call-record-cell'},
-            {headerName: 'TotalChildren', field: 'TotalChildren', cellClass: 'call-record-cell'},
-            {headerName: 'NumberChildrenAtHome', field: 'NumberChildrenAtHome', cellClass: 'call-record-cell'},
-            {headerName: 'HomeOwnerFlag', field: 'HomeOwnerFlag', cellClass: 'call-record-cell'},
-            {headerName: 'CommuteDistance', field: 'CommuteDistance', cellClass: 'call-record-cell'},
-            {headerName: 'DateFirstPurchase', field: 'DateFirstPurchase', cellClass: 'call-record-cell'},
-            {headerName: 'NumberCarsOwned', field: 'NumberCarsOwned', cellClass: 'call-record-cell'},
-            {headerName: 'TotalPurchaseYTD', field: 'TotalPurchaseYTD', cellClass: 'call-record-cell'},
-            {headerName: 'YearlyIncome', field: 'YearlyIncome', cellClass: 'call-record-cell'}];
-
-            
     }
 
     secondCellFormatter(params) {
@@ -65,26 +37,69 @@ export default class CustomerDetailGrid extends Component {
         window.alert('Sample button pressed!!');
     }
 
+    formatYTD(amount) {
+        if (!amount) {
+            return null;
+        }
+        else {
+            // return formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length-1));
+            return formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length));
+        }
+    }
+
     render() {
+        let dateFormat = "mm/dd/yyyy";
+        console.log("this.state.parentRecord.detailRecords[0].HomeOwnerFlag", this.state.parentRecord.detailRecords[0].HomeOwnerFlag);
+        
         return (
             <div className="full-width-panel">
-                <div className="full-width-details">
-                    <div className="full-width-detail"><img width="120px" src={this.state.img}/></div>
-                    <div className="full-width-detail"><b>Name: </b> {this.state.parentRecord.Name}</div>
-                    {/* <div className="full-width-detail"><b>Account: </b> {this.state.parentRecord.detailRecords[0].BirthDate}</div> */}
-                </div>
-                <AgGridReact
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="col-lg-3">
+                            <div className="full-width-detail"><img width="120px" height="130px" src={this.state.img} alt="Customer Photo" style={{border:'2px solid gold'}}/></div>
+                            {/* <div className="full-width-detail"><b>Name: </b> {this.state.parentRecord.Name}</div> */}
+                            <div className="full-width-detail">{this.state.parentRecord.Name}</div>
+                            {/* <div className="full-width-detail"><b>Account: </b> {this.state.parentRecord.AccountNumber}</div> */}
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Birth Date: </b> {formatDate(this.state.parentRecord.detailRecords[0].BirthDate.toLocaleString(), dateFormat)}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Marital Status: </b> {this.state.parentRecord.detailRecords[0].MaritalStatus}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Total Children: </b> {this.state.parentRecord.detailRecords[0].TotalChildren}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Children At Home: </b> {this.state.parentRecord.detailRecords[0].NumberChildrenAtHome}</div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Gender: </b> {this.state.parentRecord.detailRecords[0].Gender}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Education: </b> {this.state.parentRecord.detailRecords[0].Education}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Occupation: </b> {this.state.parentRecord.detailRecords[0].Occupation}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Owns Home: </b> {this.state.parentRecord.detailRecords[0].HomeOwnerFlag.toString()}</div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Number Of Cars Owned: </b> {this.state.parentRecord.detailRecords[0].NumberCarsOwned}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Commute Distance: </b> {this.state.parentRecord.detailRecords[0].CommuteDistance}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Yearly Income: </b> { this.formatYTD(this.state.parentRecord.detailRecords[0].YearlyIncome) }</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Date Of First Purchase: </b> {formatDate(this.state.parentRecord.detailRecords[0].DateFirstPurchase.toLocaleString(), dateFormat)}</div>
+                            <div className="full-width-detail" style={{padding:'10px'}}><b>Total Purchases YTD: </b> {formatCurrency(this.state.parentRecord.detailRecords[0].TotalPurchaseYTD)}</div>
+                        </div>
+
+            {/* <AgGridReact
                     // properties
-                    columnDefs={this.state.columnDefs}
-                   rowData={this.state.parentRecord.detailRecords}
+                    columnDefs={this.state.columnDefs1}
+                   rowData={this.state.parentRecord.detailRecords1}
                   enableSorting
                     enableFilter
                     enableColResize
 
                     // events
                     onGridReady={this.onGridReady}>
-                </AgGridReact>
-            </div>
-        );
+                </AgGridReact> */}
+
+                        </div>
+                    </div>
+                </div>
+            );
     }
 }

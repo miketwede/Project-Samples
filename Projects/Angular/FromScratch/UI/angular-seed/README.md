@@ -293,3 +293,8 @@ For more information on AngularJS please check out [angularjs.org][angularjs].
 [selenium]: http://docs.seleniumhq.org/
 [travis]: https://travis-ci.org/
 [travis-docs]: https://docs.travis-ci.com/user/getting-started
+
+       // "angular-ui-router": "^1.0.3",
+              "@uirouter/angularjs": "latest",
+
+              //   <div ng-view></div>

@@ -14,12 +14,14 @@
 
   angular.module('myApp').controller('View1Ctrl', View1Ctrl);
   /* @ngInject */
-  View1Ctrl.$inject = ['$route', '$scope', '$location'];
-  function View1Ctrl($route, $scope, $location) {
+  View1Ctrl.$inject = ['$route', '$routeParams', '$scope', '$location'];
+  function View1Ctrl($route, $routeParams, $scope, $location) {
       var vm = this;
 
      // vm.isCurrent = isCurrent;
-      $scope.who = 'World!';
+
+     vm.name = 'View1Ctrl';
+     vm.params = $routeParams;
 
       function init() {
           // if (appUserFactory) {

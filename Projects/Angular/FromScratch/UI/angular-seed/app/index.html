@@ -13,6 +13,26 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <style>
+    .view-animate {
+      transition: all linear 0.5s;
+      background-color: lightblue;
+      height: 100px;
+      width: 100%;
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+    
+    .ng-hide {
+      height: 0;
+      width: 0;
+      background-color: transparent;
+      top:-200px;
+      left: 200px;
+    }
+    
+    </style>
 </head>
 <body>
   <ul class="menu">
@@ -20,28 +40,42 @@
     <li><a href="#!/view2">view2</a></li>
   </ul>
 
-
-  <div ng-app="HelloWorldApp" ng-controller="helloWorldController">
-    <h1> Hello {{who}} </h1>
-  </div>
-  <!-- <div ng-controller="helloWorldController">
-    <h1> Hello {{who}} </h1>
-  </div> -->
+  <div ng-app="HelloWorldApp" >
 
 
-  <!--[if lt IE 7]>
+    <div ng-controller="helloWorldController as main">
+      <h1> Hello {{who}} </h1>
+
+
+
+      <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
+      <![endif]-->
 
-  <div ng-view></div>
+      <!-- <div ng-view></div> -->
 
-  <div>Angular seed app: v<span app-version></span></div>
+      <div class="view-animate-container">
+        <div ng-view class="view-animate"></div>
+      </div>
+      <hr />
+    
+      <pre>$location.path() = {{main.$location.path()}}</pre>
+      <pre>$route.current.templateUrl = {{main.$route.current.templateUrl}}</pre>
+      <pre>$route.current.params = {{main.$route.current.params}}</pre>
+      <pre>$routeParams = {{main.$routeParams}}</pre>
+
+      <div>Angular seed app: v<span app-version></span></div>
+    </div>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
+  <!-- <script src="bower_components/angular/angular-animate.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script> -->
+  <script src="lib/angular-ui-router.js"></script>
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
   <script src="view2/view2.js"></script>

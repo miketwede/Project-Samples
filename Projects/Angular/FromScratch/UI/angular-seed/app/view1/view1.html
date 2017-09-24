@@ -1,8 +1,25 @@
 <div  ng-controller="View1Ctrl">
-    <p>This is the partial for view 1.</p>
-    controller: {{view1.name}}<br />
-    Book Id: {{view1.params.bookId}}<br />
-    Chapter Id: {{view1.params.chapterId}}
-  </div>
-
+    <h3>Customers</h3>
+    <!-- <div id="customers" name="customers">[ Customers : {{vm.customers}} Count : {{vm.customers.length}} ] -->
+    <div>
+      <table style="width:100%">
+        <tr >
+          <!-- <td>{{ vm.formatName(customer) customer.Title + " " +  customer.FirstName  + " " +  customer.LastName }}</td> -->
+          <td>Name</td>
+          <td>Address</td>
+          <td>Email Address</td>
+          <td>Phone Number</td>
+          <td>Account Number</td>
+        </tr>        <tr ng-repeat="customer in vm.customers">
+          <!-- <td>{{ vm.formatName(customer) customer.Title + " " +  customer.FirstName  + " " +  customer.LastName }}</td> -->
+          <td>{{ vm.formatName(customer) }}</td>
+          <td>{{ vm.formatAddress(customer) }}</td>
+          <td>{{ customer.EmailAddress }}</td>
+          <td>{{ customer.PhoneNumber }}</td>
+          <td>{{ customer.AccountNumber }}</td>
+        </tr>
+      </table>
+    </div>
+</div>
+  
 

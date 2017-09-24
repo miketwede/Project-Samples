@@ -1,7 +1,13 @@
 "use strict";
 
 // Declare app level module which depends on views, and components
-var app = angular.module("myApp", ["ngRoute", "ui.router"]);
+var app = angular.module("myApp", [
+  "ngRoute", 
+  "ui.router"
+  // "axios"
+  // "httpFactory"
+]);
+
 // var app = angular.module("myApp", ["ngRoute", "ui.router", "ngAnimate"]);
 
 // app.config(function($locationProvider, $routeProvider) {
@@ -15,22 +21,23 @@ var app = angular.module("myApp", ["ngRoute", "ui.router"]);
   // });
 
   $routeProvider
-  .when("/", {
-    templateUrl : "index.html",
-    controller: "helloWorldController",
-    controllerAs: 'helloWorld'
-})
+//   .when("/", {
+//     templateUrl : "index.html",
+//     controller: "helloWorldController",
+//     controllerAs: 'helloWorld'
+// })
   .when("/view1", {
     templateUrl: "view1/view1.html",
     controller: "View1Ctrl",
-    controllerAs: 'view1'    
+     controllerAs: 'vm'    
   })
   .when("/view2", {
     templateUrl: "view2/view2.html",
     controller: "View2Ctrl",
-    controllerAs: 'view2'
+    controllerAs: 'vm'
     
   })
-  .otherwise({redirectTo: "/"});
+  // .otherwise({redirectTo: "/"});
+  // .otherwise({redirectTo: "/view1"});
 });
 

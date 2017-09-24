@@ -21,8 +21,8 @@
      // vm.isCurrent = isCurrent;
     //   $scope.who = 'World!';
 
-    this.name = 'View2Ctrl';
-    this.params = $routeParams;
+    vm.name = 'View2Ctrl';
+    vm.params = $routeParams;
 
       function init() {
           // if (appUserFactory) {

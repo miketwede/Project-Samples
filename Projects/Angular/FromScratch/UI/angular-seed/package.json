@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "angular-ui-router": "^1.0.3",
+        "axios": "^0.16.2",
         "light-server": "^2.2.1"
     }
 }

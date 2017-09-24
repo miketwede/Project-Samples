@@ -16,6 +16,7 @@
         vm.$route = $route;
         vm.$location = $location;
         vm.$routeParams = $routeParams;
+        this.name = 'helloWorldController';
 
         function init() {
             $rootScope.$on('$viewContentLoaded', function(event) {

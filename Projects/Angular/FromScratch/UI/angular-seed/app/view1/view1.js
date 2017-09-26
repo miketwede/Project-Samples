@@ -8,14 +8,10 @@
       var vm = this;
 
       vm.customers = [];
-    //   vm.customerList = httpFactory.customerList;
-     // vm.isCurrent = isCurrent;
-
-     vm.name = 'View1Ctrl';
-     vm.params = $routeParams;
-
-
-
+      vm.errorMessage = "";
+      vm.success = true;
+      vm.name = 'View1Ctrl';
+      vm.params = $routeParams;
 
      vm.formatName = function(customer)
      {
@@ -34,8 +30,6 @@
          
         return fullName.trim();
      }
-
-
 
      vm.formatAddress = function(customer)
      {
@@ -56,29 +50,20 @@
         return fullAddress.trim();
      }
 
-
-
-
-
       function init() {
           if (httpFactory) {
-        //  vm.customers = httpFactory.getCustomers4();
-           httpFactory.getCustomers4()
+           httpFactory.getCustomers()
               .then(success, error);
               
-                          function success(response) {
-                            vm.customers =  response;
-                            console.log("vm.customers 1.", vm.customers );
-                        };
-              
-                          function error(error) {
-                            console.log("error", error);
-                            
-                          };
-
-
-              console.log("vm.customers 2.", vm.customers);
-              var mike = "";
+              function success(response) {
+                vm.customers =  response;
+              };
+  
+              function error(error) {
+                vm.customers = [];                
+                vm.success = false;
+                vm.errorMessage = error;
+              };
           }
       }
 

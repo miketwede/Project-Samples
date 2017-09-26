@@ -55,22 +55,62 @@ export default class CustomerMasterGrid extends Component {
             // {headerName: "IndividualSurvey", field: "detailRecord", width: 900}
         ];
     }
+    
+    formatName(customer)
+     {
+         var fullName = "";
+         if (customer.Title){
+            fullName += customer.Title + " ";
+         }
+         fullName += customer.FirstName + " ";
+         if (customer.MiddleInitial){
+            fullName += customer.MiddleInitial + " ";
+         }
+         fullName += customer.LastName + " ";
+         if (customer.Suffix){
+            fullName += customer.Suffix;
+         }
+         
+        return fullName.trim();
+     };
+
+     formatAddress(customer)
+     {
+         var fullAddress = "";
+
+         fullAddress += customer.Address1 + " ";
+         if (customer.Address2){
+            fullAddress += customer.Address2 + " ";
+         }
+
+         fullAddress += customer.City + " ";
+         fullAddress += customer.State + " ";
+         fullAddress += customer.Zip + " ";
+         if (customer.Country){
+            fullAddress += customer.Country;
+         }
+         
+        return fullAddress.trim();
+     };
 
     createRowData() {
         let rowData = [];
         let rows = this.props.rows;
         
         for (let i = 0; i < rows.length; i++) {
-            let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
+            // let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
+            let Name = this.formatName(rows[i]); 
             let Phone = rows[i].PhoneNumber;
             let Email = rows[i].EmailAddress;
             let AccountNumber = rows[i].AccountNumber;
-            let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
+            // let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
+            let Address = this.formatAddress(rows[i]);
             let Photo = rows[i].Photo;
             let IndividualSurvey = rows[i].Demographics;
             
             let detailRecords = [];
-            let detailRecord = {
+            if (IndividualSurvey){
+                let detailRecord = {
                 TotalPurchaseYTD: IndividualSurvey.TotalPurchaseYTD,
                 DateFirstPurchase: IndividualSurvey.DateFirstPurchase,
                 BirthDate: IndividualSurvey.BirthDate,
@@ -84,8 +124,10 @@ export default class CustomerMasterGrid extends Component {
                 HomeOwnerFlag: IndividualSurvey.HomeOwnerFlag,
                 NumberCarsOwned: IndividualSurvey.NumberCarsOwned,
                 CommuteDistance: IndividualSurvey.CommuteDistance
-            };
-            detailRecords.push(detailRecord);
+                };
+                detailRecords.push(detailRecord);
+            }
+
 
             let masterRecord = {
                 Name: Name,
@@ -102,6 +144,8 @@ export default class CustomerMasterGrid extends Component {
 
         return rowData;
     }
+
+
 
     minuteCellFormatter(params) {
         return params.value.toLocaleString() + 'm';

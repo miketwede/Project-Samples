@@ -22,10 +22,14 @@ import axios from "axios";
 
 
 
-        var config = {
-            headers: {'X-My-Custom-Header': 'Header-Value'},
-            responseType: 'json'
-          };
+var config = {
+    responseType: 'json'
+  };
+
+//   var config = {
+//       headers: {'X-My-Custom-Header': 'Header-Value'},
+//       responseType: 'json'
+//     };
           
         //   axios.get('https://api.github.com/users/codeheaven-io', config);
         //   axios.post('/save', { firstName: 'Marlon' }, config);

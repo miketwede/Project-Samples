@@ -49,10 +49,11 @@ console.log("this.props.node.parent.data", this.props.node.parent.data);
 
     render() {
         let dateFormat = "mm/dd/yyyy";
-        console.log("this.state.parentRecord.detailRecords[0].HomeOwnerFlag", this.state.parentRecord.detailRecords[0].HomeOwnerFlag);
-        
+        // console.log("this.state.parentRecord.detailRecords[0].HomeOwnerFlag", this.state.parentRecord.detailRecords[0].HomeOwnerFlag);
+        if (this.state.parentRecord.detailRecords[0]){
+
         return (
-            <div className="full-width-panel">
+                <div className="full-width-panel">
                 <div class="row">
                     <div class="col-lg-12">
 
@@ -100,6 +101,24 @@ console.log("this.props.node.parent.data", this.props.node.parent.data);
                         </div>
                     </div>
                 </div>
-            );
+                            );
+            }
+else{
+    return (
+                <div className="full-width-panel">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <div className="full-width-detail">No detail record found.</div>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                            );
+}
+
     }
 }

@@ -1,7 +1,4 @@
 
-        
-
-//     }
 (function () {
     
         'use strict';
@@ -13,34 +10,27 @@
           httpFactory
           .$inject = ['$http', '$log', '$q'];
     
-        /**
-         * Application User factory -- access and store information about this user.
-         * - access data objects externally using userFactory.{object}.data
-         * @param intcWebRequest
-         * @param intcConfigurator
-         * 
-         */
         function httpFactory($http, $log, $q) {
-            
+            // Logging methods:
+            // log()   - Write a log message
+            // info()  - Write an information message
+            // warn()  - Write a warning message
+            // error() - Write an error message
+            // debug() - Write a debug message
+
+
+
             var vm = this;
             vm.observerCallbacks = [];
             vm.loaded = false;
     
-         //   vm.customerList = [];
-
             // data objects
-            vm.currentUser = {};
-            vm.currentUserManager = {};
-            vm.currentUserOrg = {};
-            vm.userHasError = false;
-              vm.errorMessage = "";
-            vm.userRoles = "";
+            vm.customerList = [];
+            vm.errorMessage = "";
+
             // public API
             var factory = {
-            //    getCustomers: getCustomers,
-                // getCustomers2: getCustomers2,
-             //   getCustomers3: getCustomers3,
-                getCustomers4: getCustomers4
+                getCustomers: getCustomers
                 // customerList: customerList
             };
             return factory;
@@ -162,31 +152,49 @@
     //   }
 
 
-function getCustomers4()
+function getCustomers()
     {
-
-
-
         return $http.get('http://localhost:52819/api/customers/GetCustomers')
         
                    .then(
                       function (response) {
                         return response.data;
-                        // return {
-                        //    title: response.data.title,
-                        //    cost:  response.data.price
-                        // };
                       },
 
                       function (httpError) {
                          // translate the error
-                         throw httpError.status + " : " + 
-                               httpError.data;
+                         if (httpError.status == -1){
+                            var errorMessage = "Network error : Unable to connect to the server.";
+                            $log.error(errorMessage);
+                            throw errorMessage;
+                         }
+                        else{
+                            var errorMessage = formatErrorMessage(httpError);
+                            $log.error(errorMessage);
+                            throw errorMessage;
+                        }
+
                         // return httpError.status + " : " + 
                         // httpError.data;
                       });
             }
 
+function formatErrorMessage(error){
+    var formattedMessage = error.data.Message;
+    formattedMessage += " : ( ";
+    formattedMessage += "status = " + error.status;
+    formattedMessage += ", statusText = " + error.statusText;
+    formattedMessage += ", ExceptionMessage = " + error.data.ExceptionMessage;
+    formattedMessage += ", ExceptionType = " + error.data.ExceptionType;
+    if (error.data.InnerException){
+        formattedMessage += ", InnerException =";
+        formattedMessage += " ExceptionMessage - " + error.data.InnerException.ExceptionMessage;
+        formattedMessage += ", ExceptionType - " + error.data.InnerException.ExceptionType;
+    }
+    formattedMessage += " )";
+    
+    return formattedMessage;
+    }
 
         }
     })();

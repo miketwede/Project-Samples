@@ -24,7 +24,7 @@ customer table as well as the stored procedures themselves.
 
 Angular2
 
-To be added soon.
+Simple app displaying static content and featuring components and modules.
 
 ```
 

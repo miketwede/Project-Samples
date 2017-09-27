@@ -7,8 +7,24 @@ Projects demonstrating familiarity and mastery of various programming languages,
 
 ```
 
-Angular
+AngularJS
 
+* angular-seed
+Front end : A single page application featuring Angular Controllers, partial templates,
+routing, data binding, and an $http based service for communicating with the
+WebApi RESTful web services.
+Middle tier : .NET/C# WebApi RESTful web services including controllers, models,
+Business objects, DAL methods to call stored procedures, exception handling and
+NLog for logging.
+Database : SQL Server stored procedures, and scripts for creating and populating the
+customer table as well as the stored procedures themselves.
+```
+
+```
+
+Angular2
+
+To be added soon.
 
 ```
 
@@ -16,6 +32,7 @@ Angular
 
 ASP.NET Core
 
+To be added soon.
 
 ```
 
@@ -70,6 +87,20 @@ methods to call stored procedures, exception handling and NLog for logging.
 Database : SQL Server stored procedures, and scripts for creating and populating the customer table as well
 as the stored procedures themselves.
 
+* Full Stack - AG-Grid
+Similar to Full Stack, but adds an AG-Grid data grid to the Customers page.
+
+
+```
+
+```
+
+Web Services
+
+* MVC API
+* SPA API - Includes a login page.
+* WebAPI API - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
+applications.
 
 ```
 

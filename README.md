@@ -24,17 +24,11 @@ customer table as well as the stored procedures themselves.
 
 Angular2
 
+* angular2-starter-basic
 Simple app displaying static content and featuring components and modules.
 
 ```
 
-```
-
-ASP.NET Core
-
-To be added soon.
-
-```
 
 
 ```
@@ -101,6 +95,7 @@ Web Services
 * SPA API - Includes a login page.
 * WebAPI API - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
 applications.
+* ASP.NET Core - SampleDemoAspNewCore - Starter ASP.NET Core app to host RESTful state APIs
 
 ```
 

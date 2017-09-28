@@ -26,14 +26,14 @@ var app = angular.module("myApp", [
 //     controller: "helloWorldController",
 //     controllerAs: 'helloWorld'
 // })
-  .when("/view1", {
-    templateUrl: "view1/view1.html",
-    controller: "View1Ctrl",
+  .when("/customers", {
+    templateUrl: "Views/customers.html",
+    controller: "customerController",
      controllerAs: 'vm'    
   })
-  .when("/view2", {
-    templateUrl: "view2/view2.html",
-    controller: "View2Ctrl",
+  .when("/locations", {
+    templateUrl: "Views/locations.html",
+    controller: "locationController",
     controllerAs: 'vm'
     
   })

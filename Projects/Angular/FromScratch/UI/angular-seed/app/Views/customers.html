@@ -1,0 +1,38 @@
+<div  ng-controller="customerController">
+    <div ng-hide=vm.success>
+      <!-- Message box types
+        <div class="alert alert-success"> Indicates a successful or positive action.
+        <div class="alert alert-info"> Indicates a neutral informative change or action.
+        <div class="alert alert-warning"> Indicates a warning that might need attention.
+        <div class="alert alert-danger"> Indicates a dangerous or potentially negative action. -->
+
+        <div class="alert alert-dismissable alert-danger">
+            <i class="alert-icon intelicon-alert-outlined"></i>
+            <p class="alert-text">{{vm.errorMessage}}</p>
+            <!-- <button type="button" class="close" data-dismiss="alert" aria-label="close"><i class="intelicon-close-max" aria-hidden="true"></i></button> -->
+            <!-- <button type="button" class="btn btn-default" data-dismiss="alert" aria-label="close"><i class="intelicon-close-max" aria-hidden="true"></i></button> -->
+          </div>
+        <!-- <div ng-include="'error/error.html'"></div> -->
+    </div>
+    <h3>Customers</h3>
+    <div style="width:100%; overflow:auto;">
+      <table style="width:100%;">
+        <tr >
+          <td>Name</td>
+          <td>Address</td>
+          <td>Email Address</td>
+          <td>Phone Number</td>
+          <td>Account Number</td>
+        </tr>        
+        <tr ng-repeat="customer in vm.customers">
+          <td>{{ vm.formatName(customer) }}</td>
+          <td>{{ vm.formatAddress(customer) }}</td>
+          <td>{{ customer.EmailAddress }}</td>
+          <td>{{ customer.PhoneNumber }}</td>
+          <td>{{ customer.AccountNumber }}</td>
+        </tr>
+      </table>
+    </div>
+</div>
+  
+

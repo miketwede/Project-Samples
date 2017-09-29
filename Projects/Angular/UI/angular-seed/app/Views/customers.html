@@ -1,0 +1,11 @@
+<div  ng-controller="customerController">
+    <div ng-hide=vm.success>
+        <div class="alert alert-dismissable alert-danger">
+            <i class="alert-icon intelicon-alert-outlined"></i>
+            <p class="alert-text">{{vm.errorMessage}}</p>
+        </div>
+    </div>
+    <h3>Customers</h3>
+    <div id="grid1" ui-grid="{ data: vm.customers }" class="grid"></div>
+</div>
+  

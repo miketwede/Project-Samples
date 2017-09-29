@@ -6,7 +6,7 @@
     "repository": "https://github.com/angular/angular-seed",
     "license": "MIT",
     "devDependencies": {
-        "bower": "^1.7.7",
+        "bower": "^1.8.2",
         "http-server": "^0.9.0",
         "jasmine-core": "^2.4.1",
         "karma": "^0.13.22",
@@ -32,8 +32,16 @@
         "update-index-async": "node -e \"var fs=require('fs'),indexFile='app/index-async.html',loaderFile='app/bower_components/angular-loader/angular-loader.min.js',loaderText=fs.readFileSync(loaderFile,'utf-8').split(/sourceMappingURL=angular-loader.min.js.map/).join('sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map'),indexText=fs.readFileSync(indexFile,'utf-8').split(/\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/).join('//@@NG_LOADER_START@@\\n'+loaderText+'    //@@NG_LOADER_END@@');fs.writeFileSync(indexFile,indexText);\""
     },
     "dependencies": {
+        "ag-grid": "^13.2.0",
+        "ag-grid-angular": "^13.2.0",
+        "ag-grid-enterprise": "^13.2.0",
+        "angular-ui-grid": "^4.0.7",
         "angular-ui-router": "^1.0.3",
         "axios": "^0.16.2",
-        "light-server": "^2.2.1"
+        "install": "^0.10.1",
+        "jquery": "^3.2.1",
+        "light-server": "^2.2.1",
+        "ng-grid": "^2.0.1",
+        "npm": "^5.4.2"
     }
 }

@@ -14,11 +14,29 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">  
+  <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css">
   
+  <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+
+   <!-- Angular -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="lib/angular-ui-router.js"></script>
   
+   <!-- ag grid -->
+  <!-- <script src="bower_components/ag-grid/dist/ag-grid.js"></script>
+  <script src="bower_components/ag-grid/dist/ag-grid.noStyle.js"></script> -->
+
+ <!-- ng grid -->
+  <script src="bower_components/ng-grid/ng-grid-2.0.1.min.js"></script>
+
+   <!-- ui grid -->
+  <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+
   <style>
     .view-animate {
       transition: all linear 0.5s;
@@ -40,7 +58,7 @@
     
     </style>
 </head>
-<body>
+<body ng-app="myApp">
 
     <!-- http://localhost/AngularDemo/index.html -->
 
@@ -50,7 +68,7 @@
     <li><a href="#!/locations">Store Locations</a></li>
   </ul>
 
-  <div ng-app="HelloWorldApp" >
+  <div  >
 
 
     <div ng-controller="helloWorldController as main">
@@ -75,14 +93,17 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="lib/angular-ui-router.js"></script>
+
+  
+  <!-- <script src="bower_components/ng-grid/ng-grid.css"></script> -->
+
+  <!-- "C:\Dev\Angularjs\FromScratch\UI\angular-seed\app\bower_components\ag-grid\dist\ag-grid.js" -->
+  <!-- <script src="https://unpkg.com/ag-grid@13.2.0/dist/ag-grid.js"></script> -->
   <!-- <script src="bower_components/angular/angular-animate.js"></script> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script> -->
   <script src="app.js"></script>
-  <script src="view2/view2.js"></script>
   <script src="Controllers/customerController.js"></script>
+  <script src="Controllers/locationController.js"></script>
   <script src="Controllers/helloWorldController.js"></script>
   <script src="Controllers/footer.js"></script>
   <script src="components/version/version.js"></script>

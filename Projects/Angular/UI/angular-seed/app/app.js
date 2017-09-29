@@ -3,9 +3,10 @@
 // Declare app level module which depends on views, and components
 var app = angular.module("myApp", [
   "ngRoute", 
-  "ui.router"
-  // "axios"
-  // "httpFactory"
+  "ui.router",
+  "ui.grid",
+  "ngGrid"
+  // "agGrid"
 ]);
 
 // var app = angular.module("myApp", ["ngRoute", "ui.router", "ngAnimate"]);
@@ -39,5 +40,8 @@ var app = angular.module("myApp", [
   })
   // .otherwise({redirectTo: "/"});
   // .otherwise({redirectTo: "/view1"});
+    // "axios"
+  // "httpFactory"
+
 });
 

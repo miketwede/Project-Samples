@@ -95,7 +95,8 @@ Web Services
 * SPA API - Includes a login page.
 * WebAPI API - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
 applications.
-* ASP.NET Core - SampleDemoAspNewCore - Starter ASP.NET Core app to host RESTful state APIs
+* ASP.NET Core(2) - SampleDemoAspNetCore - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
+applications.
 
 ```
 

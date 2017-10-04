@@ -59,16 +59,16 @@ export default class CustomerMasterGrid extends Component {
     formatName(customer)
      {
          var fullName = "";
-         if (customer.Title){
-            fullName += customer.Title + " ";
+         if (customer.title){
+            fullName += customer.title + " ";
          }
-         fullName += customer.FirstName + " ";
-         if (customer.MiddleInitial){
-            fullName += customer.MiddleInitial + " ";
+         fullName += customer.firstName + " ";
+         if (customer.middleInitial){
+            fullName += customer.middleInitial + " ";
          }
-         fullName += customer.LastName + " ";
-         if (customer.Suffix){
-            fullName += customer.Suffix;
+         fullName += customer.lastName + " ";
+         if (customer.suffix){
+            fullName += customer.suffix;
          }
          
         return fullName.trim();
@@ -78,16 +78,16 @@ export default class CustomerMasterGrid extends Component {
      {
          var fullAddress = "";
 
-         fullAddress += customer.Address1 + " ";
+         fullAddress += customer.address1 + " ";
          if (customer.Address2){
-            fullAddress += customer.Address2 + " ";
+            fullAddress += customer.address2 + " ";
          }
 
-         fullAddress += customer.City + " ";
-         fullAddress += customer.State + " ";
-         fullAddress += customer.Zip + " ";
-         if (customer.Country){
-            fullAddress += customer.Country;
+         fullAddress += customer.city + " ";
+         fullAddress += customer.state + " ";
+         fullAddress += customer.zip + " ";
+         if (customer.country){
+            fullAddress += customer.country;
          }
          
         return fullAddress.trim();
@@ -100,30 +100,30 @@ export default class CustomerMasterGrid extends Component {
         for (let i = 0; i < rows.length; i++) {
             // let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
             let Name = this.formatName(rows[i]); 
-            let Phone = rows[i].PhoneNumber;
-            let Email = rows[i].EmailAddress;
-            let AccountNumber = rows[i].AccountNumber;
+            let Phone = rows[i].phoneNumber;
+            let Email = rows[i].emailAddress;
+            let AccountNumber = rows[i].accountNumber;
             // let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
             let Address = this.formatAddress(rows[i]);
-            let Photo = rows[i].Photo;
-            let IndividualSurvey = rows[i].Demographics;
+            let Photo = rows[i].photo;
+            let IndividualSurvey = rows[i].demographics;
             
             let detailRecords = [];
             if (IndividualSurvey){
                 let detailRecord = {
-                TotalPurchaseYTD: IndividualSurvey.TotalPurchaseYTD,
-                DateFirstPurchase: IndividualSurvey.DateFirstPurchase,
-                BirthDate: IndividualSurvey.BirthDate,
-                MaritalStatus: IndividualSurvey.MaritalStatus,
-                YearlyIncome: IndividualSurvey.YearlyIncome,
-                Gender: IndividualSurvey.Gender,
-                TotalChildren: IndividualSurvey.TotalChildren,
-                NumberChildrenAtHome: IndividualSurvey.NumberChildrenAtHome,
-                Education: IndividualSurvey.Education,
-                Occupation: IndividualSurvey.Occupation,
-                HomeOwnerFlag: IndividualSurvey.HomeOwnerFlag,
-                NumberCarsOwned: IndividualSurvey.NumberCarsOwned,
-                CommuteDistance: IndividualSurvey.CommuteDistance
+                TotalPurchaseYTD: IndividualSurvey.totalPurchaseYTD,
+                DateFirstPurchase: IndividualSurvey.dateFirstPurchase,
+                BirthDate: IndividualSurvey.birthDate,
+                MaritalStatus: IndividualSurvey.maritalStatus,
+                YearlyIncome: IndividualSurvey.yearlyIncome,
+                Gender: IndividualSurvey.gender,
+                TotalChildren: IndividualSurvey.totalChildren,
+                NumberChildrenAtHome: IndividualSurvey.numberChildrenAtHome,
+                Education: IndividualSurvey.education,
+                Occupation: IndividualSurvey.occupation,
+                HomeOwnerFlag: IndividualSurvey.homeOwnerFlag,
+                NumberCarsOwned: IndividualSurvey.numberCarsOwned,
+                CommuteDistance: IndividualSurvey.commuteDistance
                 };
                 detailRecords.push(detailRecord);
             }

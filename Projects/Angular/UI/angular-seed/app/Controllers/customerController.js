@@ -15,15 +15,15 @@ app.controller('customerController', ['$scope', 'httpFactory', function ($scope,
    {
        var fullName = "";
        if (customer.Title){
-          fullName += customer.Title + " ";
+          fullName += customer.title + " ";
        }
-       fullName += customer.FirstName + " ";
-       if (customer.MiddleInitial){
-          fullName += customer.MiddleInitial + " ";
+       fullName += customer.firstName + " ";
+       if (customer.middleInitial){
+          fullName += customer.middleInitial + " ";
        }
-       fullName += customer.LastName + " ";
-       if (customer.Suffix){
-          fullName += customer.Suffix;
+       fullName += customer.lastName + " ";
+       if (customer.suffix){
+          fullName += customer.suffix;
        }
        
       return fullName.trim();
@@ -33,16 +33,16 @@ app.controller('customerController', ['$scope', 'httpFactory', function ($scope,
    {
        var fullAddress = "";
 
-       fullAddress += customer.Address1 + " ";
-       if (customer.Address2){
-          fullAddress += customer.Address2 + " ";
+       fullAddress += customer.address1 + " ";
+       if (customer.address2){
+          fullAddress += customer.address2 + " ";
        }
 
-       fullAddress += customer.City + " ";
-       fullAddress += customer.State + " ";
-       fullAddress += customer.Zip + " ";
-       if (customer.Country){
-          fullAddress += customer.Country;
+       fullAddress += customer.city + " ";
+       fullAddress += customer.state + " ";
+       fullAddress += customer.zip + " ";
+       if (customer.country){
+          fullAddress += customer.country;
        }
        
       return fullAddress.trim();
@@ -59,12 +59,12 @@ app.controller('customerController', ['$scope', 'httpFactory', function ($scope,
                 if (rows.length > 0){
                     for (var i=0; i<rows.length; i++){
                         let Name = vm.formatName(rows[i]); 
-                        let Phone = rows[i].PhoneNumber;
-                        let Email = rows[i].EmailAddress;
-                        let AccountNumber = rows[i].AccountNumber;
+                        let Phone = rows[i].phoneNumber;
+                        let Email = rows[i].emailAddress;
+                        let AccountNumber = rows[i].accountNumber;
                         let Address = vm.formatAddress(rows[i]);
-                        let Photo = rows[i].Photo;
-                        let IndividualSurvey = rows[i].Demographics;
+                        let Photo = rows[i].photo;
+                        let IndividualSurvey = rows[i].demographics;
 
                         let masterRecord = {
                             Name: Name,

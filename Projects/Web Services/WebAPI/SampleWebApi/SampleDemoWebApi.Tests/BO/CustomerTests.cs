@@ -45,7 +45,7 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 			customer = customerBO.GetCustomerByCustomerID(customerID);
 
 			Assert.IsNotNull(customer);
-			Assert.AreEqual(customer.CustomerID, customerID);
+			Assert.AreEqual(customer.customerID, customerID);
 
 
 			customerID = 2;
@@ -53,7 +53,7 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 			customer = customerBO.GetCustomerByCustomerID(customerID);
 
 			Assert.IsNotNull(customer);
-			Assert.AreEqual(customer.CustomerID, customerID);
+			Assert.AreEqual(customer.customerID, customerID);
 
 
 			customerID = 3;
@@ -61,7 +61,7 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 			customer = customerBO.GetCustomerByCustomerID(customerID);
 
 			Assert.IsNotNull(customer);
-			Assert.AreEqual(customer.CustomerID, customerID);
+			Assert.AreEqual(customer.customerID, customerID);
 
 
 

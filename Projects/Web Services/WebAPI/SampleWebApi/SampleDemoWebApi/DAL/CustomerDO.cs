@@ -291,24 +291,24 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 						customer = new Customer
 						{
-							CustomerID = (int)reader["BusinessEntityID"],
-							Title = reader["Title"].ToString(),
-							FirstName = reader["FirstName"].ToString(),
-							LastName = reader["LastName"].ToString(),
-							MiddleInitial = reader["MiddleName"].ToString(),
-							Suffix = reader["Suffix"].ToString(),
-							Address1 = reader["AddressLine1"].ToString(),
-							Address2 = reader["AddressLine2"].ToString(),
-							City = reader["City"].ToString(),
-							State = reader["State"].ToString(),
-							Zip = reader["PostalCode"].ToString(),
-							Country = reader["CountryRegionCode"].ToString(),
-							EmailAddress = reader["EmailAddress"].ToString(),
-							PhoneNumber = reader["PhoneNumber"].ToString(),
-							AccountNumber = reader["AccountNumber"].ToString(),
-							EmailPromotion = (int)reader["EmailPromotion"],
-							Demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
-							AdditionalContactInfo = GetXML(reader["AdditionalContactInfo"].ToString())
+							customerID = (int)reader["BusinessEntityID"],
+							title = reader["Title"].ToString(),
+							firstName = reader["FirstName"].ToString(),
+							lastName = reader["LastName"].ToString(),
+							middleInitial = reader["MiddleName"].ToString(),
+							suffix = reader["Suffix"].ToString(),
+							address1 = reader["AddressLine1"].ToString(),
+							address2 = reader["AddressLine2"].ToString(),
+							city = reader["City"].ToString(),
+							state = reader["State"].ToString(),
+							zip = reader["PostalCode"].ToString(),
+							country = reader["CountryRegionCode"].ToString(),
+							emailAddress = reader["EmailAddress"].ToString(),
+							phoneNumber = reader["PhoneNumber"].ToString(),
+							accountNumber = reader["AccountNumber"].ToString(),
+							emailPromotion = (int)reader["EmailPromotion"],
+							demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
+							additionalContactInfo = GetXML(reader["AdditionalContactInfo"].ToString())
 
 							//Demographics = (XmlElement)reader["Demographics"],
 							//AdditionalContactInfo = (XmlElement)reader["AdditionalContactInfo"]
@@ -361,25 +361,25 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 						customers.Add(new Customer
 						{
-							CustomerID = (int)reader["BusinessEntityID"],
-							Title = reader["Title"].ToString(),
-							FirstName = reader["FirstName"].ToString(),
-							LastName = reader["LastName"].ToString(),
-							MiddleInitial = reader["MiddleName"].ToString(),
-							Suffix = reader["Suffix"].ToString(),
-							Address1 = reader["AddressLine1"].ToString(),
-							Address2 = reader["AddressLine2"].ToString(),
-							City = reader["City"].ToString(),
-							State = reader["State"].ToString(),
-							Zip = reader["PostalCode"].ToString(),
-							Country = reader["CountryRegionCode"].ToString(),
-							EmailAddress = reader["EmailAddress"].ToString(),
-							PhoneNumber = reader["PhoneNumber"].ToString(),
-							AccountNumber = reader["AccountNumber"].ToString(),
-							Photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"]),
-							EmailPromotion = (int)reader["EmailPromotion"],
-							Demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
-							AdditionalContactInfo = GetXML(reader["AdditionalContactInfo"].ToString())
+							customerID = (int)reader["BusinessEntityID"],
+							title = reader["Title"].ToString(),
+							firstName = reader["FirstName"].ToString(),
+							lastName = reader["LastName"].ToString(),
+							middleInitial = reader["MiddleName"].ToString(),
+							suffix = reader["Suffix"].ToString(),
+							address1 = reader["AddressLine1"].ToString(),
+							address2 = reader["AddressLine2"].ToString(),
+							city = reader["City"].ToString(),
+							state = reader["State"].ToString(),
+							zip = reader["PostalCode"].ToString(),
+							country = reader["CountryRegionCode"].ToString(),
+							emailAddress = reader["EmailAddress"].ToString(),
+							phoneNumber = reader["PhoneNumber"].ToString(),
+							accountNumber = reader["AccountNumber"].ToString(),
+							photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"]),
+							emailPromotion = (int)reader["EmailPromotion"],
+							demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
+							additionalContactInfo = GetXML(reader["AdditionalContactInfo"].ToString())
 						});
 					}
 					reader.Close();
@@ -404,31 +404,31 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 			{
 				SqlCommand command = new SqlCommand(queryString, connection);
 				command.CommandType = CommandType.StoredProcedure;
-				command.Parameters.AddWithValue("@CustomerID", customerInfo.CustomerID);
-				command.Parameters.AddWithValue("@Title", customerInfo.Title);
-				command.Parameters.AddWithValue("@FirstName", customerInfo.FirstName);
-				command.Parameters.AddWithValue("@LastName", customerInfo.LastName);
-				command.Parameters.AddWithValue("@MiddleInitial", customerInfo.MiddleInitial);
-				command.Parameters.AddWithValue("@Suffix", customerInfo.Suffix);
-				command.Parameters.AddWithValue("@Address1", customerInfo.Address1);
-				command.Parameters.AddWithValue("@Address2", customerInfo.Address2);
-				command.Parameters.AddWithValue("@City", customerInfo.City);
-				command.Parameters.AddWithValue("@State", customerInfo.State);
-				command.Parameters.AddWithValue("@Zip", customerInfo.Zip);
-				command.Parameters.AddWithValue("@Country", customerInfo.Country);
-				command.Parameters.AddWithValue("@EmailAddress", customerInfo.EmailAddress);
-				command.Parameters.AddWithValue("@PhoneNumber", customerInfo.PhoneNumber);
-				command.Parameters.AddWithValue("@AccountNumber", customerInfo.AccountNumber);
-				command.Parameters.AddWithValue("@EmailPromotion", customerInfo.EmailPromotion);
-				command.Parameters.AddWithValue("@Demographics", customerInfo.Demographics);
-				command.Parameters.AddWithValue("@AdditionalContactInfo", customerInfo.AdditionalContactInfo);
+				command.Parameters.AddWithValue("@CustomerID", customerInfo.customerID);
+				command.Parameters.AddWithValue("@Title", customerInfo.title);
+				command.Parameters.AddWithValue("@FirstName", customerInfo.firstName);
+				command.Parameters.AddWithValue("@LastName", customerInfo.lastName);
+				command.Parameters.AddWithValue("@MiddleInitial", customerInfo.middleInitial);
+				command.Parameters.AddWithValue("@Suffix", customerInfo.suffix);
+				command.Parameters.AddWithValue("@Address1", customerInfo.address1);
+				command.Parameters.AddWithValue("@Address2", customerInfo.address2);
+				command.Parameters.AddWithValue("@City", customerInfo.city);
+				command.Parameters.AddWithValue("@State", customerInfo.state);
+				command.Parameters.AddWithValue("@Zip", customerInfo.zip);
+				command.Parameters.AddWithValue("@Country", customerInfo.country);
+				command.Parameters.AddWithValue("@EmailAddress", customerInfo.emailAddress);
+				command.Parameters.AddWithValue("@PhoneNumber", customerInfo.phoneNumber);
+				command.Parameters.AddWithValue("@AccountNumber", customerInfo.accountNumber);
+				command.Parameters.AddWithValue("@EmailPromotion", customerInfo.emailPromotion);
+				command.Parameters.AddWithValue("@Demographics", customerInfo.demographics);
+				command.Parameters.AddWithValue("@AdditionalContactInfo", customerInfo.additionalContactInfo);
 
 				try
 				{
 					connection.Open();
 					int result = command.ExecuteNonQuery();
-					customerInfo.CustomerID = (int)command.Parameters["@CustomerID"].SqlValue;
-					customerInfo.AccountNumber = (string)command.Parameters["@AccountNumber"].SqlValue;
+					customerInfo.customerID = (int)command.Parameters["@CustomerID"].SqlValue;
+					customerInfo.accountNumber = (string)command.Parameters["@AccountNumber"].SqlValue;
 				}
 				catch (Exception ex)
 				{
@@ -469,43 +469,43 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 			XmlNode head = xml.ChildNodes[0];
 
 			if (Decimal.TryParse(head.ChildNodes[0].InnerXml, out totalPurchaseYTD))
-				individualSurvey.TotalPurchaseYTD = totalPurchaseYTD;
+				individualSurvey.totalPurchaseYTD = totalPurchaseYTD;
 			else
-				individualSurvey.TotalPurchaseYTD = null;
+				individualSurvey.totalPurchaseYTD = null;
 
-			individualSurvey.DateFirstPurchase = DateTime.Parse(head.ChildNodes[1].InnerXml);
-			individualSurvey.BirthDate = DateTime.Parse(head.ChildNodes[2].InnerXml);
+			individualSurvey.dateFirstPurchase = DateTime.Parse(head.ChildNodes[1].InnerXml);
+			individualSurvey.birthDate = DateTime.Parse(head.ChildNodes[2].InnerXml);
 
-			Globals.MaritalStatus.TryGetValue(head.ChildNodes[3].InnerXml, out individualSurvey.MaritalStatus);
+			Globals.MaritalStatus.TryGetValue(head.ChildNodes[3].InnerXml, out individualSurvey.maritalStatus);
 
-			individualSurvey.YearlyIncome = head.ChildNodes[4].InnerXml;
+			individualSurvey.yearlyIncome = head.ChildNodes[4].InnerXml;
 
-			Globals.Gender.TryGetValue(head.ChildNodes[5].InnerXml, out individualSurvey.Gender);
+			Globals.Gender.TryGetValue(head.ChildNodes[5].InnerXml, out individualSurvey.gender);
 
 			if (Int32.TryParse(head.ChildNodes[6].InnerXml, out totalChildren))
-				individualSurvey.TotalChildren = totalChildren;
+				individualSurvey.totalChildren = totalChildren;
 			else
-				individualSurvey.TotalChildren = null;
+				individualSurvey.totalChildren = null;
 
 			if (Int32.TryParse(head.ChildNodes[7].InnerXml, out numberChildrenAtHome))
-				individualSurvey.NumberChildrenAtHome = numberChildrenAtHome;
+				individualSurvey.numberChildrenAtHome = numberChildrenAtHome;
 			else
-				individualSurvey.NumberChildrenAtHome = null;
+				individualSurvey.numberChildrenAtHome = null;
 
-			individualSurvey.Education = head.ChildNodes[8].InnerXml;
-			individualSurvey.Occupation = head.ChildNodes[9].InnerXml;
+			individualSurvey.education = head.ChildNodes[8].InnerXml;
+			individualSurvey.occupation = head.ChildNodes[9].InnerXml;
 
 			if (Int32.TryParse(head.ChildNodes[10].InnerXml, out homeOwnerFlag))
-				individualSurvey.HomeOwnerFlag = Convert.ToBoolean(homeOwnerFlag);
+				individualSurvey.homeOwnerFlag = Convert.ToBoolean(homeOwnerFlag);
 			else
-				individualSurvey.HomeOwnerFlag = null;
+				individualSurvey.homeOwnerFlag = null;
 
 			if (Int32.TryParse(head.ChildNodes[11].InnerXml, out numberCarsOwned))
-				individualSurvey.NumberCarsOwned = numberCarsOwned;
+				individualSurvey.numberCarsOwned = numberCarsOwned;
 			else
-				individualSurvey.NumberCarsOwned = null;
+				individualSurvey.numberCarsOwned = null;
 
-			individualSurvey.CommuteDistance = head.ChildNodes[12].InnerXml;
+			individualSurvey.commuteDistance = head.ChildNodes[12].InnerXml;
 			return individualSurvey;
 		}
 		//Open file in to a filestream and read data in a byte array.

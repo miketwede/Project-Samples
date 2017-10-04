@@ -31,27 +31,27 @@ namespace SampleDemoWebApi.CustomerApi.BO
 					customers = new List<Customer>();
 					customers.Add(new Customer
 					{
-						CustomerID = 1,
-						FirstName = "Fred",
-						LastName = "Flinstone",
-						MiddleInitial = "",
-						Address1 = "",
-						Address2 = "",
-						City = "Bedrock",
-						State = "A place right out of History",
-						Zip = ""
+						customerID = 1,
+						firstName = "Fred",
+						lastName = "Flinstone",
+						middleInitial = "",
+						address1 = "",
+						address2 = "",
+						city = "Bedrock",
+						state = "A place right out of History",
+						zip = ""
 					});
 					customers.Add(new Customer
 					{
-						CustomerID = 2,
-						FirstName = "Wilma",
-						LastName = "Flinstone",
-						MiddleInitial = "",
-						Address1 = "",
-						Address2 = "",
-						City = "Bedrock",
-						State = "A place right out of History",
-						Zip = ""
+						customerID = 2,
+						firstName = "Wilma",
+						lastName = "Flinstone",
+						middleInitial = "",
+						address1 = "",
+						address2 = "",
+						city = "Bedrock",
+						state = "A place right out of History",
+						zip = ""
 					});
 				}
 			}

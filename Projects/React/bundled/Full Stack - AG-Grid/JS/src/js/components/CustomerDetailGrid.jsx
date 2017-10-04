@@ -110,10 +110,6 @@ else{
                     <div class="col-lg-12">
                     <div className="full-width-detail">No detail record found.</div>
 
-
-
-
-
                         </div>
                     </div>
                 </div>

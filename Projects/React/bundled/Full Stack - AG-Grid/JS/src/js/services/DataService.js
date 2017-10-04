@@ -34,7 +34,15 @@ var config = {
         //   axios.get('https://api.github.com/users/codeheaven-io', config);
         //   axios.post('/save', { firstName: 'Marlon' }, config);
 
-       var mike = axios.get('http://localhost:52819/api/customers/GetCustomers', config)
+       // var api = 'http://localhost:52819/api/customers/GetCustomers';
+         var api = 'http://localhost:63131/api/customers/GetCustomers';
+
+
+        //var api = 'http://localhost:63131/CustomerController/GetCustomers';
+       // var api = 'http://localhost:63131/Customer/GetCustomers';
+        
+
+       var mike = axios.get(api, config)
        .then(function (response) {
         console.log("response", response);
         console.log("response.data", response.data);

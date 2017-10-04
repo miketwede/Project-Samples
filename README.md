@@ -96,7 +96,7 @@ Web Services
 * WebAPI API - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
 applications.
 * ASP.NET Core(2) - SampleDemoAspNetCore - This Api is used by both the 'Full Stack - AG-Grid' and 'angular-seed'
-applications.
+applications. Currently not implemented with Docker.
 
 ```
 

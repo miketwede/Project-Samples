@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta charset="utf-8">
+    <!-- change this up! http://www.bootstrapcdn.com/bootswatch/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+
+    <title>JavaScript Samples : String Reversal</title>
+    
+    <style type="text/css">
+        .container {
+            width: 500px;
+            clear: both;
+        }
+        .container input {
+            width: 100%;
+            clear: both;
+        }
+        </style>
+</head>
+ 
+<body>
+    <div class="container">
+        <form >
+            <h1> String Reversal Example </h1>
+            <br><br>
+            
+            <label for="stringText">Enter a string: </label>
+            <input type="text" name="stringText" id="stringText" value="" >                
+            <br><br>
+
+            <label for="answer">Answer: </label>
+            <input type="text" name="answer" id="answer" value="">
+            <br><br>
+
+            <input type="button" value="Submit" onclick="getString()">
+        </form> 
+    </div>
+
+    <script src="reverseString.js"></script>
+
+    <script>
+      
+        function getString()
+        {
+            var stringText = document.getElementById("stringText").value;
+            
+            document.getElementById("answer").value=ReverseString(stringText);      
+        }
+    
+    </script>
+        
+</body>
+ 
+</html>

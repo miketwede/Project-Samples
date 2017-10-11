@@ -16,13 +16,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            @*<div class="navbar-collapse collapse">*@
+            <div class="navbar-header">
+                <ul class=" nav navbar-nav">
+                    @*<li>@Html.ActionLink("Header Text", "View Name", "Controller Name(first part)")</li> Note Controller method name must be the same as the view name.*@
+                    <li class="navbar-size">@Html.ActionLink("Customers", "Customers", "Customer")</li>
+                    <li class="navbar-size">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="navbar-size">@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -37,6 +39,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Custom/utilities")
     @RenderSection("scripts", required: false)
 </body>
 </html>

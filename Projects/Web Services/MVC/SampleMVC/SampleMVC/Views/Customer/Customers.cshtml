@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SampleMVC.Models.Customer>
+@*@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/Custom/utilities.js")"></script>
+}*@
+@{
+    ViewBag.Title = "Customer Page";
+}
+
+@*<div class="jumbotron page-header ">
+    <h2>Customers</h2>
+</div>*@
+<div class=" page-header ">
+    <h2>Customers</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Account</th>
+            </tr>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <th>@ViewBag.Functions.formatName(@customer)</th>
+            <th>@ViewBag.Functions.formatAddress(@customer)</th>
+            <th>@customer.phoneNumber</th>
+            <th>@customer.emailAddress</th>
+            <th>@customer.accountNumber</th>
+        </tr>
+    }
+
+        </table>
+    </div>
+
+</div>

@@ -15,12 +15,14 @@ namespace SampleMVC.Models
 		public string lastName;
 		public string middleInitial;
 		public string suffix;
+		public string name; // dynamically built
 		public string address1;
 		public string address2;
 		public string city;
 		public string state;
 		public string zip;
 		public string country;
+		public string address; // dynamically built
 		public string emailAddress;
 		public string phoneNumber;
 		public string accountNumber;

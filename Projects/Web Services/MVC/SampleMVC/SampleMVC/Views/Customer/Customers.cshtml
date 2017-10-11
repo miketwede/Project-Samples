@@ -1,41 +1,27 @@
-﻿@model IEnumerable<SampleMVC.Models.Customer>
-@*@section Scripts
-{
-    <script src="@Url.Content("~/Scripts/Custom/utilities.js")"></script>
-}*@
+﻿@using GridMvc.Html
+
+@*@model IEnumerable<SampleMVC.Models.Customer>*@
+@model List<SampleMVC.Models.Customer>
+
 @{
     ViewBag.Title = "Customer Page";
 }
 
-@*<div class="jumbotron page-header ">
-    <h2>Customers</h2>
-</div>*@
 <div class=" page-header ">
     <h2>Customers</h2>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <table style="width:100%">
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Account</th>
-            </tr>
-    @foreach (var customer in Model)
-    {
-        <tr>
-            <th>@ViewBag.Functions.formatName(@customer)</th>
-            <th>@ViewBag.Functions.formatAddress(@customer)</th>
-            <th>@customer.phoneNumber</th>
-            <th>@customer.emailAddress</th>
-            <th>@customer.accountNumber</th>
-        </tr>
-    }
 
-        </table>
+        @Html.Grid(Model).Columns(columns =>
+        {
+            columns.Add(customer => customer.name).Titled("Name").Sortable(true).Filterable(true);
+            columns.Add(customer => customer.address).Titled("Address").Sortable(true).Filterable(true);
+            columns.Add(customer => customer.phoneNumber).Titled("Phone").Sortable(true).Filterable(true);
+            columns.Add(customer => customer.emailAddress).Titled("Email").Sortable(true).Filterable(true);
+            columns.Add(customer => customer.accountNumber).Titled("Account").Sortable(true).Filterable(true);
+        }).WithPaging(15)
+
     </div>
-
 </div>

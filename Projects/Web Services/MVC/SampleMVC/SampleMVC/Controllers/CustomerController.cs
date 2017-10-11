@@ -17,7 +17,7 @@ namespace AngularUsingMVC.Controllers
         {
 			CustomerBO customerBO = new CustomerBO();
 			List<Customer> customers = customerBO.GetCustomers();
-			ViewBag.Functions = customerBO;
+			//ViewBag.Functions = customerBO;
 			return View(customers);
         }
 

@@ -36,7 +36,6 @@ namespace SampleMVC.BO
 			try
 			{
 				customers = customerDAL.GetCustomers();
-
 				if (customers == null)
 				{
 					customers = new List<Customer>();
@@ -46,11 +45,13 @@ namespace SampleMVC.BO
 						firstName = "Fred",
 						lastName = "Flinstone",
 						middleInitial = "",
+						name = "Fred Flinstone",
 						address1 = "",
 						address2 = "",
 						city = "Bedrock",
 						state = "A place right out of History",
-						zip = ""
+						zip = "",
+						address = "Bedrock, A place right out of History"
 					});
 					customers.Add(new Customer
 					{
@@ -58,12 +59,18 @@ namespace SampleMVC.BO
 						firstName = "Wilma",
 						lastName = "Flinstone",
 						middleInitial = "",
+						name = "Wilma Flinstone",
 						address1 = "",
 						address2 = "",
 						city = "Bedrock",
 						state = "A place right out of History",
-						zip = ""
+						zip = "",
+						address = "Bedrock, A place right out of History"
 					});
+				}
+				else
+				{
+					FormatCustomers(ref customers);
 				}
 			}
 			catch (Exception ex)
@@ -147,7 +154,9 @@ namespace SampleMVC.BO
 			return customers;
 		}
 
-		public string formatName(Customer customer)
+		#region helper functions
+
+		private string FormatName(Customer customer)
 		{
 			var fullName = "";
 			if (customer.title != null)
@@ -168,7 +177,7 @@ namespace SampleMVC.BO
 			return fullName.Trim();
 		}
 
-		public string formatAddress(Customer customer)
+		private string FormatAddress(Customer customer)
 		{
 			var fullAddress = "";
 
@@ -188,5 +197,25 @@ namespace SampleMVC.BO
 
 			return fullAddress.Trim();
 		}
+
+		private void FormatCustomers(ref List<Customer> customers)
+		{
+			if (customers == null || customers.Count == 0)
+			{
+				return;
+			}
+
+			foreach (Customer customer in customers)
+			{
+				customer.name = FormatName(customer);
+				customer.address = FormatAddress(customer);
+			}
+
+			return;
+		}
+
+		#endregion
+
+
 	}
 }

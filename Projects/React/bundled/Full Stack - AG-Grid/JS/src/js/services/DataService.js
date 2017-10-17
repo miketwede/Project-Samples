@@ -34,8 +34,8 @@ var config = {
         //   axios.get('https://api.github.com/users/codeheaven-io', config);
         //   axios.post('/save', { firstName: 'Marlon' }, config);
 
-       // var api = 'http://localhost:52819/api/customers/GetCustomers';
-         var api = 'http://localhost:63131/api/customers/GetCustomers';
+       var api = 'http://localhost:52819/api/customers/GetCustomers';
+        // var api = 'http://localhost:63131/api/customers/GetCustomers';
 
 
         //var api = 'http://localhost:63131/CustomerController/GetCustomers';

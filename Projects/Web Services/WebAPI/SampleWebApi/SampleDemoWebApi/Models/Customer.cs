@@ -10,22 +10,8 @@ namespace SampleDemoWebApi.CustomerApi.Models
 	public class Customer
 	{
 		public int customerID;
-		public string title;
-		public string firstName;
-		public string lastName;
-		public string middleInitial;
-		public string suffix;
-		public string address1;
-		public string address2;
-		public string city;
-		public string state;
-		public string zip;
-		public string country;
-		public string emailAddress;
-		public string phoneNumber;
+		public Person person;
 		public string accountNumber;
-		//public Image Photo;
-		public string photo;
 		public int emailPromotion;
 		public IndividualSurvey demographics;
 		public XmlDocument additionalContactInfo;

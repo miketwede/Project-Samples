@@ -32,26 +32,34 @@ namespace SampleDemoWebApi.CustomerApi.BO
 					customers.Add(new Customer
 					{
 						customerID = 1,
-						firstName = "Fred",
-						lastName = "Flinstone",
-						middleInitial = "",
-						address1 = "",
-						address2 = "",
-						city = "Bedrock",
-						state = "A place right out of History",
-						zip = ""
+						 person = new Person
+						 {
+							 firstName = "Fred",
+							 lastName = "Flinstone",
+							 middleInitial = "",
+							 address1 = "",
+							 address2 = "",
+							 city = "Bedrock",
+							 state = "A place right out of History",
+							 zip = ""
+						 }
 					});
 					customers.Add(new Customer
 					{
 						customerID = 2,
-						firstName = "Wilma",
-						lastName = "Flinstone",
-						middleInitial = "",
-						address1 = "",
-						address2 = "",
-						city = "Bedrock",
-						state = "A place right out of History",
-						zip = ""
+						person = new Person
+						{
+							firstName = "Wilma",
+							lastName = "Flinstone",
+							middleInitial = "",
+							address1 = "",
+							address2 = "",
+							city = "Bedrock",
+							state = "A place right out of History",
+							zip = ""
+						}
+
+
 					});
 				}
 			}

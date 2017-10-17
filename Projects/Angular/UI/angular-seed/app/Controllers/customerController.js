@@ -58,12 +58,12 @@ app.controller('customerController', ['$scope', 'httpFactory', function ($scope,
                 let rows =  response;
                 if (rows.length > 0){
                     for (var i=0; i<rows.length; i++){
-                        let Name = vm.formatName(rows[i]); 
-                        let Phone = rows[i].phoneNumber;
-                        let Email = rows[i].emailAddress;
+                        let Name = vm.formatName(rows[i].person); 
+                        let Phone = rows[i].person.phoneNumber;
+                        let Email = rows[i].person.emailAddress;
                         let AccountNumber = rows[i].accountNumber;
-                        let Address = vm.formatAddress(rows[i]);
-                        let Photo = rows[i].photo;
+                        let Address = vm.formatAddress(rows[i].person);
+                        let Photo = rows[i].person.photo;
                         let IndividualSurvey = rows[i].demographics;
 
                         let masterRecord = {

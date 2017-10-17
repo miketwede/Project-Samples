@@ -292,19 +292,24 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 						customer = new Customer
 						{
 							customerID = (int)reader["BusinessEntityID"],
-							title = reader["Title"].ToString(),
-							firstName = reader["FirstName"].ToString(),
-							lastName = reader["LastName"].ToString(),
-							middleInitial = reader["MiddleName"].ToString(),
-							suffix = reader["Suffix"].ToString(),
-							address1 = reader["AddressLine1"].ToString(),
-							address2 = reader["AddressLine2"].ToString(),
-							city = reader["City"].ToString(),
-							state = reader["State"].ToString(),
-							zip = reader["PostalCode"].ToString(),
-							country = reader["CountryRegionCode"].ToString(),
-							emailAddress = reader["EmailAddress"].ToString(),
-							phoneNumber = reader["PhoneNumber"].ToString(),
+							person = new Person
+							{
+								title = reader["Title"].ToString(),
+								firstName = reader["FirstName"].ToString(),
+								lastName = reader["LastName"].ToString(),
+								middleInitial = reader["MiddleName"].ToString(),
+								suffix = reader["Suffix"].ToString(),
+								address1 = reader["AddressLine1"].ToString(),
+								address2 = reader["AddressLine2"].ToString(),
+								city = reader["City"].ToString(),
+								state = reader["State"].ToString(),
+								zip = reader["PostalCode"].ToString(),
+								country = reader["CountryRegionCode"].ToString(),
+								emailAddress = reader["EmailAddress"].ToString(),
+								phoneNumber = reader["PhoneNumber"].ToString(),
+								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+							},
+
 							accountNumber = reader["AccountNumber"].ToString(),
 							emailPromotion = (int)reader["EmailPromotion"],
 							demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
@@ -362,21 +367,24 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 						customers.Add(new Customer
 						{
 							customerID = (int)reader["BusinessEntityID"],
-							title = reader["Title"].ToString(),
-							firstName = reader["FirstName"].ToString(),
-							lastName = reader["LastName"].ToString(),
-							middleInitial = reader["MiddleName"].ToString(),
-							suffix = reader["Suffix"].ToString(),
-							address1 = reader["AddressLine1"].ToString(),
-							address2 = reader["AddressLine2"].ToString(),
-							city = reader["City"].ToString(),
-							state = reader["State"].ToString(),
-							zip = reader["PostalCode"].ToString(),
-							country = reader["CountryRegionCode"].ToString(),
-							emailAddress = reader["EmailAddress"].ToString(),
-							phoneNumber = reader["PhoneNumber"].ToString(),
+							person = new Person
+							{
+								title = reader["Title"].ToString(),
+								firstName = reader["FirstName"].ToString(),
+								lastName = reader["LastName"].ToString(),
+								middleInitial = reader["MiddleName"].ToString(),
+								suffix = reader["Suffix"].ToString(),
+								address1 = reader["AddressLine1"].ToString(),
+								address2 = reader["AddressLine2"].ToString(),
+								city = reader["City"].ToString(),
+								state = reader["State"].ToString(),
+								zip = reader["PostalCode"].ToString(),
+								country = reader["CountryRegionCode"].ToString(),
+								emailAddress = reader["EmailAddress"].ToString(),
+								phoneNumber = reader["PhoneNumber"].ToString(),
+								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+							},
 							accountNumber = reader["AccountNumber"].ToString(),
-							photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"]),
 							emailPromotion = (int)reader["EmailPromotion"],
 							demographics = ParseXML(GetXML(reader["Demographics"].ToString())),
 							additionalContactInfo = GetXML(reader["AdditionalContactInfo"].ToString())
@@ -405,19 +413,20 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 				SqlCommand command = new SqlCommand(queryString, connection);
 				command.CommandType = CommandType.StoredProcedure;
 				command.Parameters.AddWithValue("@CustomerID", customerInfo.customerID);
-				command.Parameters.AddWithValue("@Title", customerInfo.title);
-				command.Parameters.AddWithValue("@FirstName", customerInfo.firstName);
-				command.Parameters.AddWithValue("@LastName", customerInfo.lastName);
-				command.Parameters.AddWithValue("@MiddleInitial", customerInfo.middleInitial);
-				command.Parameters.AddWithValue("@Suffix", customerInfo.suffix);
-				command.Parameters.AddWithValue("@Address1", customerInfo.address1);
-				command.Parameters.AddWithValue("@Address2", customerInfo.address2);
-				command.Parameters.AddWithValue("@City", customerInfo.city);
-				command.Parameters.AddWithValue("@State", customerInfo.state);
-				command.Parameters.AddWithValue("@Zip", customerInfo.zip);
-				command.Parameters.AddWithValue("@Country", customerInfo.country);
-				command.Parameters.AddWithValue("@EmailAddress", customerInfo.emailAddress);
-				command.Parameters.AddWithValue("@PhoneNumber", customerInfo.phoneNumber);
+
+				command.Parameters.AddWithValue("@Title", customerInfo.person.title);
+				command.Parameters.AddWithValue("@FirstName", customerInfo.person.firstName);
+				command.Parameters.AddWithValue("@LastName", customerInfo.person.lastName);
+				command.Parameters.AddWithValue("@MiddleInitial", customerInfo.person.middleInitial);
+				command.Parameters.AddWithValue("@Suffix", customerInfo.person.suffix);
+				command.Parameters.AddWithValue("@Address1", customerInfo.person.address1);
+				command.Parameters.AddWithValue("@Address2", customerInfo.person.address2);
+				command.Parameters.AddWithValue("@City", customerInfo.person.city);
+				command.Parameters.AddWithValue("@State", customerInfo.person.state);
+				command.Parameters.AddWithValue("@Zip", customerInfo.person.zip);
+				command.Parameters.AddWithValue("@Country", customerInfo.person.country);
+				command.Parameters.AddWithValue("@EmailAddress", customerInfo.person.emailAddress);
+				command.Parameters.AddWithValue("@PhoneNumber", customerInfo.person.phoneNumber);
 				command.Parameters.AddWithValue("@AccountNumber", customerInfo.accountNumber);
 				command.Parameters.AddWithValue("@EmailPromotion", customerInfo.emailPromotion);
 				command.Parameters.AddWithValue("@Demographics", customerInfo.demographics);

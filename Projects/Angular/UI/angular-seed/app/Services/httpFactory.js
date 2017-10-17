@@ -42,8 +42,8 @@
 
 function getCustomers()
     {
-               // var api = 'http://localhost:52819/api/customers/GetCustomers';
-               var api = 'http://localhost:63131/api/customers/GetCustomers';
+                var api = 'http://localhost:52819/api/customers/GetCustomers';
+              // var api = 'http://localhost:63131/api/customers/GetCustomers';
                
         return $http.get(api)
         

@@ -99,13 +99,13 @@ export default class CustomerMasterGrid extends Component {
         
         for (let i = 0; i < rows.length; i++) {
             // let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
-            let Name = this.formatName(rows[i]); 
-            let Phone = rows[i].phoneNumber;
-            let Email = rows[i].emailAddress;
+            let Name = this.formatName(rows[i].person); 
+            let Phone = rows[i].person.phoneNumber;
+            let Email = rows[i].person.emailAddress;
             let AccountNumber = rows[i].accountNumber;
             // let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
-            let Address = this.formatAddress(rows[i]);
-            let Photo = rows[i].photo;
+            let Address = this.formatAddress(rows[i].person);
+            let Photo = rows[i].person.photo;
             let IndividualSurvey = rows[i].demographics;
             
             let detailRecords = [];

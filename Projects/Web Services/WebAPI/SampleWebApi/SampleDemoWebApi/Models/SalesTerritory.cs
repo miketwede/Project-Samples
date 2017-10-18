@@ -9,14 +9,14 @@ namespace SampleDemoWebApi.CustomerApi.Models
 {
 	public class SalesTerritory
 	{
-		public int TerritoryID;
+		public int territoryID;
 		public string group;
 		public string country;
 		public string region;
-		public string salesLastYear;
-		public string salesYTD;
-		public string costLastYear;
-		public string costYTD;
-		public XmlDocument additionalContactInfo;
+		public decimal salesLastYear;
+		public decimal salesYTD;
+		public decimal costLastYear;
+		public decimal costYTD;
+		public List<SalesPerson> salesPersons;
 	}
 }

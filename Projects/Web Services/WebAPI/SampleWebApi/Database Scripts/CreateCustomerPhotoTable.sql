@@ -1,0 +1,30 @@
+USE [AdventureWorks2014]
+GO
+
+/****** Object:  Table [Person].[Photo]    Script Date: 9/14/2017 10:08:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [Person].[Photo](
+	[PhotoID] [int] IDENTITY(1,1) NOT NULL,
+	[BusinessEntityID] [int] NOT NULL,
+	[Photo] [image] NULL,
+	[FileName] [nvarchar](250) NULL,
+ CONSTRAINT [PK_Photo] PRIMARY KEY CLUSTERED 
+(
+	[PhotoID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [Person].[Photo]  WITH CHECK ADD  CONSTRAINT [FK_Photo_Photo] FOREIGN KEY([PhotoID])
+REFERENCES [Person].[Photo] ([PhotoID])
+GO
+
+ALTER TABLE [Person].[Photo] CHECK CONSTRAINT [FK_Photo_Photo]
+GO
+

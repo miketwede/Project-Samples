@@ -5,6 +5,8 @@ import {AgGrid} from "ag-grid";
 // C:\Dev\React\ReactTraining\Full Stack - AG-Grid\JS\node_modules\ag-grid\dist
 
 import CustomerDetailGrid from "./CustomerDetailGrid.jsx";
+//import "../utilities/Common.js";
+import * as common from "../utilities/Common.js";
 
 //import * as utility from "../utilities/Common.js";
 
@@ -56,55 +58,18 @@ export default class CustomerMasterGrid extends Component {
         ];
     }
     
-    formatName(customer)
-     {
-         var fullName = "";
-         if (customer.title){
-            fullName += customer.title + " ";
-         }
-         fullName += customer.firstName + " ";
-         if (customer.middleInitial){
-            fullName += customer.middleInitial + " ";
-         }
-         fullName += customer.lastName + " ";
-         if (customer.suffix){
-            fullName += customer.suffix;
-         }
-         
-        return fullName.trim();
-     };
 
-     formatAddress(customer)
-     {
-         var fullAddress = "";
-
-         fullAddress += customer.address1 + " ";
-         if (customer.Address2){
-            fullAddress += customer.address2 + " ";
-         }
-
-         fullAddress += customer.city + " ";
-         fullAddress += customer.state + " ";
-         fullAddress += customer.zip + " ";
-         if (customer.country){
-            fullAddress += customer.country;
-         }
-         
-        return fullAddress.trim();
-     };
 
     createRowData() {
         let rowData = [];
         let rows = this.props.rows;
         
         for (let i = 0; i < rows.length; i++) {
-            // let Name = rows[i].Title + " " + rows[i].FirstName + " " + rows[i].MiddleInitial + " " + rows[i].LastName + " " + rows[i].Suffix;
-            let Name = this.formatName(rows[i].person); 
+            let Name = common.formatName(rows[i].person); 
             let Phone = rows[i].person.phoneNumber;
             let Email = rows[i].person.emailAddress;
             let AccountNumber = rows[i].accountNumber;
-            // let Address = rows[i].Address1 + " " + rows[i].Address2 + " " + rows[i].City + ", " + rows[i].State + "   " + rows[i].Zip + "   " + rows[i].Country;
-            let Address = this.formatAddress(rows[i].person);
+            let Address = common.formatAddress(rows[i].person);
             let Photo = rows[i].person.photo;
             let IndividualSurvey = rows[i].demographics;
             

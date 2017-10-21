@@ -20,7 +20,8 @@ export default class Nav extends React.Component {
     const featuredClass = location.pathname === "/" ? "active" : "";
     const archivesClass = location.pathname.match(/^\/archives/) ? "active" : "";
     const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
-    const customersClass = location.pathname.match(/^\/customers/) ? "active" : "";
+    const customerClass = location.pathname.match(/^\/customers/) ? "active" : "";
+    const salesTerritoryClass = location.pathname.match(/^\/salesTerritories/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -44,10 +45,13 @@ export default class Nav extends React.Component {
               </li>
               <li class={settingsClass}>
               <Link to="settings" onClick={this.toggleCollapse.bind(this)}>Settings</Link>
-            </li>
-            <li class={customersClass}>
-                <Link to="customers" onClick={this.toggleCollapse.bind(this)}>Customers</Link>
               </li>
+              <li class={customerClass}>
+                  <Link to="customers" onClick={this.toggleCollapse.bind(this)}>Customers</Link>
+              </li>            
+              <li class={salesTerritoryClass}>
+                <Link to="salesTerritories" onClick={this.toggleCollapse.bind(this)}>Sales Territories</Link>
+            </li>
           </ul>
           </div>
         </div>

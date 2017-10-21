@@ -20,6 +20,7 @@ namespace SampleDemoWebApi.CustomerApi.Models
 {
 	public class Person
 	{
+		public int personID;
 		public string title;
 		public string firstName;
 		public string lastName;

@@ -36,7 +36,11 @@ var app = angular.module("myApp", [
     templateUrl: "Views/locations.html",
     controller: "locationController",
     controllerAs: 'vm'
-    
+  })
+  .when("/salesTerritories", {
+    templateUrl: "Views/salesTerritories.html",
+    controller: "salesTerritoryController",
+    controllerAs: 'vm'
   })
   // .otherwise({redirectTo: "/"});
   // .otherwise({redirectTo: "/view1"});

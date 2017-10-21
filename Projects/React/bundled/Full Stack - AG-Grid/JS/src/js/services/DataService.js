@@ -81,5 +81,41 @@ var config = {
     return null;
 }
   
+
+
+
+export function getSalesTerritories() {
+        console.log("in  getSalesTerritories()");
+
+        var config = {
+    responseType: 'json'
+  };
+
+  var api = 'http://localhost:52819/api/sales/GetSalesTerritories';
+  //var api = 'http://localhost:63131/api/sales/GetSalesTerritories';
+
+        
+
+       var salesTerritories = axios.get(api, config)
+       .then(function (response) {
+        console.log("response", response);
+        console.log("response.data", response.data);
+        console.log(response.status);
+        console.log(response.statusText);
+        console.log(response.headers);
+        console.log(response.config);
+        return response.data;
+       })
+       .catch(function (error) {
+        console.log("error", error);
+      //  return error;
+     // throw new Error(error);
+      throw error;
+    });
+   
+       return salesTerritories;
+   }
+
+
 // }
 

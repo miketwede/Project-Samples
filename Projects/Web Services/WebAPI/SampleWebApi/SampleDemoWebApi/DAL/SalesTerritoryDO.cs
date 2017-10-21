@@ -22,13 +22,13 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 
 		#region GET SalesTerritory functions
 
-		public SalesTerritory GetSalesTerritoryBySalesTerritoryID(int custoSalesTerritoryIDmerID)
+		public SalesTerritory GetSalesTerritoryBySalesTerritoryID(int SalesTerritoryID)
 		{
 			SalesTerritory salesTerritory = null;
 
 			try
 			{
-				salesTerritory = GetSalesTerritoryADO("dbo.GetSalesTerritoryBySalesTerritoryID", custoSalesTerritoryIDmerID);
+				salesTerritory = GetSalesTerritoryADO("dbo.GetSalesTerritoryBySalesTerritoryID", SalesTerritoryID);
 			}
 			catch (Exception ex)
 			{
@@ -259,10 +259,11 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 				{
 					salesPerson = new SalesPerson
 					{
-						salesPersonID = (int)reader["BusinessEntityID"],
+						salesPersonID = (int)reader["SalesPersonID"],
 						territiryID = (int)reader["TerritoryID"],
 						person = new Person
 						{
+							personID = (int)reader["PersonID"],
 							title = (reader["Title"] ?? "").ToString(),
 							firstName = (reader["FirstName"] ?? "").ToString(),
 							lastName = (reader["LastName"] ?? "").ToString(),
@@ -276,7 +277,8 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 							country = (reader["CountryRegionCode"] ?? "").ToString(),
 							emailAddress = (reader["EmailAddress"] ?? "").ToString(),
 							phoneNumber = (reader["PhoneNumber"] ?? "").ToString(),
-							photo = (reader["Photo"] ?? "").ToString()
+							photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+						//	photo = (reader["Photo"] ?? "").ToString()
 						},
 						bonus = (decimal)reader["Bonus"],
 						commissionPct = (decimal)reader["CommissionPct"],

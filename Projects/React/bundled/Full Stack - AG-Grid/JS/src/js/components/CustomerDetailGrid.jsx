@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {AgGridReact} from "ag-grid-react";
 
-import "./CustomerDetailGrid.css";
+import "./styles/agGridStyles.css";
 import {formatDate, formatCurrency} from "../utilities/Common.js";
 
 // pull in the ag-grid styles we're interested in
@@ -42,7 +42,6 @@ console.log("this.props.node.parent.data", this.props.node.parent.data);
             return null;
         }
         else {
-            // return formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length-1));
             return formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length));
         }
     }

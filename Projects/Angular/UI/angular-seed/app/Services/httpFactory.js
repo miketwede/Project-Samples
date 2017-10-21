@@ -30,7 +30,8 @@
 
             // public API
             var factory = {
-                getCustomers: getCustomers
+                getCustomers: getCustomers,
+                getSalesTerritories: getSalesTerritories
                 // customerList: customerList
             };
             return factory;
@@ -69,6 +70,36 @@ function getCustomers()
                         // httpError.data;
                       });
             }
+
+            function getSalesTerritories()
+            {
+                var api = 'http://localhost:52819/api/sales/GetSalesTerritories';
+              //  var api = 'http://localhost:63131/api/sales/GetSalesTerritories';
+                       
+                return $http.get(api)
+                
+                           .then(
+                              function (response) {
+                                return response.data;
+                              },
+        
+                              function (httpError) {
+                                 // translate the error
+                                 if (httpError.status == -1){
+                                    var errorMessage = "Network error : Unable to connect to the server.";
+                                    $log.error(errorMessage);
+                                    throw errorMessage;
+                                 }
+                                else{
+                                    var errorMessage = formatErrorMessage(httpError);
+                                    $log.error(errorMessage);
+                                    throw errorMessage;
+                                }
+        
+                                // return httpError.status + " : " + 
+                                // httpError.data;
+                              });
+                    }
 
 function formatErrorMessage(error){
     var formattedMessage = error.data.Message;

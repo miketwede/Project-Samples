@@ -29,6 +29,7 @@
     "react-grid-layout": "^0.15.2",
     "react-router": "^1.0.3",
     "react-toggle-display": "^2.2.0",
+    "repeater-react": "^0.1.17",
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "webpack": "^1.15.0",

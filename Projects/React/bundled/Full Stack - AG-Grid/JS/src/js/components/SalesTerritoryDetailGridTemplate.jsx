@@ -10,9 +10,9 @@ import {formatDate, formatCurrency} from "../utilities/Common.js";
 // import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
 // import "../../../node_modules/ag-grid/dist/styles/theme-fresh.css";
 
-// export default class SalesTerritoryDetailGridTemplate extends Component {
+ export default class SalesTerritoryDetailGridTemplate extends Component {
     // const SalesTerritoryDetailGridTemplate = React.createClass({
-        class SalesTerritoryDetailGridTemplate extends React.Component{
+     //   class SalesTerritoryDetailGridTemplate extends React.Component{
             constructor(props) {
                 super(props);
               }
@@ -20,6 +20,7 @@ import {formatDate, formatCurrency} from "../utilities/Common.js";
 
     render() {
         let dateFormat = "mm/dd/yyyy";
+        let detailRecord = this.props.detailRecord;
 
         return (
                 <div className="full-width-panel">
@@ -28,7 +29,9 @@ import {formatDate, formatCurrency} from "../utilities/Common.js";
 
                     <div class="col-lg-12" >
                         <div class="col-lg-3">
-                            <div className="full-width-detail"><img width="120px" height="130px" src={detailRecord.Person.Photo} alt="Customer Photo" style={{border:'2px solid gold'}}/></div>
+                        <div className="full-width-detail"><img width="120px" height="130px" src={"data:image/jpeg;base64, " + detailRecord.Person.Photo} alt="Customer Photo" style={{border:'2px solid gold'}}/></div>
+
+                            {/* <div className="full-width-detail"><img width="120px" height="130px" src={detailRecord.Person.Photo} alt="Customer Photo" style={{border:'2px solid gold'}}/></div> */}
                             {/* <div className="full-width-detail"><b>Name: </b> {this.state.parentRecord.Name}</div> */}
                             <div className="full-width-detail">{detailRecord.ID}</div>
                             <div className="full-width-detail">{detailRecord.Person.Name}</div>
@@ -36,7 +39,7 @@ import {formatDate, formatCurrency} from "../utilities/Common.js";
                         </div>
 
                         <div class="col-lg-5">
-                        <div className="full-width-detail" style={{padding:'10px'}}><b>Photo: </b> {detailRecord.Person.Photo}</div>
+                        {/* <div className="full-width-detail" style={{padding:'10px'}}><b>Photo: </b> {detailRecord.Person.Photo}</div> */}
                         <div className="full-width-detail" style={{padding:'10px'}}><b>Address: </b> {detailRecord.Person.Address}</div>
                         <div className="full-width-detail" style={{padding:'10px'}}><b>EmailAddress: </b> {detailRecord.Person.EmailAddress}</div>
                         <div className="full-width-detail" style={{padding:'10px'}}><b>PhoneNumber: </b> {detailRecord.Person.PhoneNumber}</div>
@@ -60,12 +63,12 @@ import {formatDate, formatCurrency} from "../utilities/Common.js";
 
         };
         
-        SalesTerritoryDetailGridTemplate.propTypes = {
+        // SalesTerritoryDetailGridTemplate.propTypes = {
             
-            };
-        SalesTerritoryDetailGridTemplate.defaultProps = {
+        //     };
+        // SalesTerritoryDetailGridTemplate.defaultProps = {
         
-        };
+        // };
 
-        export default SalesTerritoryDetailGridTemplate;
+      //  export default SalesTerritoryDetailGridTemplate;
 // }

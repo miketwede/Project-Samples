@@ -113,8 +113,9 @@ export default class SalesTerritoryMasterGrid extends Component {
 
     getRowHeight(params) {
         let rowIsDetailRow = params.node.level === 1;
-        // return 100 when detail row, otherwise return 25
-        return rowIsDetailRow ? 200 : 25;
+        let rowHeight = rowIsDetailRow ? (params.data ? (params.data.length * 250) : 100) : 25;
+
+        return rowHeight;
     }
 
     getNodeChildDetails(masterRecord) {
@@ -136,13 +137,13 @@ export default class SalesTerritoryMasterGrid extends Component {
 
     render() {
         let containerStyle = {
-            height: 800,
+            height: 650,
             width: 1500
         };
 
         return (
             <div style={containerStyle} className="ag-fresh">
-                <h1>Master-Detail Example</h1>
+                <h1>Sales Territories</h1>
                 <AgGridReact
                     // properties
                     columnDefs={this.state.columnDefs}

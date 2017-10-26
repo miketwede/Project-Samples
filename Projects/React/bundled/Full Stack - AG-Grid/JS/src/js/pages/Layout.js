@@ -3,6 +3,7 @@ import { Link } from "react-router";
 
 import Footer from "../components/layout/Footer";
 import Nav from "../components/layout/Nav";
+import {formatDate, formatCurrency} from "../utilities/Common.js";
 
 export default class Layout extends React.Component {
 
@@ -17,9 +18,7 @@ navigate() {
       marginTop: "60px"
     };
 
-    console.log("layout page");
-    console.log("this.props.children", this.props.children);
-    console.log("this.props", this.props);
+    let dateFormat = "mm/dd/yyyy";
     
     return (
       <div>
@@ -28,8 +27,21 @@ navigate() {
 
         <div class="container" style={containerStyle}>
           <div class="row">
-            <div class="col-lg-12">
-              <h1>KillerNews.net</h1>
+
+          <div class="col-lg-12">
+            <div class="col-lg-9">
+            <h1>KillerNews.net</h1>
+            </div>
+            {/* <div class="col-lg-3" id="bottom-content" > */}
+            <div class="col-lg-3"  >
+            <h4>{formatDate(Date.now(), dateFormat)}</h4>
+
+            
+            </div>
+          </div>
+
+          <div class="col-lg-12">
+
 
 {/*               <button class="btn btn-info" onClick={this.navigate.bind(this)}>featured</button>
               <Link to="archives" class="btn btn-danger">archives</Link>

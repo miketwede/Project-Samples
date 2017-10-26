@@ -151,7 +151,7 @@ export default class CustomerMasterGrid extends Component {
 
         return (
             <div style={containerStyle} className="ag-fresh">
-                <h1>Master-Detail Example</h1>
+                <h1>Customers</h1>
                 <AgGridReact
                     // properties
                     columnDefs={this.state.columnDefs}

@@ -48,7 +48,6 @@ export default class Archives extends React.Component {
         
         return (
             <div>
-            <h1>SalesTerritories</h1>
             <div class="row">{self.state.ErrorsOccurred ? self.state.ErrorMessage : self.state.Grid}</div>
             <br/><br/>
             </div>

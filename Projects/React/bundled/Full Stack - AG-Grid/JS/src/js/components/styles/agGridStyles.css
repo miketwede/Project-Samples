@@ -32,3 +32,25 @@
     display: block;
     height: 100%;
 }
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;               
+    background-color:#FFFF00;
+    height: 1px;
+  }
+
+  /* positions header-content at the bottom of header's context */
+  #bottom-aligner {
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+    width: 3px;
+    background: red;
+  }
+  
+  #bottom-content {
+    display: inline-block;
+  }

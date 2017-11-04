@@ -55,7 +55,7 @@ export default class SalesTerritoryDetailGrid extends Component {
                     line = null;                    
                 }
             return (
-              <div>
+              <div key={i}>
                   {line}
                 <div class="col-lg-12" >
                     <div class="col-lg-3">

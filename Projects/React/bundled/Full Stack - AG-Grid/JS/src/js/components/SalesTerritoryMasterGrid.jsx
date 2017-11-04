@@ -3,10 +3,24 @@ import {AgGridReact} from "ag-grid-react";
 import {AgGrid} from "ag-grid";
 import SalesTerritoryDetailGrid from "./SalesTerritoryDetailGrid.jsx";
 import * as common from "../utilities/Common.js";
+import Modal from 'react-modal';
 
 // pull in the ag-grid styles we're interested in
 // import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
 // import "../../../node_modules/ag-grid/dist/styles/theme-fresh.css";
+
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 
 export default class SalesTerritoryMasterGrid extends Component {
 
@@ -17,19 +31,122 @@ export default class SalesTerritoryMasterGrid extends Component {
 
         this.state = {
             columnDefs: this.createColumnDefs(),
-            //rowData: this.createRowData().bind(this),
             rowData: this.createRowData(),
-            dateFormat: "mm/dd/yyyy"
+            dateFormat: "mm/dd/yyyy",
+            modalIsOpen: false,
+            SalesLastYear: 0.0,
+            SalesYTD: 0.0,
+            CostLastYear: 0.0,
+            CostYTD: 0.0
+            
         };
       //  this.createRowData=this.createRowData.bind(this.state);
+
+        // Modal functions
+        this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+        // Grid functions
+        this.onRowSelected = this.onRowSelected.bind(this);
     }
 
+
+    // *********************************************
+    // Modal properties, methods and events
+    // *********************************************
+
+    openModal() {
+        if (!jQuery.isEmptyObject(this.currentRecord) ){
+            this.setState({modalIsOpen: true});
+        }
+    }
+
+    afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+    }
+
+    closeModal() {
+    this.setState({modalIsOpen: false});
+   // this.currentRecord = {};
+    }
+
+
+
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        console.log("this.currentRecord.SalesLastYear", this.currentRecord.SalesLastYear);
+        console.log("value", value);
+        
+        this.setState({
+          [name]: value
+        });
+      }
+    
+
+    handleSubmit(event) {
+      //  alert('A name was submitted: ' + this.state.value);
+      this.currentRecord.SalesLastYear = this.state.SalesLastYear;
+      this.currentRecord.SalesYTD = this.state.SalesYTD;
+      this.currentRecord.CostLastYear = this.state.CostLastYear;
+      this.currentRecord.CostYTD = this.state.CostYTD;
+      console.log("this.currentRecord", this.currentRecord);
+        event.preventDefault();
+    }
+
+
+
+    // *********************************************
+    // Grid properties, methods and events
+    // *********************************************
+
+    currentRecord = {};
 
     onGridReady(params) {
         this.gridApi = params.api;
         this.columnApi = params.columnApi;
 
         this.gridApi.sizeColumnsToFit();
+    }
+
+    onRowSelected(params) {
+        console.log("params", params.data);
+        this.currentRecord = params.data;
+        this.setState({SalesLastYear: params.data.SalesLastYear});
+        this.setState({SalesYTD: params.data.SalesYTD});
+        this.setState({CostLastYear: params.data.CostLastYear});
+        this.setState({CostYTD: params.data.CostYTD});
+        
+    }
+
+   
+    getSimpleCellRenderer() {
+        function SimpleCellRenderer() {}
+    
+        SimpleCellRenderer.prototype.init = function(params) {
+            var tempDiv = document.createElement('div');
+            if (params.node.group) {
+                // tempDiv.innerHTML = '<span style="border-bottom: 1px solid grey; border-left: 1px solid grey; padding: 2px;">' + 'params.value1' + '</span>';
+                tempDiv.innerHTML = '<button onClick={' + 'this.openModal' + '}>Open Modal</button>';
+            } else {
+                tempDiv.innerHTML = '<button type="button" onClick={this.openModal}>Click Me too!</button>';
+
+                    // '<span><img src="https://flags.fmcdn.net/data/flags/mini/ie.png" style="width: 20px; padding-right: 4px;"/>' + 'params.value2' + '</span>';
+            }
+            this.eGui = tempDiv.firstChild;
+        };
+    
+        SimpleCellRenderer.prototype.getGui = function() {
+            return this.eGui;
+        };
+    
+        return SimpleCellRenderer;
     }
 
     createColumnDefs() {
@@ -40,14 +157,29 @@ export default class SalesTerritoryMasterGrid extends Component {
                 cellRenderer: 'group',
                 // we don't want the child count - it would be one each time anyway as each parent
                 // not has exactly one child node
-                cellRendererParams: {suppressCount: true}
+                cellRendererParams: {suppressCount: true, checkbox: true}
             },
             {headerName: "Country", field: "Country", width: 100},
             {headerName: "Region", field: "Region", width: 100},
             {headerName: "SalesLastYear", field: "SalesLastYear", width: 100},
             {headerName: "SalesYTD", field: "SalesYTD", width: 100},
             {headerName: "CostLastYear", field: "CostLastYear", width: 100},
-            {headerName: "CostYTD", field: "CostYTD", width: 100}
+            {headerName: "CostYTD", field: "CostYTD", width: 100},
+
+    // add in a cell renderer params
+    // {
+    //     headerName: 'Group Renderer C',
+    //     showRowGroup: false,
+    //     cellRenderer: 'group',
+    //     field: 'Group',
+    //     cellRendererParams: {
+    //         suppressCount: true,
+    //         checkbox: false,
+    //         padding: 20,
+    //         innerRenderer: this.getSimpleCellRenderer()
+    //     }
+    // },
+
         ];
     }
     
@@ -59,10 +191,10 @@ export default class SalesTerritoryMasterGrid extends Component {
             let Group = rows[i].group;
             let Country = rows[i].country;
             let Region = rows[i].region;
-            let SalesLastYear = rows[i].salesLastYear;
-            let SalesYTD = rows[i].salesYTD;
-            let CostLastYear = rows[i].costLastYear;
-            let CostYTD = rows[i].costYTD;
+            let SalesLastYear = common.formatCurrency(rows[i].salesLastYear);
+            let SalesYTD = common.formatCurrency(rows[i].salesYTD);
+            let CostLastYear = common.formatCurrency(rows[i].costLastYear);
+            let CostYTD = common.formatCurrency(rows[i].costYTD);
             
             let detailRecords = [];
             for (let j = 0; j < rows[i].salesPersons.length; j++) {
@@ -142,8 +274,17 @@ export default class SalesTerritoryMasterGrid extends Component {
         };
 
         return (
-            <div style={containerStyle} className="ag-fresh">
+            <div>
+            <div>
                 <h1>Sales Territories</h1>
+                </div>
+
+            <div style={containerStyle} className="ag-fresh">
+            <button onClick={this.openModal}>Edit</button>
+            <button onClick={this.openModal}>New</button>
+            <button onClick={this.openModal}>Delete</button>
+            
+             {/* <div  className="ag-fresh"> */}
                 <AgGridReact
                     // properties
                     columnDefs={this.state.columnDefs}
@@ -158,12 +299,84 @@ export default class SalesTerritoryMasterGrid extends Component {
                     enableFilter
                     enableColResize
 
+                    rowSelection = 'single'
                     // events
+                     onRowSelected={this.onRowSelected} 
+                    // rowClicked={this.onRowSelected}
+                    //cellClicked={this.onRowSelected}
                     onGridReady={this.onGridReady}>
                 </AgGridReact>
                 <br/><br/>
+                </div>
+
+
+                <Modal
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                    >
+
+                    <h2 ref={subtitle => this.subtitle = subtitle}>Edit Sales Territory</h2>
+
+                    <form onSubmit={this.handleSubmit}>
+
+
+                        <label>
+                        Group: {this.currentRecord.Group}
+                        </label>
+
+                        <br />
+
+                        <label>
+                        Country: {this.currentRecord.Country}
+                        </label>
+
+                        <br />
+
+                        <label>
+                        Region: {this.currentRecord.Region}
+                        </label>
+
+                        <br />
+
+                        <label>SalesLastYear: </label>   
+                        <input name="SalesLastYear" type="text" value={this.state.SalesLastYear} onChange={this.handleInputChange} />
+
+                        <br />
+
+                        <label>SalesYTD: </label>   
+                        <input name="SalesYTD" type="text" value={this.state.SalesYTD} onChange={this.handleInputChange} />
+
+
+                        <br />
+
+                        <label>CostLastYear: </label>   
+                        <input name="CostLastYear" type="text" value={this.state.CostLastYear} onChange={this.handleInputChange} />
+
+
+                        <br />
+
+                        <label>CostYTD: </label>   
+                        <input name="CostYTD" type="text" value={this.state.CostYTD} onChange={this.handleInputChange} />
+
+
+                        <br />
+                        <br />
+                        
+                        <input type="submit" value="Save" />
+                        <button onClick={this.closeModal}>Close</button>
+                    </form>
+                </Modal>
+
+                SalesLastYear: SalesLastYear,
+                SalesYTD: SalesYTD,
+                CostLastYear: CostLastYear,
+                CostYTD: CostYTD,
+                detailRecords: detailRecords
             </div>
-        )
+            )
     }
 
 };

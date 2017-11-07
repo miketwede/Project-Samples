@@ -85,36 +85,62 @@ var config = {
 
 
 export function getSalesTerritories() {
-        console.log("in  getSalesTerritories()");
+    console.log("in  getSalesTerritories()");
 
-        var config = {
-    responseType: 'json'
-  };
+    var config = {
+responseType: 'json'
+};
 
-  var api = 'http://localhost:52819/api/sales/GetSalesTerritories';
-  //var api = 'http://localhost:63131/api/sales/GetSalesTerritories';
+var api = 'http://localhost:52819/api/sales/GetSalesTerritories';
+//var api = 'http://localhost:63131/api/sales/GetSalesTerritories';
 
-        
+    
 
-       var salesTerritories = axios.get(api, config)
-       .then(function (response) {
-        console.log("response", response);
-        console.log("response.data", response.data);
-        console.log(response.status);
-        console.log(response.statusText);
-        console.log(response.headers);
-        console.log(response.config);
-        return response.data;
-       })
-       .catch(function (error) {
-        console.log("error", error);
-      //  return error;
-     // throw new Error(error);
-      throw error;
-    });
-   
-       return salesTerritories;
-   }
+   var salesTerritories = axios.get(api, config)
+   .then(function (response) {
+    console.log("response", response);
+    console.log("response.data", response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+    return response.data;
+   })
+   .catch(function (error) {
+    console.log("error", error);
+  //  return error;
+ // throw new Error(error);
+  throw error;
+});
+
+   return salesTerritories;
+}
+
+
+export function saveSalesTerritory(salesTerritory) {
+    console.log("in  saveSalesTerritory()");
+
+    var config = salesTerritory;
+
+var api = 'http://localhost:52819/api/sales/SaveSalesTerritory';
+//var api = 'http://localhost:63131/api/sales/SaveSalesTerritory';
+
+    
+
+   var salesTerritory = axios.post(api, config)
+   .then(function (response) {
+
+    return response.data;
+   })
+   .catch(function (error) {
+    console.log("error", error);
+  //  return error;
+ // throw new Error(error);
+  throw error;
+});
+
+   return salesTerritory;
+}
 
 
 // }

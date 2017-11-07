@@ -7,16 +7,28 @@
    }
 
    export function formatCurrency(currencyToFormat, format) {
-       if (format) {
-        return accounting.formatMoney(currencyToFormat, format);
-        }
-        else {
-            return accounting.formatMoney(currencyToFormat); 
-        }
-    
-   }
+    if (format) {
+     return accounting.formatMoney(currencyToFormat, format);
+     }
+     else {
+         return accounting.formatMoney(currencyToFormat); 
+     }
+ 
+}
 
-   export function formatName(person)
+export function unFormatCurrency(stringCurrency) {
+    if (stringCurrency) {
+        var tempCurrency = stringCurrency.substring(1);
+        var tempNumber = parseFloat(tempCurrency.replace(/,/g, ''));
+     return tempNumber;
+     }
+     else {
+         return 0.0; 
+     }
+ 
+}
+
+export function formatName(person)
      {
          var fullName = "";
          if (person.title){

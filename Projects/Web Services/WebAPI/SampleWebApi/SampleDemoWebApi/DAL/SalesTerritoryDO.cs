@@ -76,6 +76,41 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 
 		}
 
+		public void SaveSalesTerritory(SalesTerritory salesTerritory)
+		{
+			string connectionString = ConfigurationManager.ConnectionStrings["CustomerDatabase"].ConnectionString;
+
+			// Test to see if there is a valid database connection.
+			// Return null if there isn't.
+			// Since this is a demo app, the users should be able to use it whether or not a valid database exists or not.
+			SqlConnection testConnection = new SqlConnection(connectionString);
+			try
+			{
+				testConnection.Open();
+			}
+			catch (Exception ex)
+			{
+				logger.Fatal(ex.ToString());
+				testConnection.Close();
+				return;
+			}
+			testConnection.Close();
+
+
+			try
+			{
+				SaveSalesTerritoryADO("dbo.SaveSalesTerritory", salesTerritory);
+			}
+			catch (Exception ex)
+			{
+				logger.Fatal(ex.ToString());
+				throw;
+			}
+			return;
+
+
+		}
+
 		#endregion
 
 
@@ -160,6 +195,42 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 
 					}
 					reader.Close();
+
+				}
+				catch (Exception ex)
+				{
+					logger.Fatal(ex.ToString());
+					throw;
+				}
+			}
+
+			return salesTerritory;
+		}
+
+		private SalesTerritory SaveSalesTerritoryADO(string queryString, SalesTerritory salesTerritory)
+		{
+			// Create and open the connection in a using block. This
+			// ensures that all resources will be closed and disposed
+			// when the code exits.
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				SqlCommand command = new SqlCommand(queryString, connection);
+				command.CommandType = CommandType.StoredProcedure;
+				command.Parameters.AddWithValue("@TerritoryID", salesTerritory.territoryID);
+				command.Parameters.AddWithValue("@Name", salesTerritory.region);
+				command.Parameters.AddWithValue("@Country", salesTerritory.country);
+				command.Parameters.AddWithValue("@Group", salesTerritory.group);
+				command.Parameters.AddWithValue("@SalesYTD", salesTerritory.salesYTD);
+				command.Parameters.AddWithValue("@SalesLastYear", salesTerritory.salesLastYear);
+				command.Parameters.AddWithValue("@CostYTD", salesTerritory.costYTD);
+				command.Parameters.AddWithValue("@CostLastYear", salesTerritory.costLastYear);
+
+				try
+				{
+					connection.Open();
+					salesTerritory.territoryID = (int)command.ExecuteScalar();
+
+
 
 				}
 				catch (Exception ex)

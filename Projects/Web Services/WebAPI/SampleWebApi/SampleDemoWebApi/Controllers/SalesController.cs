@@ -28,5 +28,15 @@ namespace SampleDemoWebApi.CustomerApi.Controllers
 			return salesTerritories;
 		}
 
+		[Route("{SaveSalesTerritory}")]
+		public SalesTerritory SaveSalesTerritory(SalesTerritory salesTerritory)
+		{
+			SalesTerritoryBO salesTerritoryBO = new SalesTerritoryBO();
+
+			salesTerritoryBO.SaveSalesTerritory(salesTerritory);
+
+			return salesTerritory;
+		}
+
 	}
 }

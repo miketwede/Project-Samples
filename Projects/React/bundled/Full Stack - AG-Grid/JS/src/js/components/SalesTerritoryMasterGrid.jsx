@@ -4,6 +4,7 @@ import {AgGrid} from "ag-grid";
 import SalesTerritoryDetailGrid from "./SalesTerritoryDetailGrid.jsx";
 import * as common from "../utilities/Common.js";
 import Modal from 'react-modal';
+import { saveSalesTerritory, getSalesTerritories} from "../services/DataService";
 
 // pull in the ag-grid styles we're interested in
 // import "../../../node_modules/ag-grid/dist/styles/ag-grid.css";
@@ -30,8 +31,9 @@ export default class SalesTerritoryMasterGrid extends Component {
         super(props);
 
         this.state = {
-            columnDefs: this.createColumnDefs(),
-            rowData: this.createRowData(),
+            propData: this.props.rows,
+            columnDefs: null,
+            rowData: null,
             dateFormat: "mm/dd/yyyy",
             modalIsOpen: false,
             SalesLastYear: 0.0,
@@ -40,7 +42,7 @@ export default class SalesTerritoryMasterGrid extends Component {
             CostYTD: 0.0
             
         };
-      //  this.createRowData=this.createRowData.bind(this.state);
+       // this.createRowData=this.createRowData.bind(this.state);
 
         // Modal functions
         this.openModal = this.openModal.bind(this);
@@ -48,9 +50,19 @@ export default class SalesTerritoryMasterGrid extends Component {
         this.closeModal = this.closeModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        
         // Grid functions
         this.onRowSelected = this.onRowSelected.bind(this);
+        this.createColumnDefs = this.createColumnDefs.bind(this);
+        this.createRowData = this.createRowData.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            columnDefs: this.createColumnDefs(),
+            rowData: this.createRowData()
+        });
+
     }
 
 
@@ -92,11 +104,51 @@ export default class SalesTerritoryMasterGrid extends Component {
 
     handleSubmit(event) {
       //  alert('A name was submitted: ' + this.state.value);
-      this.currentRecord.SalesLastYear = this.state.SalesLastYear;
-      this.currentRecord.SalesYTD = this.state.SalesYTD;
-      this.currentRecord.CostLastYear = this.state.CostLastYear;
-      this.currentRecord.CostYTD = this.state.CostYTD;
+      this.currentRecord.SalesLastYear = common.unFormatCurrency(this.state.SalesLastYear);
+      this.currentRecord.SalesYTD = common.unFormatCurrency(this.state.SalesYTD);
+      this.currentRecord.CostLastYear = common.unFormatCurrency(this.state.CostLastYear);
+      this.currentRecord.CostYTD = common.unFormatCurrency(this.state.CostYTD);
       console.log("this.currentRecord", this.currentRecord);
+
+
+
+
+
+
+
+
+
+      saveSalesTerritory(this.currentRecord)
+      .then(function (response) {
+        var salesTerritoryPromise = getSalesTerritories();
+        var self = this;
+        
+        salesTerritoryPromise
+        .then(function (response) {
+
+            this.setState({propData: response});
+                this.createRowData() ;
+
+        })
+       .catch(function (error) {
+            console.log("error", error);
+            // self.setState({
+            //     ErrorsOccurred: true,
+            //     ErrorMessage: error.toString()
+            //     });
+       });
+
+       // api.refreshCells(response)
+
+   })
+   .catch(function (error) {
+    console.log("error", error);
+  //  return error;
+ // throw new Error(error);
+  throw error;
+});
+      ;
+
         event.preventDefault();
     }
 
@@ -165,7 +217,8 @@ export default class SalesTerritoryMasterGrid extends Component {
             {headerName: "SalesYTD", field: "SalesYTD", width: 100},
             {headerName: "CostLastYear", field: "CostLastYear", width: 100},
             {headerName: "CostYTD", field: "CostYTD", width: 100},
-
+            {headerName: "TerritoryID", field: "TerritoryID", width: 100, hide: true},
+            
     // add in a cell renderer params
     // {
     //     headerName: 'Group Renderer C',
@@ -185,7 +238,7 @@ export default class SalesTerritoryMasterGrid extends Component {
     
     createRowData() {
         let rowData = [];
-        let rows = this.props.rows;
+        let rows = this.state.propData;
         
         for (let i = 0; i < rows.length; i++) {
             let Group = rows[i].group;
@@ -195,6 +248,7 @@ export default class SalesTerritoryMasterGrid extends Component {
             let SalesYTD = common.formatCurrency(rows[i].salesYTD);
             let CostLastYear = common.formatCurrency(rows[i].costLastYear);
             let CostYTD = common.formatCurrency(rows[i].costYTD);
+            let TerritoryID = rows[i].territoryID;
             
             let detailRecords = [];
             for (let j = 0; j < rows[i].salesPersons.length; j++) {
@@ -226,6 +280,7 @@ export default class SalesTerritoryMasterGrid extends Component {
                 SalesYTD: SalesYTD,
                 CostLastYear: CostLastYear,
                 CostYTD: CostYTD,
+                TerritoryID: TerritoryID,
                 detailRecords: detailRecords
             };
 

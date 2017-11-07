@@ -10,12 +10,32 @@ using SampleDemoWebApi.CustomerApi.Models;
 //using log4net;
 //using log4net.Config;
 using NLog;
+using System;
 
 namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 {
 	[TestClass]
 	public class DALTests
 	{
+		private double seconds;
+
+		enum Days { Sat, Sun, Mon, Tue, Wed, Thu, Fri };
+		enum Days2 { Sat = 1, Sun, Mon, Tue, Wed, Thu, Fri };
+		enum Days3 : byte { Sat = 1, Sun, Mon, Tue, Wed, Thu, Fri };
+
+		public double Hours
+		{
+			get { return seconds / 3600; }
+			set
+			{
+				if (value < 0 || value > 24)
+					throw new ArgumentOutOfRangeException(
+						  $"{nameof(value)} must be between 0 and 24.");
+
+				seconds = value * 3600;
+			}
+		}
+
 		//private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -23,6 +43,13 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 		public void GetCustomerByCustomerID()
 		{
 			int customerID;
+			int x = (int)Days.Sun;
+			var y = Days.Sun;
+
+			this.Hours = 3;
+
+			var mike = Hours;
+
 			CustomerBO customerBO = new CustomerBO();
 			Customer customer;
 

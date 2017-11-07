@@ -35,5 +35,22 @@ namespace SampleDemoWebApi.CustomerApi.BO
 			return salesTerritories;
 		}
 
+		public SalesTerritory SaveSalesTerritory(SalesTerritory salesTerritory)
+		{
+			SalesTerritoryDO salesTerritoryDO = new SalesTerritoryDO();
+
+			try
+			{
+				salesTerritoryDO.SaveSalesTerritory(salesTerritory);
+			}
+			catch (Exception ex)
+			{
+				throw;
+			}
+
+
+			return salesTerritory;
+		}
+
 	}
 }

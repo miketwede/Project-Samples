@@ -20,8 +20,8 @@ const appRoutes: Routes = [
     canLoad: [AuthGuard]
   },
   {
-    path: 'crisis-center',
-    loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
+    path: 'customers',
+    loadChildren: 'app/customers/customer.module#CustomerModule',
     data: { preload: true }
   },
   { path: '',   redirectTo: '/superheroes', pathMatch: 'full' },

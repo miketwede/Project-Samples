@@ -3,7 +3,7 @@ import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { httpServices }           from '../../services/httpServices';
+
 
 import { Hero, HeroService }  from './hero.service';
 
@@ -20,7 +20,6 @@ import { Hero, HeroService }  from './hero.service';
     </ul>
 
     <button routerLink="/sidekicks">Go to sidekicks</button>
-    <button (click)="getClients()">getClients</button>
   `
 })
 export class HeroListComponent implements OnInit {
@@ -30,8 +29,7 @@ export class HeroListComponent implements OnInit {
 
   constructor(
     private service: HeroService,
-    private route: ActivatedRoute,
-    private http: httpServices
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -43,7 +41,4 @@ export class HeroListComponent implements OnInit {
       });
   }
 
-  getClients() {
-var mike = this.http.getCustomers();
-  }
 }

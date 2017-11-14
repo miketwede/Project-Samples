@@ -12,7 +12,7 @@ export class CustomerDetailResolver implements Resolve<Customer> {
   constructor(private cs: CustomerService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Customer> {
-    let id = route.paramMap.get('customerID');
+    let id = route.paramMap.get('id');
 
     // return this.cs.getCustomer(id).take(1).map(customer => {
     //   if (customer) {

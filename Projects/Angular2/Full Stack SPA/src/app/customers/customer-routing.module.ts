@@ -23,13 +23,10 @@ const customerRoutes: Routes = [
             component: CustomerDetailComponent,
             canDeactivate: [CanDeactivateGuard],
             resolve: {
-              crisis: CustomerDetailResolver
+              customer: CustomerDetailResolver
             }
-          },
-          {
-            path: '',
-            component: CustomerHomeComponent
           }
+
         ]
       }
     ]

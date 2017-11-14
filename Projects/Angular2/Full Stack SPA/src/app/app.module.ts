@@ -16,6 +16,7 @@ import { PageNotFoundComponent }   from './not-found.component';
 
 import { DialogService }           from './dialog.service';
 import { httpServices }           from '../services/httpServices';
+import { Common }                 from '../utilities/Common';
 
 import { Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     DialogService,
-    httpServices
+    httpServices,
+    Common
     // HttpClient,
     // {
     //     provide: HttpHandler,

@@ -7,6 +7,7 @@
     "ng": "ng",
     "start": "ng serve",
     "test": "ng test",
+    "tsc": "tsc -p src -w",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e"
   },
@@ -26,9 +27,14 @@
     "@angular/platform-server": "~5.0.0",
     "@angular/router": "~5.0.0",
     "@angular/upgrade": "~5.0.0",
+    "@types/accounting": "^0.4.1",
+    "@types/dateformat": "^1.0.1",
+    "accounting": "^0.4.1",
     "angular-in-memory-web-api": "~0.5.0",
     "core-js": "^2.4.1",
+    "dateformat": "^3.0.2",
     "rxjs": "^5.5.0",
+    "systemjs": "^0.20.19",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.4"
   },

@@ -49,3 +49,9 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+.list {
+  background-color: rgb(13, 75, 104);
+}
+.full-width-detail {
+  padding-top: 4px;
+}

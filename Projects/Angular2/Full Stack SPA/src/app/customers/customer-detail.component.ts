@@ -9,16 +9,16 @@ import { DialogService }  from '../dialog.service';
 @Component({
   template: `
   <div *ngIf="customer">
-    <h3>"{{ editName }}"</h3>
+    <h3>"{{ customer.accountNumber }}"</h3>
     <div>
       <label>Id: </label>{{ customer.customerID }}</div>
     <div>
-      <label>Name: </label>
-      <input [(ngModel)]="editName" placeholder="account number"/>
+      <label>Account: </label>
+      <input [(ngModel)]="customer.accountNumber" placeholder="account number"/>
     </div>
     <p>
-      <button (click)="save()">Save</button>
-      <button (click)="cancel()">Cancel</button>
+      <button (click)="save(customer)">Save</button>
+      <button (click)="cancel(customer)">Cancel</button>
     </p>
   </div>
   `,
@@ -47,12 +47,12 @@ export class CustomerDetailComponent implements OnInit {
       });
   }
 
-  cancel() {
+  cancel(customer) {
     this.gotoCrises();
   }
 
-  save() {
-    this.customer.accountNumber = this.accountNumber;
+  save(customer) {
+    this.customer = customer;
     this.gotoCrises();
   }
 
@@ -72,6 +72,8 @@ export class CustomerDetailComponent implements OnInit {
     // so that the CustomerListComponent can select that customer.
     // Add a totally useless `foo` parameter for kicks.
     // Relative navigation back to the crises
-    this.router.navigate(['../', { id: customerId, foo: 'foo' }], { relativeTo: this.route });
+    // this.router.navigate(['../', { id: customerId, foo: 'foo' }], { relativeTo: this.route });
+    this.router.navigate(['/customers', { id: customerId, foo: 'foo' }], { relativeTo: this.route });
+    
   }
 }

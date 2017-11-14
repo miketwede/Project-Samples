@@ -17,14 +17,6 @@ export class httpServices {
     // Inject HttpClient into your component or service.
     constructor(private http: HttpClient) {}
 
-//   login(): Observable<boolean> {
-//     return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
-//   }
-
-//   logout(): void {
-//     this.isLoggedIn = false;
-//   }
-
 getCustomers(): Observable<any> { 
     // var mike = this.http.get('http://localhost:63131/api/customers/GetCustomers').subscribe(data => {
     //     var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').subscribe(data => {

@@ -10,6 +10,8 @@
     "test.ts",
     "**/*.spec.ts",
     "testing/**",
-    "**/*.1.*"
+    "**/*.1.*",
+    "node_modules", 
+    "dist"
   ]
 }

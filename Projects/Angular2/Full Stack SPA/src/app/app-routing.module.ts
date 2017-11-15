@@ -8,6 +8,8 @@ import { CanDeactivateGuard }       from './can-deactivate-guard.service';
 import { AuthGuard }                from './auth-guard.service';
 import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
+import { CustomerListComponent }       from './customers/customer-list.component';
+
 const appRoutes: Routes = [
   {
     path: 'compose',
@@ -19,11 +21,7 @@ const appRoutes: Routes = [
     loadChildren: 'app/admin/admin.module#AdminModule',
     canLoad: [AuthGuard]
   },
-  {
-    path: 'customers',
-    loadChildren: 'app/customers/customer.module#CustomerModule',
-    data: { preload: true }
-  },
+  { path: 'customers',  redirectTo: '/supercustomers', pathMatch: 'full' },
   { path: '',   redirectTo: '/superheroes', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -34,8 +32,7 @@ const appRoutes: Routes = [
       appRoutes,
       {
         enableTracing: true, // <-- debugging purposes only
-        preloadingStrategy: SelectivePreloadingStrategy,
-
+        preloadingStrategy: SelectivePreloadingStrategy
       }
     )
   ],

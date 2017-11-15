@@ -9,6 +9,7 @@ import { AppComponent }            from './app.component';
 import { AppRoutingModule }        from './app-routing.module';
 
 import { HeroesModule }            from './heroes/heroes.module';
+import { CustomerModule }            from './customers/customer.module';
 import { ComposeMessageComponent } from './compose-message.component';
 import { LoginRoutingModule }      from './login-routing.module';
 import { LoginComponent }          from './login.component';
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    CustomerModule,
     HeroesModule,
     LoginRoutingModule,
     AppRoutingModule,

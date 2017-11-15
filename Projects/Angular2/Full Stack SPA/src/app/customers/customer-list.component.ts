@@ -15,7 +15,10 @@ import { Customer, CustomerService }  from './customer.service';
 import { Observable }                 from 'rxjs/Observable';
 import { httpServices }               from '../../services/httpServices';
 import { Common }                     from '../../utilities/Common';
-
+// import { __platform_browser_private__, 
+//   SafeResourceUrl, 
+//   DomSanitizer } from '@angular/platform-browser';
+  // import {DomSanitizer} from '@angular/platform-browser';
 // import * as common from "../../utilities/Common.js";
 
 // client
@@ -51,7 +54,7 @@ import { Common }                     from '../../utilities/Common';
       <div >
         <button class="badge" (click)="toggleExpanded()"><b>+</b></button>
         
-        <a [routerLink]="['/customers', customer.customerID]">
+        <a [routerLink]="['/customer', customer.customerID]">
         <span> {{common.formatName(customer.person)}}     </span>
           <span> {{customer.person.phoneNumber}}            </span>
           <span> {{customer.person.emailAddress}}           </span>
@@ -66,8 +69,13 @@ import { Common }                     from '../../utilities/Common';
 
                 <div class="col-lg-3">
                     <div className="full-width-detail">
-                      <img width="120px" height="130px" src="data:image/jpeg;base64, {{customer.person.photo}}" alt="Customer Photo" style="border:'2px solid gold'"/>  
+                      <img width="120px" height="130px" src="data:image/jpeg;base64, {{customer.person.photo}}" alt="Customer Photo" style="border:2px solid gold"/>  
                     </div>
+                  
+                    <div className="full-width-detail">
+                      {{customer.person.photo}}
+                    </div>
+                  
                     <div className="full-width-detail">
                       {{common.formatName(customer.person)}} 
                     </div>
@@ -141,11 +149,15 @@ export class CustomerListComponent implements OnInit {
   public dateFormat = "mm/dd/yyyy";
 
 
-  
+
+
   constructor(
     public service: CustomerService,
     public route: ActivatedRoute,
     public common: Common
+    // private __platform_browser_private__: __platform_browser_private__,
+    // private SafeResourceUrl: SafeResourceUrl,
+    // private DomSanitizer: DomSanitizer
   ) {}
 
   toggleExpanded(event)
@@ -172,6 +184,8 @@ export class CustomerListComponent implements OnInit {
           return this.common.formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + this.common.formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length));
       }
   }
-
+/*                     <div className="full-width-detail">
+                      <img [src]="DomSanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64, {{customer.person.photo}}')"/>
+                    </div> */
   }
 

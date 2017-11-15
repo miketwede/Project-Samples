@@ -1,36 +1,16 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CustomerHomeComponent } from './customer-home.component';
 import { CustomerListComponent }       from './customer-list.component';
-import { CustomerComponent }     from './customer.component';
 import { CustomerDetailComponent }     from './customer-detail.component';
 
 import { CanDeactivateGuard }     from '../can-deactivate-guard.service';
-import { CustomerDetailResolver }   from './customer-detail-resolver.service';
 
 const customerRoutes: Routes = [
-  {
-    path: '',
-    component: CustomerComponent,
-    children: [
-      {
-        path: '',
-        component: CustomerListComponent,
-        children: [
-          {
-            path: ':id',
-            component: CustomerDetailComponent,
-            canDeactivate: [CanDeactivateGuard],
-            resolve: {
-              customer: CustomerDetailResolver
-            }
-          }
-
-        ]
-      }
-    ]
-  }
+  { path: 'customers', redirectTo: '/supercustomers' },
+  { path: 'customer/:id', redirectTo: '/supercustomer/:id' },
+  { path: 'supercustomers',  component: CustomerListComponent },
+  { path: 'supercustomer/:id', component: CustomerDetailComponent }
 ];
 
 @NgModule({
@@ -39,9 +19,6 @@ const customerRoutes: Routes = [
   ],
   exports: [
     RouterModule
-  ],
-  providers: [
-    CustomerDetailResolver
   ]
 })
 export class CustomerRoutingModule { }

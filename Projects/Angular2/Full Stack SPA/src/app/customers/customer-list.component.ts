@@ -1,11 +1,3 @@
-// declare var  formatName: any;
-// declare var  formatAddress: any;
-
-// import "../../utilities/Common.js";
-// import "../../utilities/accounting.js";
-
-// var common = require('Common.ts');
-
 import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }          from '@angular/core';
 import { ActivatedRoute, ParamMap }   from '@angular/router';
@@ -28,24 +20,6 @@ import { Common }                     from '../../utilities/Common';
 //import { IUser } from "../services/interfaces"
 
 
-
-
-
-// template: `
-// <h2>HEROES</h2>
-// <ul class="items">
-//   <li *ngFor="let hero of heroes$ | async"
-//     [class.selected]="hero.id === selectedId">
-//     <a [routerLink]="['/hero', hero.id]">
-//       <span class="badge">{{ hero.id }}</span>{{ hero.name }}
-//     </a>
-//   </li>
-// </ul>
-
-// <button routerLink="/sidekicks">Go to sidekicks</button>
-// `
-// })
-// <a [routerLink]="[customer.customerID]">
 
 @Component({
   template: `
@@ -128,9 +102,7 @@ import { Common }                     from '../../utilities/Common';
                     <b>Total Purchases YTD:     </b> {{common.formatCurrency(customer.demographics.totalPurchaseYTD)}}  
                   </div>
               </div>
-
-
-
+              
             </div>
         </div>
       </div>

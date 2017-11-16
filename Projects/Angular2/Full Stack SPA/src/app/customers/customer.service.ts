@@ -9,61 +9,53 @@ export class Customer {
   constructor(public customerID: number, public accountNumber: string) { }
 }
 
-// const CUSTOMER = [
-//   new Customer(1, 'customer 1'),
-//   new Customer(2, 'customer 2'),
-//   new Customer(3, 'customer 3'),
-//   new Customer(4, 'customer 4'),
-// ];
-
-
-
+export interface ICustomer {
+  customerID: number;
+  accountNumber: string;
+  emailPromotion: string;
+  person: {
+    personID: number;
+    title: string;
+    firstName: string;
+    lastName: string;
+    middleInitial: string;
+    suffix: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+    emailAddress: string;
+    phoneNumber: string;
+    photo: string;    
+  };
+  demographics: {
+    totalPurchaseYTD: number;
+    dateFirstPurchase: Date;
+    birthDate: Date;
+    maritalStatus: string;
+    yearlyIncome: string;
+    gender: string;
+    totalChildren: number;
+    numberChildrenAtHome: number;
+    education: string;
+    occupation: string;
+    homeOwnerFlag: boolean ;
+    numberCarsOwned: number;
+    commuteDistance: string;
+  };
+  additionalContactInfo: any;
+}
 
 @Injectable()
-// export class CustomerService  implements OnInit{
   export class CustomerService {
-    
-  static nextCustomerId = 100;
-  // private customer$: BehaviorSubject<Customer[]>;
-  //public Observable<customers> = [];
-  public customers$: Observable<any>;
- //  Observable<customers> = [];
-
-
-
 
   constructor(private http: httpServices) { 
-
-    // <button (click)="getClients()">getClients</button>
   }
 
-
-//   ngOnInit() {
-//     this.activities$ = this.activityService.getActivities();
-// }
-
   getCustomers()  : Observable<any> { 
-
-    // this.customers = this.http.getCustomers();
-    
-    // this.customer$ = new BehaviorSubject<Customer[]>(this.customers);
-
-    
-    // this.customer$ = new BehaviorSubject<Customer[]>(this.http.getCustomers());
-
-
-    // return this.customer$; 
-  
-
-
-    this.customers$ = this.http.getCustomers();
-    
-    
-        return this.customers$; 
-
-        
-
-
+    return this.http.getCustomers(); 
   }
 
   getCustomer(id: number | string) {
@@ -79,4 +71,23 @@ export class Customer {
   //    // this.customer$.next(this.customers);
   //   }
   // }
+
+  // updateCustomer(accountNumber: string) {
+  //   accountNumber = accountNumber.trim();
+  //   if (accountNumber) {
+  //     let customer = new Customer(CustomerService.nextCustomerId++, accountNumber);
+  //     this.customers.push(customer);
+  //    // this.customer$.next(this.customers);
+  //   }
+  // }
+
+  // deleteCustomer(accountNumber: string) {
+  //   accountNumber = accountNumber.trim();
+  //   if (accountNumber) {
+  //     let customer = new Customer(CustomerService.nextCustomerId++, accountNumber);
+  //     this.customers.push(customer);
+  //    // this.customer$.next(this.customers);
+  //   }
+  // }
+
 }

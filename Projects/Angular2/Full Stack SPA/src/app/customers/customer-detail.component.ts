@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { slideInDownAnimation }   from '../animations';
-import { CustomerService }         from './customer.service';
+import { CustomerService, ICustomer }         from './customer.service';
 import { DialogService }  from '../dialog.service';
 
 
@@ -39,8 +39,8 @@ import { DialogService }  from '../dialog.service';
     </div>
 
 <p>
-      <button (click)="save(customer)">Save</button>
-      <button (click)="cancel(customer)">Cancel</button>
+      <button (click)="this.save(customer)">Save</button>
+      <button (click)="this.cancel(customer)">Cancel</button>
     </p>
   </div>
   `,
@@ -52,9 +52,9 @@ export class CustomerDetailComponent implements OnInit {
   @HostBinding('style.display')   display = 'block';
   @HostBinding('style.position')  position = 'absolute';
 
-  //customer: Customer;
-  customer$: Observable<any>;
-  //selectedCustomer: any;
+  customer: ICustomer;
+  customer$: Observable<ICustomer>;
+  originalCustomer: ICustomer;
   accountNumber: string;
 
   constructor(
@@ -64,45 +64,21 @@ export class CustomerDetailComponent implements OnInit {
     private customerService: CustomerService    
   ) {}
 
-  // ngOnInit() {
-  //   this.route.data
-  //     .subscribe((data: { customer: Customer }) => {
-  //       this.accountNumber = data.customer.accountNumber;
-  //       this.customer = data.customer;
-  //     });
-  // }
-
   ngOnInit() {
     this.customer$ = this.route.paramMap
       .switchMap((params: ParamMap) =>
         this.customerService.getCustomer(params.get('id')));
 
     this.customer$.subscribe(
-
-
-
       res => {
-       // console.log("res", res);
         this.originalCustomer = res;
         console.log("this.originalCustomer", this.originalCustomer);
-        
-    },
-    err => {
-        console.error(err);
-    }
-    //console.log("mike5", mike5);
-    
-
-
-
-
+      },
+      err => {
+          console.error(err);
+      }
 
     );
-   // console.log("mike5", mike5);
-
-    //this.accountNumber = this.selectedCustomer.subscribe(accountNumber);
-    
-
   }
 
   cancel(customer) {
@@ -110,13 +86,23 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   save(customer) {
-    this.customer$ = customer;
-    this.gotoCustomer();
+    console.log("save(customer) ");
+    console.log("customer", customer);
+    console.log("this.customer", this.customer);
+    console.log("this.originalCustomer", this.originalCustomer);
+    console.log("this.customer$", this.customer$);
+    this.customer = customer;
+    if (this.canDeactivate() == true){
+      this.gotoCustomer();      
+    }
+    else{
+      console.log("cannot save");
+    }
   }
 
   canDeactivate(): Observable<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no customer or the customer is unchanged
-    if (!this.customer$ || this.customer$.accountNumber === this.originalCustomer.accountNumber {
+    if (!this.customer || this.customer.accountNumber === this.originalCustomer.accountNumber) {
       return true;
     }
     // Otherwise ask the user with the dialog service and return its
@@ -125,7 +111,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   gotoCustomer() {
-    let customerId = this.customer$ ? this.customer$.customerID : null;
+    let customerId = this.customer ? this.customer.customerID : null;
     // Pass along the customer id if available
     // so that the CustomerListComponent can select that customer.
     // Add a totally useless `foo` parameter for kicks.

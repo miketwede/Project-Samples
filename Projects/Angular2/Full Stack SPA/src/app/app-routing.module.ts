@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     canLoad: [AuthGuard]
   },
   { path: 'customers',  redirectTo: '/supercustomers', pathMatch: 'full' },
-  { path: '',   redirectTo: '/superheroes', pathMatch: 'full' },
+  { path: '',   redirectTo: '/supercustomers', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

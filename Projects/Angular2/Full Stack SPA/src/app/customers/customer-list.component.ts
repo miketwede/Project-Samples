@@ -10,6 +10,7 @@ import { Common }                                 from '../../utilities/Common';
 
 @Component({
   template: `
+  <h2>CUSTOMERS</h2>  
     <div class="list" *ngFor="let customer of customers$ | async" [class.selected]="customer.customerID === selectedId">
 
       <div >

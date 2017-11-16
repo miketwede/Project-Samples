@@ -13,7 +13,7 @@ import { Common }                                 from '../../utilities/Common';
     <div class="list" *ngFor="let customer of customers$ | async" [class.selected]="customer.customerID === selectedId">
 
       <div >
-        <button class="badge" (click)="toggleExpanded()"><b>+</b></button>
+        <button class="badge" (click)="customer.hideDetail = !customer.hideDetail"><b>+</b></button>
         
         <a [routerLink]="['/customer', customer.customerID]">
         <span> {{common.formatName(customer.person)}}     </span>
@@ -24,7 +24,7 @@ import { Common }                                 from '../../utilities/Common';
         </a>
       </div>
 
-      <div *ngIf="expanded" className="full-width-panel">
+      <div *ngIf="customer.hideDetail" className="full-width-panel">
         <div class="row">
             <div class="col-lg-12">
 
@@ -107,11 +107,6 @@ export class CustomerListComponent implements OnInit {
     public common: Common,
     public _DomSanitizer: DomSanitizer
   ) {}
-
-  toggleExpanded(event)
-  {
-    this.expanded = !this.expanded;
-  }
 
   ngOnInit() {
     this.customers$ = this.service.getCustomers();

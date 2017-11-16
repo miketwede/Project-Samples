@@ -10,10 +10,11 @@ namespace SampleDemoWebApi.CustomerApi.Models
 	public class Customer
 	{
 		public int customerID;
-		public Person person;
 		public string accountNumber;
 		public int emailPromotion;
+		public Person person;
 		public IndividualSurvey demographics;
 		public XmlDocument additionalContactInfo;
+		public bool hideDetail;
 	}
 }

@@ -1,25 +1,12 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }          from '@angular/core';
-import { ActivatedRoute, ParamMap }   from '@angular/router';
+import { Observable }                             from 'rxjs/Observable';
+import { Component, OnInit }                      from '@angular/core';
+import { ActivatedRoute, ParamMap }               from '@angular/router';
+import {DomSanitizer}                             from '@angular/platform-browser';
 
-// import { Customer, CustomerService } from './customer.service';
-import { Customer, CustomerService }  from './customer.service';
-import { Observable }                 from 'rxjs/Observable';
-import { httpServices }               from '../../services/httpServices';
-import { Common }                     from '../../utilities/Common';
-// import { __platform_browser_private__, 
-//   SafeResourceUrl, 
-//   DomSanitizer } from '@angular/platform-browser';
-  // import {DomSanitizer} from '@angular/platform-browser';
-// import * as common from "../../utilities/Common.js";
-
-// client
-//import { HttpClient } from "../services/client"
-
-// interface
-//import { IUser } from "../services/interfaces"
-
-
+import { Customer, CustomerService, ICustomer }   from './customer.service';
+import { httpServices }                           from '../../services/httpServices';
+import { Common }                                 from '../../utilities/Common';
 
 @Component({
   template: `
@@ -43,17 +30,13 @@ import { Common }                     from '../../utilities/Common';
 
                 <div class="col-lg-3">
                     <div className="full-width-detail">
-                      <img width="120px" height="130px" src="data:image/jpeg;base64, {{customer.person.photo}}" alt="Customer Photo" style="border:2px solid gold"/>  
-                    </div>
-                  
-                    <div className="full-width-detail">
-                      {{customer.person.photo}}
-                    </div>
-                  
-                    <div className="full-width-detail">
-                      {{common.formatName(customer.person)}} 
-                    </div>
+                    <img width="120px" height="130px" [src]="this.getSafeImgString(customer.person.photo)" alt="Customer Photo" style="border:2px solid gold"/>  
                 </div>
+                  
+                <div className="full-width-detail">
+                  {{common.formatName(customer.person)}} 
+                </div>
+            </div>
 
                 <div class="col-lg-3">
                   <div className="full-width-detail" style="padding:10px">
@@ -113,23 +96,16 @@ import { Common }                     from '../../utilities/Common';
   `
 })
 export class CustomerListComponent implements OnInit {
-  // customers$: Observable<CustomerService.customers$>;
-  //customers$: Observable<CustomerService.customers$>;
-  customers$: Observable<any>;
+  customers$: Observable<ICustomer>;
   selectedId: number;
   public expanded = false;
   public dateFormat = "mm/dd/yyyy";
 
-
-
-
   constructor(
     public service: CustomerService,
     public route: ActivatedRoute,
-    public common: Common
-    // private __platform_browser_private__: __platform_browser_private__,
-    // private SafeResourceUrl: SafeResourceUrl,
-    // private DomSanitizer: DomSanitizer
+    public common: Common,
+    public _DomSanitizer: DomSanitizer
   ) {}
 
   toggleExpanded(event)
@@ -138,26 +114,21 @@ export class CustomerListComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.customers$ = this.route.paramMap
-    //   .switchMap((params: ParamMap) => {
-    //     this.selectedId = +params.get('customerID');
-    //     return this.service.getCustomers();
-    //   });
-
     this.customers$ = this.service.getCustomers();
     this.service.getCustomers().subscribe(val => console.log(val));
     };
 
-    formatYTD(amount) {
-      if (!amount) {
-          return null;
+  formatYTD(amount) {
+    if (!amount) {
+      return null;
       }
-      else {
-          return this.common.formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + this.common.formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length));
+    else {
+      return this.common.formatCurrency(amount.substring(0, amount.indexOf('-'))) + "-" + this.common.formatCurrency(amount.substring(amount.indexOf('-')+1, amount.length));
       }
   }
-/*                     <div className="full-width-detail">
-                      <img [src]="DomSanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64, {{customer.person.photo}}')"/>
-                    </div> */
+
+  getSafeImgString(image) {
+      return this._DomSanitizer.bypassSecurityTrustResourceUrl("data:image/jpeg;base64, " + image);
+    }
   }
 

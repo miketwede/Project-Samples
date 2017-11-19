@@ -22,6 +22,14 @@ import { Common }                 from '../utilities/Common';
 import { Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+import { CustomerListComponent }    from './customers/customer-list.component';
+
+// ag-grid
+//import { AgGridModule }  from "ag-grid-angular";
+//import {AgGridModule} from "ag-grid-angular/main";
+// ag-grid
+import {AgGridModule} from "ag-grid-angular";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    AgGridModule.withComponents([CustomerListComponent])
     //httpServices
   //   HttpClientXsrfModule.withOptions({
   //     cookieName: 'XSRF-TOKEN',

@@ -59,8 +59,9 @@ export interface ICustomer {
   }
 
   getCustomer(id: number | string) {
-    return this.getCustomers()
-      .map(customer => customer.find(customer => customer.customerID === +id));
+    return this.http.getCustomer(id); 
+    // return this.getCustomers()
+    //   .map(customer => customer.find(customer => customer.customerID === +id));
   }
 
   // addCustomer(accountNumber: string) {

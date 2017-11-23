@@ -22,7 +22,8 @@ import { Common }                 from '../utilities/Common';
 import { Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CustomerListComponent }    from './customers/customer-list.component';
+// import { CustomerListComponent }    from './customers/customer-list.component';
+// import {CustomerDetailGrid} from "./customers/CustomerDetailGrid.component";
 
 // ag-grid
 //import { AgGridModule }  from "ag-grid-angular";
@@ -40,7 +41,7 @@ import {AgGridModule} from "ag-grid-angular";
     LoginRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AgGridModule.withComponents([CustomerListComponent])
+    // AgGridModule.withComponents([CustomerListComponent, CustomerDetailGrid])
     //httpServices
   //   HttpClientXsrfModule.withOptions({
   //     cookieName: 'XSRF-TOKEN',
@@ -51,7 +52,7 @@ import {AgGridModule} from "ag-grid-angular";
     AppComponent,
     ComposeMessageComponent,
     LoginComponent,
-    PageNotFoundComponent,
+    PageNotFoundComponent
     // httpServices
   ],
   providers: [
@@ -70,7 +71,7 @@ import {AgGridModule} from "ag-grid-angular";
     // { provide: XhrFactory, useExisting: BrowserXhr },
   ],
   bootstrap: [ AppComponent ]
-})
+  })
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {

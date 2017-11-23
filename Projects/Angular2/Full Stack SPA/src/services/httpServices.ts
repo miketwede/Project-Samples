@@ -18,19 +18,20 @@ export class httpServices {
     constructor(private http: HttpClient) {}
 
 getCustomers(): Observable<any> { 
-    // var mike = this.http.get('http://localhost:63131/api/customers/GetCustomers').subscribe(data => {
-    //     var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').subscribe(data => {
-    //         console.log(data);
-    //   });
-    // var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers');
-   // var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map((res: Response) => res.json());
-    var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers');
-    //var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map(Response.json());
+  //   var mike = this.http.get('http://localhost:63131/api/customers/GetCustomers').subscribe(data => {
+  //       var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').subscribe(data => {
+  //           console.log(data);
+  //     });
+  //   var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers');
+  //  var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map((res: Response) => res.json());
+  //   var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map(Response.json());
     
-    //  .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
-   //  var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map(res => res.json());
-    
-      return mike;
+  //    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+  //   var mike = this.http.get('http://localhost:52819/api/customers/GetCustomers').map(res => res.json());
+
+   
+   
+      return this.http.get('http://localhost:52819/api/customers/GetCustomers');
     }
 }
 

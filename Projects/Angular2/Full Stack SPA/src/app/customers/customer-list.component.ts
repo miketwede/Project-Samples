@@ -1,12 +1,16 @@
 import 'rxjs/add/operator/switchMap';
 import { Observable }                             from 'rxjs/Observable';
-import { Component, OnInit }                      from '@angular/core';
-import { ActivatedRoute, ParamMap }               from '@angular/router';
+import { Component, OnInit, ComponentFactoryResolver, ReflectiveInjector, Injectable  }                      from '@angular/core';
+import { ActivatedRoute, ParamMap, Router }               from '@angular/router';
 import {DomSanitizer}                             from '@angular/platform-browser';
 
 import { Customer, CustomerService, ICustomer }   from './customer.service';
 import { httpServices }                           from '../../services/httpServices';
 import { Common }                                 from '../../utilities/Common';
+
+// import {CustomerDetailGrid} from "./CustomerDetailGrid.component";
+import {CustomerModule} from "./customer.module";
+import {CustomerDetailGrid} from "./CustomerDetailGrid.component";
 
 // ag-grid
  import {GridOptions} from "ag-grid/main";
@@ -15,33 +19,59 @@ import { Common }                                 from '../../utilities/Common';
 //import {GridOptions} from "ag-grid";
 //import {AgGrid} from "ag-grid";
 
+// groupHeaders
+// suppressRowClickSelection
+// toolPanelSuppressGroups
+// toolPanelSuppressValues
+// rowHeight="22"
+// rowSelection="multiple"
+
+// [getNodeChildDetails]="this.getNodeChildDetails()"
+// [fullWidthCellRendererFramework]="getFullWidthCellRenderer()"
+
+// getNodeChildDetails={{this.getNodeChildDetails()}}
+// fullWidthCellRendererFramework={{CustomerDetailGrid()}}
+
+// enableColResize
+// enableSorting
+// enableFilter
 
 @Component({
   template: `
-    <h1>Customers</h1>
+    <h1>{{title}}</h1>
 
     
 <ag-grid-angular 
-  class="ag-theme-fresh"
+  class="ag-fresh"
   style="width: 100%; height: 400px;" 
   [gridOptions]="this.gridOptions"
 
-  
-  enableColResize
+  [isFullWidthCell]="this.isFullWidthCell"
+  [getRowHeight]="this.getRowHeight"
+
+
+
   enableSorting
   enableFilter
-  groupHeaders
-  suppressRowClickSelection
-  toolPanelSuppressGroups
-  toolPanelSuppressValues
-  rowHeight="22"
-  rowSelection="multiple"
+  enableColResize
+
   >
   </ag-grid-angular>
 
   
   `
 })
+//(onRowClicked) = "onRowClicked"
+//
+//  (GridReady)="this.onGridReady"
+
+// [getNodeChildDetails]="this.getNodeChildDetails"
+// [fullWidthCellRendererFramework]="this.getFullWidthCellRenderer"
+
+  // getNodeChildDetails={this.getNodeChildDetails}
+  // fullWidthCellRendererFramework={CustomerDetailGrid}
+
+  @Injectable()
 export class CustomerListComponent implements OnInit {
   public gridOptions: GridOptions;
   public rowData: any[] = [];
@@ -53,7 +83,8 @@ export class CustomerListComponent implements OnInit {
   public selectedId: number;
   public expanded = false;
   public dateFormat = "mm/dd/yyyy";
-
+  public title = "Customers";
+  
   // rowData: ICustomer[];
   public customers: any[];
   
@@ -61,53 +92,73 @@ export class CustomerListComponent implements OnInit {
     public service: CustomerService,
     public route: ActivatedRoute,
     public common: Common,
-    public _DomSanitizer: DomSanitizer
+    public _DomSanitizer: DomSanitizer,
+    private resolver: ComponentFactoryResolver,
+    private router: Router
+    // public customerDetailGrid:CustomerDetailGrid
   ) {
-
+// this.router = router;
         // we pass an empty gridOptions in, so we can grab the api out
         this.gridOptions = <GridOptions>{
           floatingFilter: true,
-          rowData: this.rowData,
-          columnDefs: this.columnDefs
+          rowData: undefined,
+          columnDefs: this.columnDefs,
+          context: {
+            componentParent: this
+          },
+          onRowClicked:this.onRowClicked
         };
+
         this.columnDefs = this.createColumnDefs();
         this.createRowData();
 
-        // this.gridOptions.dateComponentFramework = DateComponent;
-        // this.gridOptions.defaultColDef = {
-        //     headerComponentFramework: <{ new(): HeaderComponent }>HeaderComponent,
-        //     headerComponentParams: {
-        //         menuIcon: 'fa-bars'
-        //     }
-        // };
-        // this.gridOptions.getContextMenuItems = this.getContextMenuItems.bind(this);
         this.gridOptions.floatingFilter = true;
         this.gridOptions.rowData = this.rowData;
         this.gridOptions.columnDefs = this.columnDefs;
+        //this.gridOptions.groupRowInnerRendererFramework = CustomerDetailGrid;
+        //this.gridOptions.groupRowInnerRendererFramework = new(CustomerDetailGrid) ;
+        //this.gridOptions.groupRowInnerRendererFramework = this.getGroupRowInnerRendererFramework(CustomerDetailGrid) ;
+        this.gridOptions.onGridReady = () => {
+            this.gridOptions.api.sizeColumnsToFit();
+        };
+        this.gridOptions.getNodeChildDetails = this.getNodeChildDetails;
+
+    }
+
+
+
+    getGroupRowInnerRendererFramework(CustomerDetailGrid)
+    {
+        // We create an injector out of the data we want to pass down and this components injector
+        // let injector = ReflectiveInjector.fromResolvedProviders(CustomerListComponent, this.dynamicSectionComponentContainer.parentInjector);
+        var injector = ReflectiveInjector.resolveAndCreate([CustomerListComponent, CustomerDetailGrid]);
+        var customerListComponent = injector.get(CustomerListComponent);
+            // console.log("about to factory:");
+            // // We create a factory out of the component we want to create
+            // let factory = this.resolver.resolveComponentFactory(CustomerDetailGrid);
+            // console.log("factory:" + factory);
         
+            // // We create the component using the factory and the injector
+            // let component:any = factory.create(injector);
+
+return customerListComponent;
+    }
 
 
-
-}
-
-      // {
-      //     headerName: 'Name', field: 'Name', width: 100, filter: "text",
-      //     // left column is going to act as group column, with the expand / contract controls
-      //     cellRenderer: 'group',
-      //     // we don't want the child count - it would be one each time anyway as each parent
-      //     // not has exactly one child node
-      //     cellRendererParams: {suppressCount: true}
-      // },
-
-      // {headerName: "IndividualSurvey", field: "detailRecord", width: 900}
-      
 createColumnDefs() {
   return [
-      {headerName: "Name", field: "Name", width: 300},
-      {headerName: "Phone", field: "Phone", width: 150},
-      {headerName: "Email", field: "Email", width: 300},
-      {headerName: "AccountNumber", field: "AccountNumber", width: 175, filter: "text"},
-      {headerName: "Address", field: "Address", width: 500}
+    {
+      headerName: 'Name', field: 'Name', width: 300, filter: "text",
+      // left column is going to act as group column, with the expand / contract controls
+      cellRenderer: 'group',
+      // we don't want the child count - it would be one each time anyway as each parent
+      // not has exactly one child node
+      cellRendererParams: {suppressCount: true}
+    },
+    {headerName: "Phone", field: "Phone", width: 150},
+    {headerName: "Email", field: "Email", width: 300},
+    {headerName: "AccountNumber", field: "AccountNumber", width: 175, filter: "text"},
+    {headerName: "Address", field: "Address", width: 500}
   ];
 }
 
@@ -122,6 +173,7 @@ createRowData() {
       console.log("this.rows", rows, "end");
 
       for (let i = 0; i < rows.length; i++) {
+        let CustomerID = rows[i].customerID; 
         let Name = this.common.formatName(rows[i].person); 
         let Phone = rows[i].person.phoneNumber;
         let Email = rows[i].person.emailAddress;
@@ -130,7 +182,7 @@ createRowData() {
         let Photo = rows[i].person.photo;
         let IndividualSurvey = rows[i].demographics;
         
-        let detailRecords = [];
+        let detailRecords = []; // one-to-one relationship between customer and survey
         if (IndividualSurvey){
             let detailRecord = {
             TotalPurchaseYTD: IndividualSurvey.totalPurchaseYTD,
@@ -151,52 +203,34 @@ createRowData() {
         }
   
   
-        // let masterRecord = {
-        //     Name: Name,
-        //     Phone: Phone,
-        //     Email: Email,
-        //     AccountNumber: AccountNumber,
-        //     Address: Address,
-        //     Photo: Photo,
-        //     detailRecords: detailRecords
-        // };
-  
         let masterRecord = {
+          CustomerID: CustomerID,
           Name: Name,
           Phone: Phone,
           Email: Email,
           AccountNumber: AccountNumber,
-          Address: Address
-      };
-
+          Address: Address,
+          Photo: Photo,
+          detailRecords: detailRecords
+        };
+  
       this.rowData.push(masterRecord);
     }
     console.log("CONSOLE: createRowData  this.rowData;", this.rowData, "end");
     console.log("CONSOLE: createRowData  this.columnDefs;", this.columnDefs, "end");
 
-    this.gridOptions.api.setRowData(this.rowData);
 
-    //this.gridOptions.rowData = this.rowData;
     
-   // this.gridOptions.api.redrawRows();
 
-//    var params = {
-//     force: true
-// };
-// this.gridOptions.api.refreshCells(params);
 
-   // this.rowData = this.customers;
-  //   this.gridOptions = <GridOptions>{
-  //     rowData: this.customers,
-  //     columnDefs: this.createColumnDefs(),
-  //     context: {
-  //         componentParent: this
-  //     },
-  //     enableColResize: true
-  // };
+    this.gridOptions.api.setRowData(this.rowData); // refreshes the grid
 
-    //return this.rowData;
-    },
+    ////////////////////////this.gridOptions.api.refreshCells();
+
+    // this.gridOptions.rowData = this.rowData; // crashes the grid
+    // this.gridOptions.rowData.concat(this.rowData); // crashes the grid
+    // this.gridOptions.api.updateRowData(this.rowData); // refreshes the grid
+  },
     err => {
         console.error(err);
         //return this.rowData;
@@ -215,13 +249,15 @@ onRowDataChanged(params){
 console.log("params", params);
 }
 
-     onGridReady(params) {
-         params.api.sizeColumnsToFit();
-    // this.gridApi = params.api;
-    // this.columnApi = params.columnApi;
 
-    // this.gridApi.sizeColumnsToFit();
-    }
+
+    //  onGridReady(params) {
+    //      params.api.sizeColumnsToFit();
+    // // this.gridApi = params.api;
+    // // this.columnApi = params.columnApi;
+
+    // // this.gridApi.sizeColumnsToFit();
+    // }
 
     selectAllRows() {
         this.gridOptions.api.selectAll();
@@ -231,7 +267,50 @@ console.log("params", params);
       //let id = this.listData[row]['id'] //presuming id is an attribute in your data
       // do something, ie show detail
       // ....
+      console.log("$event", $event);
+      // this.router.navigate(['./SomewhereElse']);
+      // $event.context.componentParent.router.navigate(['customer/:{{$event.context.componentParent.router.navigations._value.id}}']);
+      //$event.context.componentParent.router.navigate(['customer/:{{$event.data.customer.CustomerID}}']);
+
+      $event.context.componentParent.router.navigate(["customer/"+$event.data.CustomerID]);
+      // $event.context.componentParent.router.navigateByUrl(['customer/:{{$event.data.customer.CustomerID}}']);
+      
     };
+
+    public getFullWidthCellRenderer() {
+      return CustomerDetailGrid;
+  }
+
+    minuteCellFormatter(params) {
+      return params.value.toLocaleString() + 'm';
+    };
+
+    isFullWidthCell(rowNode) {
+        return rowNode.level === 1;
+    }
+
+    getRowHeight(params) {
+        let rowIsDetailRow = params.node.level === 1;
+        // return 100 when detail row, otherwise return 25
+        return rowIsDetailRow ? 200 : 25;
+    }
+
+    getNodeChildDetails(masterRecord) {
+      
+        if (masterRecord && masterRecord.detailRecords) {
+          return {
+              group: true,
+              // the key is used by the default group cellRenderer
+              key: masterRecord.Name,
+              // provide ag-Grid with the children of this group
+              children: [masterRecord.detailRecords]
+              // for demo, expand the third row by default
+             // expanded: record.account === 177002
+          };
+      } else {
+          return null;
+      }
+  }
 
   ngOnInit() {
     //this.createRowData();

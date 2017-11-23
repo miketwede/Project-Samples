@@ -6,6 +6,7 @@ import { CustomerService }        from './customer.service';
 import { CustomerListComponent }    from './customer-list.component';
 import { CustomerDetailComponent }  from './customer-detail.component';
 import { CustomerRoutingModule } from './customer-routing.module';
+import {CustomerDetailGrid} from "./CustomerDetailGrid.component";
 
 // ag-grid
 import { AgGridModule }  from "ag-grid-angular";
@@ -17,12 +18,18 @@ import { AgGridModule }  from "ag-grid-angular";
     CommonModule,
     FormsModule,
     CustomerRoutingModule,
-    AgGridModule.withComponents([CustomerListComponent])
+    AgGridModule.withComponents([CustomerDetailGrid])
   ],
   declarations: [
+    CustomerDetailGrid,    
     CustomerListComponent,
     CustomerDetailComponent
   ],
+  bootstrap: [CustomerListComponent],
   providers: [CustomerService]
 })
 export class CustomerModule {}
+// ,
+// entryComponents: [
+//   CustomerDetailGrid
+//   ]

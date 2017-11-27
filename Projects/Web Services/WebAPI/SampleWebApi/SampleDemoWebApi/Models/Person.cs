@@ -21,18 +21,22 @@ namespace SampleDemoWebApi.CustomerApi.Models
 	public class Person
 	{
 		public int personID;
+		public string personType;
 		public string title;
 		public string firstName;
 		public string lastName;
 		public string middleInitial;
 		public string suffix;
+		public int addressID;
 		public string address1;
 		public string address2;
 		public string city;
 		public string state;
 		public string zip;
 		public string country;
+		public int emailAddressID;
 		public string emailAddress;
+		public int phoneNumberID;
 		public string phoneNumber;
 		public string photo;
 	}

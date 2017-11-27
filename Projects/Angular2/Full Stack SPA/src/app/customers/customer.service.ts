@@ -10,42 +10,46 @@ export class Customer {
 }
 
 export interface ICustomer {
-  customerID: number;
-  accountNumber: string;
-  emailPromotion: string;
+  customerID: number,
+  accountNumber: string,
+  emailPromotion: string,
   person: {
-    personID: number;
-    title: string;
-    firstName: string;
-    lastName: string;
-    middleInitial: string;
-    suffix: string;
-    address1: string;
-    address2: string;
-    city: string;
-    state: string;
-    zip: string;
-    country: string;
-    emailAddress: string;
-    phoneNumber: string;
-    photo: string;    
-  };
+    personID: number,
+    title: string,
+    firstName: string,
+    lastName: string,
+    middleInitial: string,
+    suffix: string,
+    addressID: number,
+    address1: string,
+    address2: string,
+    city: string,
+    state: string,
+    zip: string,
+    country: string,
+    emailAddressID: number,
+    emailAddress: string,
+    phoneNumberID: number,
+    phoneNumber: string,
+    photo: string,    
+  },
   demographics: {
-    totalPurchaseYTD: number;
-    dateFirstPurchase: Date;
-    birthDate: Date;
-    maritalStatus: string;
-    yearlyIncome: string;
-    gender: string;
-    totalChildren: number;
-    numberChildrenAtHome: number;
-    education: string;
-    occupation: string;
-    homeOwnerFlag: boolean ;
-    numberCarsOwned: number;
-    commuteDistance: string;
-  };
-  additionalContactInfo: any;
+    totalPurchaseYTD: number,
+    dateFirstPurchase: Date,
+    birthDate: Date,
+    maritalStatus: string,
+    yearlyIncome: string,
+    gender: string,
+    totalChildren: number,
+    numberChildrenAtHome: number,
+    education: string,
+    occupation: string,
+    homeOwnerFlag: boolean ,
+    numberCarsOwned: number,
+    commuteDistance: string,
+  },
+  additionalContactInfo: any,
+  hideDetail: boolean,
 }
 
 @Injectable()
@@ -73,14 +77,9 @@ export interface ICustomer {
   //   }
   // }
 
-  // updateCustomer(accountNumber: string) {
-  //   accountNumber = accountNumber.trim();
-  //   if (accountNumber) {
-  //     let customer = new Customer(CustomerService.nextCustomerId++, accountNumber);
-  //     this.customers.push(customer);
-  //    // this.customer$.next(this.customers);
-  //   }
-  // }
+  updateCustomer(customer: ICustomer) {
+    return this.http.updateCustomer(customer); 
+  }
 
   // deleteCustomer(accountNumber: string) {
   //   accountNumber = accountNumber.trim();

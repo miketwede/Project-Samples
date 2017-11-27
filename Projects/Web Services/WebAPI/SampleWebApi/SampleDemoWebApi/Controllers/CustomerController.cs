@@ -9,6 +9,9 @@ namespace SampleDemoWebApi.CustomerApi.Controllers
 	[RoutePrefix("api/customers")]
 	public class CustomerController : ApiController
 	{
+
+
+		#region GET
 		[Route("{GetCustomerByCustomerID}")]
 		public Customer GetCustomerByCustomerID(int customerID)
 		{
@@ -108,6 +111,20 @@ namespace SampleDemoWebApi.CustomerApi.Controllers
 
 			return customers;
 		}
+		#endregion
+
+		#region UPDATE
+		[Route("{UpdateCustomer}")]
+		public void UpdateCustomer(Customer customer)
+		{
+			CustomerBO customerBO = new CustomerBO();
+
+			customerBO.UpdateCustomer(customer);
+
+			return;
+		}
+
+		#endregion
 
 		#region not used
 

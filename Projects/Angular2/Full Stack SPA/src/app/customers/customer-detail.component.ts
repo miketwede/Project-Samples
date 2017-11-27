@@ -6,9 +6,14 @@ import { slideInDownAnimation }   from '../animations';
 import { CustomerService, ICustomer }         from './customer.service';
 import { DialogService }  from '../dialog.service';
 
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   template: `
+  <div show=errorsOccurred style="Color:Red">{{errorMessage1}}</div>
+  <div show=errorsOccurred style="Color:Red">{{errorMessage2}}</div>
+  
   <div *ngIf="customer$  | async as customer">
     <h3>"{{ customer.person.title + ' ' + customer.person.firstName + ' ' + customer.person.middleInitial + ' ' + customer.person.lastName + ' ' + customer.person.suffix }}"</h3>
     <div>
@@ -57,6 +62,10 @@ export class CustomerDetailComponent implements OnInit {
   originalCustomer: ICustomer;
   accountNumber: string;
 
+  public errorsOccurred = false;
+  public errorMessage1= "";
+  public errorMessage2= "";
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -75,7 +84,7 @@ export class CustomerDetailComponent implements OnInit {
         console.log("this.originalCustomer", this.originalCustomer);
       },
       err => {
-          console.error(err);
+        console.error("Error: ", err);
       }
 
     );
@@ -86,6 +95,10 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   save(customer) {
+    this.errorsOccurred = false;
+    this.errorMessage1 = "";
+    this.errorMessage2 = "";
+    
     console.log("save(customer) ");
     console.log("customer", customer);
     console.log("this.customer", this.customer);
@@ -93,7 +106,33 @@ export class CustomerDetailComponent implements OnInit {
     console.log("this.customer$", this.customer$);
     this.customer = customer;
     if (this.canDeactivate() == true){
-      this.gotoCustomer();      
+      this.customerService.updateCustomer(this.customer)
+      .subscribe(
+        res => {
+          this.gotoCustomer();      
+          
+
+      },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            this.errorMessage1 = "Client-side error occurred";        
+            console.log(this.errorMessage1);        
+          } else {
+            this.errorMessage1 = "Server-side error occurred";        
+            console.log(this.errorMessage1);        
+          }
+            console.error("Error: ", err);
+            this.errorsOccurred = true;
+            this.errorMessage1 += ": " + err.message;
+            //return this.rowData;
+            if (err.error && err.error.ExceptionType && err.error.Message && err.error.ExceptionMessage){
+              this.errorMessage2 = "Exception Type: " + err.error.ExceptionType + " Exception: " + err.error.Message + " Inner Exception: " + err.error.ExceptionMessage
+              ;
+              
+            }
+        }
+        
+      );
     }
     else{
       console.log("cannot save");
@@ -102,12 +141,15 @@ export class CustomerDetailComponent implements OnInit {
 
   canDeactivate(): Observable<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no customer or the customer is unchanged
-    if (!this.customer || this.customer.accountNumber === this.originalCustomer.accountNumber) {
+    if (!this.customer ) {
+      return false;
+    }
+    else{
       return true;
     }
     // Otherwise ask the user with the dialog service and return its
     // observable which resolves to true or false when the user decides
-    return this.dialogService.confirm('Discard changes?');
+    //////////////return this.dialogService.confirm('Discard changes?');
   }
 
   gotoCustomer() {

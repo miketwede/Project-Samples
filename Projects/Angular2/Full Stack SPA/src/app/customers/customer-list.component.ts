@@ -19,6 +19,11 @@ import {CustomerDetailGrid} from "./CustomerDetailGrid.component";
 //import {GridOptions} from "ag-grid";
 //import {AgGrid} from "ag-grid";
 
+import { HttpErrorResponse } from '@angular/common/http';
+
+
+
+
 // groupHeaders
 // suppressRowClickSelection
 // toolPanelSuppressGroups
@@ -39,7 +44,7 @@ import {CustomerDetailGrid} from "./CustomerDetailGrid.component";
 @Component({
   template: `
     <h1>{{title}}</h1>
-
+<div show=errorsOccurred style="Color:Red">{{errorMessage}}</div>
     
 <ag-grid-angular 
   class="ag-fresh"
@@ -84,7 +89,9 @@ export class CustomerListComponent implements OnInit {
   public expanded = false;
   public dateFormat = "mm/dd/yyyy";
   public title = "Customers";
-  
+  public errorsOccurred = false;
+  public errorMessage= "";
+
   // rowData: ICustomer[];
   public customers: any[];
   
@@ -163,6 +170,8 @@ createColumnDefs() {
 }
 
 createRowData() {
+  this.errorsOccurred = false;
+  this.errorMessage = "";
   this.customers = [];
   let rows = [];
   let $rows = this.service.getCustomers();
@@ -231,8 +240,17 @@ createRowData() {
     // this.gridOptions.rowData.concat(this.rowData); // crashes the grid
     // this.gridOptions.api.updateRowData(this.rowData); // refreshes the grid
   },
-    err => {
-        console.error(err);
+    (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        this.errorMessage = "Client-side error occurred";        
+        console.log(this.errorMessage);        
+      } else {
+        this.errorMessage = "Server-side error occurred";        
+        console.log(this.errorMessage);        
+      }
+        console.error("Error: ", err);
+        this.errorsOccurred = true;
+        this.errorMessage += ": " + err.message;
         //return this.rowData;
         
     }
@@ -312,7 +330,9 @@ console.log("params", params);
       }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+
+
     //this.createRowData();
     // this.customers$ = this.service.getCustomers();
     // console.log("CONSOLE2: ngOnInit this.customers$;", this.customers$, "end");

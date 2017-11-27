@@ -19,8 +19,8 @@ import { DialogService }           from './dialog.service';
 import { httpServices }           from '../services/httpServices';
 import { Common }                 from '../utilities/Common';
 
-import { Http, Response } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+// import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 // import { CustomerListComponent }    from './customers/customer-list.component';
 // import {CustomerDetailGrid} from "./customers/CustomerDetailGrid.component";
@@ -58,7 +58,8 @@ import {AgGridModule} from "ag-grid-angular";
   providers: [
     DialogService,
     httpServices,
-    Common
+    Common,
+    //Http
     // HttpClient,
     // {
     //     provide: HttpHandler,

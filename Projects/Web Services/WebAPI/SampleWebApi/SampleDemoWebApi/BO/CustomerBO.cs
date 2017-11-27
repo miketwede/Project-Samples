@@ -8,6 +8,7 @@ namespace SampleDemoWebApi.CustomerApi.BO
 {
 	public class CustomerBO
 	{
+		#region GET
 		public Customer GetCustomerByCustomerID(int customerID)
 		{
 			CustomerDO customerDAL = new CustomerDO();
@@ -143,5 +144,18 @@ namespace SampleDemoWebApi.CustomerApi.BO
 
 			return customers;
 		}
+		#endregion
+
+		#region UPDATE
+		public void UpdateCustomer(Customer customer)
+		{
+			CustomerDO customerDO = new CustomerDO();
+
+			customerDO.UpdateCustomer(customer);
+
+			return;
+		}
+
+		#endregion
 	}
 }

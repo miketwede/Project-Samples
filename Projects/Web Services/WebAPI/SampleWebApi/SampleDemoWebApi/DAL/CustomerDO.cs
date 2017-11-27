@@ -231,22 +231,6 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 		#region SAVE Customer functions
 
-		public Customer UpdateCustomer(Customer customer)
-		{
-		//	Customer customer = null;
-
-			try
-			{
-				customer = CreateCustomerADO("dbo.CreateNewCustomer", customer);
-			}
-			catch (Exception ex)
-			{
-				logger.Fatal(ex.ToString());
-				throw;
-			}
-
-			return customer;
-		}
 		public Customer CreateCustomer(Customer customerInfo)
 		{
 			Customer newCustomer = new Customer();
@@ -264,6 +248,22 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 			return newCustomer;
 		}
 
+		public void UpdateCustomer(Customer customer)
+		{
+		//	Customer customer = null;
+
+			try
+			{
+				UpdateCustomerADO("dbo.UpdateCustomer", customer);
+			}
+			catch (Exception ex)
+			{
+				logger.Fatal(ex.ToString());
+				throw;
+			}
+
+			return;
+		}
 
 		#endregion
 
@@ -291,21 +291,26 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 						customer = new Customer
 						{
-							customerID = (int)reader["BusinessEntityID"],
+							customerID = (int)reader["CustomerID"],
 							person = new Person
 							{
+								personID = (int)reader["PersonID"],
+								personType = reader["PersonType"].ToString(),
 								title = reader["Title"].ToString(),
 								firstName = reader["FirstName"].ToString(),
 								lastName = reader["LastName"].ToString(),
 								middleInitial = reader["MiddleName"].ToString(),
 								suffix = reader["Suffix"].ToString(),
+								addressID = (int)reader["AddressID"],
 								address1 = reader["AddressLine1"].ToString(),
 								address2 = reader["AddressLine2"].ToString(),
 								city = reader["City"].ToString(),
 								state = reader["State"].ToString(),
 								zip = reader["PostalCode"].ToString(),
 								country = reader["CountryRegionCode"].ToString(),
+								emailAddressID = (int)reader["EmailAddressID"],
 								emailAddress = reader["EmailAddress"].ToString(),
+								phoneNumberID = (int)reader["PhoneNumberID"],
 								phoneNumber = reader["PhoneNumber"].ToString(),
 								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
 							},
@@ -366,21 +371,26 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 						customers.Add(new Customer
 						{
-							customerID = (int)reader["BusinessEntityID"],
+							customerID = (int)reader["CustomerID"],
 							person = new Person
 							{
+								personID = (int)reader["PersonID"],
+								personType = reader["PersonType"].ToString(),
 								title = reader["Title"].ToString(),
 								firstName = reader["FirstName"].ToString(),
 								lastName = reader["LastName"].ToString(),
 								middleInitial = reader["MiddleName"].ToString(),
 								suffix = reader["Suffix"].ToString(),
+								addressID = (int)reader["AddressID"],
 								address1 = reader["AddressLine1"].ToString(),
 								address2 = reader["AddressLine2"].ToString(),
 								city = reader["City"].ToString(),
 								state = reader["State"].ToString(),
 								zip = reader["PostalCode"].ToString(),
 								country = reader["CountryRegionCode"].ToString(),
+								emailAddressID = (int)reader["EmailAddressID"],
 								emailAddress = reader["EmailAddress"].ToString(),
+								phoneNumberID = (int)reader["PhoneNumberID"],
 								phoneNumber = reader["PhoneNumber"].ToString(),
 								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
 							},
@@ -414,6 +424,7 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 				command.CommandType = CommandType.StoredProcedure;
 				command.Parameters.AddWithValue("@CustomerID", customerInfo.customerID);
 
+				command.Parameters.AddWithValue("@PersonType", customerInfo.person.personType);
 				command.Parameters.AddWithValue("@Title", customerInfo.person.title);
 				command.Parameters.AddWithValue("@FirstName", customerInfo.person.firstName);
 				command.Parameters.AddWithValue("@LastName", customerInfo.person.lastName);
@@ -438,6 +449,55 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 					int result = command.ExecuteNonQuery();
 					customerInfo.customerID = (int)command.Parameters["@CustomerID"].SqlValue;
 					customerInfo.accountNumber = (string)command.Parameters["@AccountNumber"].SqlValue;
+				}
+				catch (Exception ex)
+				{
+					logger.Fatal(ex.ToString());
+					throw;
+				}
+			}
+
+			return customerInfo;
+		}
+
+		private Customer UpdateCustomerADO(string queryString, Customer customerInfo)
+		{
+			// Create and open the connection in a using block. This
+			// ensures that all resources will be closed and disposed
+			// when the code exits.
+
+			using (SqlConnection connection = new SqlConnection(connectionString))
+			{
+				SqlCommand command = new SqlCommand(queryString, connection);
+				command.CommandType = CommandType.StoredProcedure;
+				command.Parameters.AddWithValue("@PersonID", customerInfo.person.personID);
+
+				command.Parameters.AddWithValue("@PersonType", customerInfo.person.personType);
+				command.Parameters.AddWithValue("@Title", customerInfo.person.title);
+				command.Parameters.AddWithValue("@FirstName", customerInfo.person.firstName);
+				command.Parameters.AddWithValue("@LastName", customerInfo.person.lastName);
+				command.Parameters.AddWithValue("@MiddleInitial", customerInfo.person.middleInitial);
+				command.Parameters.AddWithValue("@Suffix", customerInfo.person.suffix);
+				command.Parameters.AddWithValue("@AddressID", customerInfo.person.addressID);
+				command.Parameters.AddWithValue("@Address1", customerInfo.person.address1);
+				command.Parameters.AddWithValue("@Address2", customerInfo.person.address2);
+				command.Parameters.AddWithValue("@City", customerInfo.person.city);
+				command.Parameters.AddWithValue("@State", customerInfo.person.state);
+				command.Parameters.AddWithValue("@Zip", customerInfo.person.zip);
+				command.Parameters.AddWithValue("@Country", customerInfo.person.country);
+				command.Parameters.AddWithValue("@EmailAddressID", customerInfo.person.emailAddressID);
+				command.Parameters.AddWithValue("@EmailAddress", customerInfo.person.emailAddress);
+				command.Parameters.AddWithValue("@PhoneNumberID", customerInfo.person.phoneNumberID);
+				command.Parameters.AddWithValue("@PhoneNumber", customerInfo.person.phoneNumber);
+				command.Parameters.AddWithValue("@AccountNumber", customerInfo.accountNumber);
+				command.Parameters.AddWithValue("@EmailPromotion", customerInfo.emailPromotion);
+				//command.Parameters.AddWithValue("@Demographics", customerInfo.demographics);
+				//command.Parameters.AddWithValue("@AdditionalContactInfo", customerInfo.additionalContactInfo);
+
+				try
+				{
+					connection.Open();
+					int result = command.ExecuteNonQuery();
 				}
 				catch (Exception ex)
 				{

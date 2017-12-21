@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\CustomerDO.cs" />
     <Compile Include="Forms\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,9 +103,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\Web Services\WebAPI\SampleWebApi\SampleDemoWebApi\CustomerApi.csproj">
       <Project>{81746040-459e-4d54-84bc-770b2ed63cbc}</Project>

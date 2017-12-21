@@ -4,6 +4,7 @@ namespace customers.Models
 {
 	public class CustomerRow
 	{
+		private int customerID;
 		private string accountNumber;
 		private string name;
 		private string address;
@@ -12,6 +13,7 @@ namespace customers.Models
 
 		public CustomerRow(Customer customer)
 		{
+			customerID = customer.customerID;
 			accountNumber = customer.accountNumber;
 			name = customer.person.title + " " + customer.person.firstName + " " + customer.person.middleInitial + " " + customer.person.lastName + " " + customer.person.suffix;
 			address = customer.person.address1 + " " + customer.person.address2 + " " + customer.person.city + " " + customer.person.state + " " + customer.person.zip + " " + customer.person.country;
@@ -19,11 +21,32 @@ namespace customers.Models
 			email = customer.person.emailAddress;
 		}
 
+		public CustomerRow()
+		{
+		}
+
+
+		public int CustomerID
+		{
+			get
+			{
+				return customerID;
+			}
+			set
+			{
+				customerID = value;
+			}
+		}
+
 		public string AccountNumber
 		{
 			get
 			{
 				return accountNumber;
+			}
+			set
+			{
+				accountNumber = value;
 			}
 		}
 
@@ -33,6 +56,11 @@ namespace customers.Models
 			{
 				return name;
 			}
+			set
+			{
+				name = value;
+			}
+
 		}
 
 		public string Address
@@ -40,6 +68,10 @@ namespace customers.Models
 			get
 			{
 				return address;
+			}
+			set
+			{
+				address = value;
 			}
 		}
 
@@ -49,6 +81,10 @@ namespace customers.Models
 			{
 				return phone;
 			}
+			set
+			{
+				phone = value;
+			}
 		}
 
 		public string Email
@@ -56,6 +92,10 @@ namespace customers.Models
 			get
 			{
 				return email;
+			}
+			set
+			{
+				email = value;
 			}
 		}
 

@@ -12,11 +12,12 @@ namespace customers.Forms
 {
 	public partial class Customers : Form
 	{
-		private DataGridView dataGridView1 = new DataGridView();
+		//private DataGridView dataGridView1 = new DataGridView();
 		private BindingSource bindingSource1 = new BindingSource();
 
 		public Customers()
 		{
+			InitializeComponent();
 			this.Load += new System.EventHandler(GetCustomers);
 		}
 
@@ -45,7 +46,7 @@ namespace customers.Forms
 				bindingSource1.Add(new CustomerRow(customer));
 			}
 
-			BuildCustomerGrid();
+		//	BuildCustomerGrid();
 		}
 
 		public void GetCustomersAccess(object sender, System.EventArgs e)
@@ -64,55 +65,84 @@ namespace customers.Forms
 				}
 			}
 
-			BuildCustomerGrid();
+		//	BuildCustomerGrid();
 		}
 
 		public void BuildCustomerGrid()
 		{
 			// Initialize the DataGridView.
-			dataGridView1.AutoGenerateColumns = false;
-			dataGridView1.AutoSize = false;
-			dataGridView1.DataSource = bindingSource1;
-			dataGridView1.ScrollBars = ScrollBars.Vertical;
-			dataGridView1.Height = 600;
-			dataGridView1.Width = 1200;
+			this.dataGridView1.AutoGenerateColumns = false;
+			this.dataGridView1.AutoSize = false;
+			this.dataGridView1.DataSource = bindingSource1;
+			this.dataGridView1.ScrollBars = ScrollBars.Vertical;
+			this.dataGridView1.Height = 600;
+			this.dataGridView1.Width = 1200;
 
 			// Initialize and add grid columns.
 			DataGridViewColumn column = new DataGridViewTextBoxColumn();
 			column.DataPropertyName = "AccountNumber";
 			column.Name = "Account";
 			column.Width = 100;
-			dataGridView1.Columns.Add(column);
+			this.dataGridView1.Columns.Add(column);
 
 			column = new DataGridViewTextBoxColumn();
 			column.DataPropertyName = "Name";
 			column.Name = "Name";
 			column.Width = 200;
-			dataGridView1.Columns.Add(column);
+			this.dataGridView1.Columns.Add(column);
 
 			column = new DataGridViewTextBoxColumn();
 			column.DataPropertyName = "Address";
 			column.Name = "Address";
 			column.Width = 400;
-			dataGridView1.Columns.Add(column);
+			this.dataGridView1.Columns.Add(column);
 
 			column = new DataGridViewTextBoxColumn();
 			column.DataPropertyName = "Phone";
 			column.Name = "Phone";
 			column.Width = 100;
-			dataGridView1.Columns.Add(column);
+			this.dataGridView1.Columns.Add(column);
 
 			column = new DataGridViewTextBoxColumn();
 			column.DataPropertyName = "Email";
 			column.Name = "Email";
 			column.Width = 200;
-			dataGridView1.Columns.Add(column);
+			this.dataGridView1.Columns.Add(column);
 
 			// Initialize the form.
-			this.Controls.Add(dataGridView1);
+			//this.Controls.Add(dataGridView1);
 			this.AutoSize = true;
 			this.Text = "Customers";
 		}
 
+		private void dataGridView1_SelectionChanged(object sender, System.EventArgs e)
+		{
+
+		}
+
+		private void Customers_Validated(object sender, System.EventArgs e)
+		{
+		//	BuildCustomerGrid();
+		}
+
+		private void Customers_Shown(object sender, System.EventArgs e)
+		{
+		//	BuildCustomerGrid();
+		}
+
+		private void Customers_Load(object sender, System.EventArgs e)
+		{
+		//	BuildCustomerGrid();
+		}
+
+		private void Customers_Activated(object sender, System.EventArgs e)
+		{
+			BuildCustomerGrid();
+		}
+
+		private void Customers_MdiChildActivate(object sender, System.EventArgs e)
+			{
+		//		BuildCustomerGrid();
+			}
 	}
 }

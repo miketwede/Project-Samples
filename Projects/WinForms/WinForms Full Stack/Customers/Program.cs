@@ -16,7 +16,7 @@ namespace customers
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new customers.Forms.Customers());
+            Application.Run(new customers.Forms.Main());
         }
     }
 }

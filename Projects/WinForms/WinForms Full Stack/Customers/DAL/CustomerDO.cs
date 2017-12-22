@@ -1,23 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Data.OleDb;
-using SampleDemoWebApi.CustomerApi.Models;
 using System.Configuration;
-using System.Xml;
-using System.IO;
+using System.Collections.Generic;
+using System.Data.OleDb;
 
 using NLog;
-
-using SampleDemoWebApi.CustomerApi.Global;
-using System.Drawing;
 
 using customers.Models;
 
@@ -27,24 +13,11 @@ namespace customers.DAL
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
-
 		public List<CustomerRow> GetCustomers()
 		{
 			List<CustomerRow> customerRows = new List<CustomerRow>();
 			string connectionString = ConfigurationManager.ConnectionStrings["CustomerDatabase"].ConnectionString;
-
-
-			//OleDbCommand command = new OleDbCommand("SELECT * from  Users WHERE LastName='@1'", connection);
-
-			//command.Parameters.AddWithValue("@1", textBox8.Text)
-
-
-
 			OleDbDataReader reader = null;
-
-
-
-
 
 			// Test to see if there is a valid database connection.
 			// Return null if there isn't.
@@ -61,7 +34,6 @@ namespace customers.DAL
 				connection.Close();
 				return customerRows;
 			}
-
 
 			try
 			{
@@ -94,15 +66,9 @@ namespace customers.DAL
 			{
 				connection.Close();
 			}
+
 			return customerRows;
-
-
 		}
-
-
-
-
-
 
 	}
 }

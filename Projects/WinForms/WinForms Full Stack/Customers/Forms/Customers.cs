@@ -22,8 +22,6 @@ namespace customers.Forms
 
 		public void GetCustomers(object sender, System.EventArgs e)
 		{
-			//string databaseType = ConfigurationManager.ConnectionStrings["CustomerDatabaseType"].ConnectionString;
-
 			string databaseType = ConfigurationManager.AppSettings["CustomerDatabaseType"];
 
 			if (databaseType == "SQL")
@@ -36,8 +34,6 @@ namespace customers.Forms
 			}
 		}
 
-
-
 		public void GetCustomersSQL(object sender, System.EventArgs e)
 		{
 			CustomerBO customerBO = new CustomerBO();
@@ -49,6 +45,30 @@ namespace customers.Forms
 				bindingSource1.Add(new CustomerRow(customer));
 			}
 
+			BuildCustomerGrid();
+		}
+
+		public void GetCustomersAccess(object sender, System.EventArgs e)
+		{
+			CustomerDO customerDO = new CustomerDO();
+			List<CustomerRow> customerRows = customerDO.GetCustomers();
+
+			if (customerRows != null)
+			{
+				if (customerRows.Count > 0)
+				{
+					foreach (CustomerRow customerRow in customerRows)
+					{
+						bindingSource1.Add(customerRow);
+					}
+				}
+			}
+
+			BuildCustomerGrid();
+		}
+
+		public void BuildCustomerGrid()
+		{
 			// Initialize the DataGridView.
 			dataGridView1.AutoGenerateColumns = false;
 			dataGridView1.AutoSize = false;
@@ -92,84 +112,7 @@ namespace customers.Forms
 			this.Controls.Add(dataGridView1);
 			this.AutoSize = true;
 			this.Text = "Customers";
-
 		}
-
-		public void GetCustomersAccess(object sender, System.EventArgs e)
-		{
-
-
-
-
-
-
-			CustomerDO customerDO = new CustomerDO();
-
-
-			List<CustomerRow> customerRows = customerDO.GetCustomers();
-
-
-
-
-
-			if (customerRows != null)
-			{
-
-
-
-				foreach (CustomerRow customerRow in customerRows)
-				{
-					bindingSource1.Add(customerRow);
-				}
-
-				// Initialize the DataGridView.
-				dataGridView1.AutoGenerateColumns = false;
-				dataGridView1.AutoSize = false;
-				dataGridView1.DataSource = bindingSource1;
-				dataGridView1.ScrollBars = ScrollBars.Vertical;
-				dataGridView1.Height = 600;
-				dataGridView1.Width = 1200;
-
-				// Initialize and add grid columns.
-				DataGridViewColumn column = new DataGridViewTextBoxColumn();
-				column.DataPropertyName = "AccountNumber";
-				column.Name = "Account";
-				column.Width = 100;
-				dataGridView1.Columns.Add(column);
-
-				column = new DataGridViewTextBoxColumn();
-				column.DataPropertyName = "Name";
-				column.Name = "Name";
-				column.Width = 200;
-				dataGridView1.Columns.Add(column);
-
-				column = new DataGridViewTextBoxColumn();
-				column.DataPropertyName = "Address";
-				column.Name = "Address";
-				column.Width = 400;
-				dataGridView1.Columns.Add(column);
-
-				column = new DataGridViewTextBoxColumn();
-				column.DataPropertyName = "Phone";
-				column.Name = "Phone";
-				column.Width = 100;
-				dataGridView1.Columns.Add(column);
-
-				column = new DataGridViewTextBoxColumn();
-				column.DataPropertyName = "Email";
-				column.Name = "Email";
-				column.Width = 200;
-				dataGridView1.Columns.Add(column);
-
-				// Initialize the form.
-				this.Controls.Add(dataGridView1);
-				this.AutoSize = true;
-				this.Text = "Customers";
-			}
-		}
-
-
-
 
 	}
 }

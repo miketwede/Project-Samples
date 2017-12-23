@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
 
 using customers.Models;
 using customers.DAL;
@@ -116,7 +117,9 @@ namespace customers.Forms
 		}
 
 		private void dataGridView1_SelectionChanged(object sender, System.EventArgs e)
+
 		{
+			string mike = "";
 
 		}
 
@@ -144,5 +147,31 @@ namespace customers.Forms
 			{
 		//		BuildCustomerGrid();
 			}
+
+		private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+		{
+			string mike = "";
+
+		}
+
+		private void dataGridView1_Click(object sender, System.EventArgs e)
+		{
+			string mike = "";
+		}
+
+		private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			string mike = "";
+		}
+
+		private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			CustomerEdit CustomerEditForm = new CustomerEdit(((CustomerRow)((System.Windows.Forms.DataGridView)sender).CurrentRow.DataBoundItem).CustomerID);
+			CustomerEditForm.MdiParent = this.Parent.FindForm();
+			CustomerEditForm.StartPosition = FormStartPosition.Manual;
+			CustomerEditForm.Location = new Point(0, 0);
+			CustomerEditForm.Show();
+			this.Close();
+		}
 	}
 }

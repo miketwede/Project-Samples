@@ -13,6 +13,8 @@ namespace customers.Forms
 {
 	public partial class CustomerEdit : Form
 	{
+		Customer customer;
+
 		public CustomerEdit(int CustomerID)
 		{
 			InitializeComponent();
@@ -24,8 +26,13 @@ namespace customers.Forms
 		{
 			CustomerBO customerBO = new CustomerBO();
 
-			Customer customer = customerBO.GetCustomerByCustomerID(CustomerID);
+			customer = customerBO.GetCustomerByCustomerID(CustomerID);
 
+			DisplayCustomerSQL();
+		}
+
+		private void DisplayCustomerSQL()
+		{
 			// Name
 			txtTitle.Text = customer.person.title;
 			txtFirstName.Text = customer.person.firstName;
@@ -106,7 +113,7 @@ namespace customers.Forms
 			//			//return Image.FromStream(ms);
 			//		}
 
-					
+
 			//	}
 			//	else if (customer.person.title == "Mr." | customer.person.title == "Sr.")
 			//	{
@@ -168,6 +175,7 @@ namespace customers.Forms
 
 		private void btnCancel_Click(object sender, System.EventArgs e)
 		{
+			DisplayCustomerSQL();
 
 		}
 

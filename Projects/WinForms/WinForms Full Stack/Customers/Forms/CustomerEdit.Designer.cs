@@ -68,17 +68,14 @@
 			this.lblTotalPurchaseYTD = new System.Windows.Forms.Label();
 			this.txtYearlyIncome = new System.Windows.Forms.TextBox();
 			this.lblYearlyIncome = new System.Windows.Forms.Label();
-			this.txtGender = new System.Windows.Forms.TextBox();
 			this.lblGender = new System.Windows.Forms.Label();
 			this.txtTotalChildren = new System.Windows.Forms.TextBox();
 			this.lblTotalChildren = new System.Windows.Forms.Label();
-			this.txtMaritalStatus = new System.Windows.Forms.TextBox();
 			this.lblMaritalStatus = new System.Windows.Forms.Label();
 			this.txtEducation = new System.Windows.Forms.TextBox();
 			this.lblEducation = new System.Windows.Forms.Label();
 			this.txtOccupation = new System.Windows.Forms.TextBox();
 			this.lblOccupation = new System.Windows.Forms.Label();
-			this.txtHomeOwnerFlag = new System.Windows.Forms.TextBox();
 			this.lblHomeOwnerFlag = new System.Windows.Forms.Label();
 			this.txtNumberChildrenAtHome = new System.Windows.Forms.TextBox();
 			this.lblNumberChildrenAtHome = new System.Windows.Forms.Label();
@@ -89,6 +86,13 @@
 			this.btnQuit = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
+			this.btnEdit = new System.Windows.Forms.Button();
+			this.lblPhoto = new System.Windows.Forms.Label();
+			this.pbPhoto = new System.Windows.Forms.PictureBox();
+			this.chkHomeOwnerFlag = new System.Windows.Forms.CheckBox();
+			this.cmboMaritalStatus = new System.Windows.Forms.ComboBox();
+			this.cmboGender = new System.Windows.Forms.ComboBox();
+			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// lblCustomerID
@@ -111,7 +115,7 @@
 			// lblFirstName
 			// 
 			this.lblFirstName.AutoSize = true;
-			this.lblFirstName.Location = new System.Drawing.Point(65, 113);
+			this.lblFirstName.Location = new System.Drawing.Point(64, 294);
 			this.lblFirstName.Name = "lblFirstName";
 			this.lblFirstName.Size = new System.Drawing.Size(57, 13);
 			this.lblFirstName.TabIndex = 2;
@@ -119,22 +123,24 @@
 			// 
 			// txtFirstName
 			// 
-			this.txtFirstName.Location = new System.Drawing.Point(175, 106);
+			this.txtFirstName.Location = new System.Drawing.Point(174, 287);
 			this.txtFirstName.Name = "txtFirstName";
+			this.txtFirstName.ReadOnly = true;
 			this.txtFirstName.Size = new System.Drawing.Size(200, 20);
 			this.txtFirstName.TabIndex = 3;
 			// 
 			// txtMiddleInitial
 			// 
-			this.txtMiddleInitial.Location = new System.Drawing.Point(175, 136);
+			this.txtMiddleInitial.Location = new System.Drawing.Point(174, 317);
 			this.txtMiddleInitial.Name = "txtMiddleInitial";
+			this.txtMiddleInitial.ReadOnly = true;
 			this.txtMiddleInitial.Size = new System.Drawing.Size(200, 20);
 			this.txtMiddleInitial.TabIndex = 5;
 			// 
 			// lblMiddleInitial
 			// 
 			this.lblMiddleInitial.AutoSize = true;
-			this.lblMiddleInitial.Location = new System.Drawing.Point(65, 143);
+			this.lblMiddleInitial.Location = new System.Drawing.Point(64, 324);
 			this.lblMiddleInitial.Name = "lblMiddleInitial";
 			this.lblMiddleInitial.Size = new System.Drawing.Size(65, 13);
 			this.lblMiddleInitial.TabIndex = 4;
@@ -143,15 +149,16 @@
 			// 
 			// txtLastName
 			// 
-			this.txtLastName.Location = new System.Drawing.Point(175, 167);
+			this.txtLastName.Location = new System.Drawing.Point(174, 348);
 			this.txtLastName.Name = "txtLastName";
+			this.txtLastName.ReadOnly = true;
 			this.txtLastName.Size = new System.Drawing.Size(200, 20);
 			this.txtLastName.TabIndex = 7;
 			// 
 			// lblLastName
 			// 
 			this.lblLastName.AutoSize = true;
-			this.lblLastName.Location = new System.Drawing.Point(65, 174);
+			this.lblLastName.Location = new System.Drawing.Point(64, 355);
 			this.lblLastName.Name = "lblLastName";
 			this.lblLastName.Size = new System.Drawing.Size(58, 13);
 			this.lblLastName.TabIndex = 6;
@@ -159,15 +166,16 @@
 			// 
 			// txtTitle
 			// 
-			this.txtTitle.Location = new System.Drawing.Point(175, 76);
+			this.txtTitle.Location = new System.Drawing.Point(174, 257);
 			this.txtTitle.Name = "txtTitle";
+			this.txtTitle.ReadOnly = true;
 			this.txtTitle.Size = new System.Drawing.Size(200, 20);
 			this.txtTitle.TabIndex = 9;
 			// 
 			// lblTitle
 			// 
 			this.lblTitle.AutoSize = true;
-			this.lblTitle.Location = new System.Drawing.Point(65, 83);
+			this.lblTitle.Location = new System.Drawing.Point(64, 264);
 			this.lblTitle.Name = "lblTitle";
 			this.lblTitle.Size = new System.Drawing.Size(27, 13);
 			this.lblTitle.TabIndex = 8;
@@ -175,15 +183,16 @@
 			// 
 			// txtSuffix
 			// 
-			this.txtSuffix.Location = new System.Drawing.Point(175, 199);
+			this.txtSuffix.Location = new System.Drawing.Point(174, 380);
 			this.txtSuffix.Name = "txtSuffix";
+			this.txtSuffix.ReadOnly = true;
 			this.txtSuffix.Size = new System.Drawing.Size(200, 20);
 			this.txtSuffix.TabIndex = 11;
 			// 
 			// lblSuffix
 			// 
 			this.lblSuffix.AutoSize = true;
-			this.lblSuffix.Location = new System.Drawing.Point(65, 206);
+			this.lblSuffix.Location = new System.Drawing.Point(64, 387);
 			this.lblSuffix.Name = "lblSuffix";
 			this.lblSuffix.Size = new System.Drawing.Size(33, 13);
 			this.lblSuffix.TabIndex = 10;
@@ -191,15 +200,16 @@
 			// 
 			// txtAddress1
 			// 
-			this.txtAddress1.Location = new System.Drawing.Point(175, 243);
+			this.txtAddress1.Location = new System.Drawing.Point(174, 424);
 			this.txtAddress1.Name = "txtAddress1";
+			this.txtAddress1.ReadOnly = true;
 			this.txtAddress1.Size = new System.Drawing.Size(200, 20);
 			this.txtAddress1.TabIndex = 13;
 			// 
 			// lblAddress1
 			// 
 			this.lblAddress1.AutoSize = true;
-			this.lblAddress1.Location = new System.Drawing.Point(65, 250);
+			this.lblAddress1.Location = new System.Drawing.Point(64, 431);
 			this.lblAddress1.Name = "lblAddress1";
 			this.lblAddress1.Size = new System.Drawing.Size(54, 13);
 			this.lblAddress1.TabIndex = 12;
@@ -207,15 +217,16 @@
 			// 
 			// txtAddress2
 			// 
-			this.txtAddress2.Location = new System.Drawing.Point(175, 276);
+			this.txtAddress2.Location = new System.Drawing.Point(174, 457);
 			this.txtAddress2.Name = "txtAddress2";
+			this.txtAddress2.ReadOnly = true;
 			this.txtAddress2.Size = new System.Drawing.Size(200, 20);
 			this.txtAddress2.TabIndex = 15;
 			// 
 			// lblAddress2
 			// 
 			this.lblAddress2.AutoSize = true;
-			this.lblAddress2.Location = new System.Drawing.Point(65, 283);
+			this.lblAddress2.Location = new System.Drawing.Point(64, 464);
 			this.lblAddress2.Name = "lblAddress2";
 			this.lblAddress2.Size = new System.Drawing.Size(54, 13);
 			this.lblAddress2.TabIndex = 14;
@@ -223,15 +234,16 @@
 			// 
 			// txtCity
 			// 
-			this.txtCity.Location = new System.Drawing.Point(174, 311);
+			this.txtCity.Location = new System.Drawing.Point(173, 492);
 			this.txtCity.Name = "txtCity";
+			this.txtCity.ReadOnly = true;
 			this.txtCity.Size = new System.Drawing.Size(200, 20);
 			this.txtCity.TabIndex = 17;
 			// 
 			// lblCity
 			// 
 			this.lblCity.AutoSize = true;
-			this.lblCity.Location = new System.Drawing.Point(64, 318);
+			this.lblCity.Location = new System.Drawing.Point(63, 499);
 			this.lblCity.Name = "lblCity";
 			this.lblCity.Size = new System.Drawing.Size(24, 13);
 			this.lblCity.TabIndex = 16;
@@ -239,15 +251,16 @@
 			// 
 			// txtState
 			// 
-			this.txtState.Location = new System.Drawing.Point(174, 343);
+			this.txtState.Location = new System.Drawing.Point(173, 524);
 			this.txtState.Name = "txtState";
+			this.txtState.ReadOnly = true;
 			this.txtState.Size = new System.Drawing.Size(200, 20);
 			this.txtState.TabIndex = 19;
 			// 
 			// lblState
 			// 
 			this.lblState.AutoSize = true;
-			this.lblState.Location = new System.Drawing.Point(64, 350);
+			this.lblState.Location = new System.Drawing.Point(63, 531);
 			this.lblState.Name = "lblState";
 			this.lblState.Size = new System.Drawing.Size(32, 13);
 			this.lblState.TabIndex = 18;
@@ -255,15 +268,16 @@
 			// 
 			// txtZip
 			// 
-			this.txtZip.Location = new System.Drawing.Point(174, 379);
+			this.txtZip.Location = new System.Drawing.Point(173, 560);
 			this.txtZip.Name = "txtZip";
+			this.txtZip.ReadOnly = true;
 			this.txtZip.Size = new System.Drawing.Size(200, 20);
 			this.txtZip.TabIndex = 21;
 			// 
 			// lblZip
 			// 
 			this.lblZip.AutoSize = true;
-			this.lblZip.Location = new System.Drawing.Point(64, 386);
+			this.lblZip.Location = new System.Drawing.Point(63, 567);
 			this.lblZip.Name = "lblZip";
 			this.lblZip.Size = new System.Drawing.Size(22, 13);
 			this.lblZip.TabIndex = 20;
@@ -271,15 +285,16 @@
 			// 
 			// txtCountry
 			// 
-			this.txtCountry.Location = new System.Drawing.Point(174, 414);
+			this.txtCountry.Location = new System.Drawing.Point(173, 595);
 			this.txtCountry.Name = "txtCountry";
+			this.txtCountry.ReadOnly = true;
 			this.txtCountry.Size = new System.Drawing.Size(200, 20);
 			this.txtCountry.TabIndex = 23;
 			// 
 			// lblCountry
 			// 
 			this.lblCountry.AutoSize = true;
-			this.lblCountry.Location = new System.Drawing.Point(64, 421);
+			this.lblCountry.Location = new System.Drawing.Point(63, 602);
 			this.lblCountry.Name = "lblCountry";
 			this.lblCountry.Size = new System.Drawing.Size(43, 13);
 			this.lblCountry.TabIndex = 22;
@@ -287,15 +302,16 @@
 			// 
 			// txtPhone
 			// 
-			this.txtPhone.Location = new System.Drawing.Point(174, 450);
+			this.txtPhone.Location = new System.Drawing.Point(173, 631);
 			this.txtPhone.Name = "txtPhone";
+			this.txtPhone.ReadOnly = true;
 			this.txtPhone.Size = new System.Drawing.Size(200, 20);
 			this.txtPhone.TabIndex = 25;
 			// 
 			// lblPhone
 			// 
 			this.lblPhone.AutoSize = true;
-			this.lblPhone.Location = new System.Drawing.Point(64, 457);
+			this.lblPhone.Location = new System.Drawing.Point(63, 638);
 			this.lblPhone.Name = "lblPhone";
 			this.lblPhone.Size = new System.Drawing.Size(38, 13);
 			this.lblPhone.TabIndex = 24;
@@ -303,15 +319,16 @@
 			// 
 			// txtEmail
 			// 
-			this.txtEmail.Location = new System.Drawing.Point(174, 483);
+			this.txtEmail.Location = new System.Drawing.Point(173, 664);
 			this.txtEmail.Name = "txtEmail";
+			this.txtEmail.ReadOnly = true;
 			this.txtEmail.Size = new System.Drawing.Size(200, 20);
 			this.txtEmail.TabIndex = 27;
 			// 
 			// lblEmail
 			// 
 			this.lblEmail.AutoSize = true;
-			this.lblEmail.Location = new System.Drawing.Point(64, 490);
+			this.lblEmail.Location = new System.Drawing.Point(63, 671);
 			this.lblEmail.Name = "lblEmail";
 			this.lblEmail.Size = new System.Drawing.Size(32, 13);
 			this.lblEmail.TabIndex = 26;
@@ -321,6 +338,7 @@
 			// 
 			this.txtAccountNumber.Location = new System.Drawing.Point(576, 76);
 			this.txtAccountNumber.Name = "txtAccountNumber";
+			this.txtAccountNumber.ReadOnly = true;
 			this.txtAccountNumber.Size = new System.Drawing.Size(200, 20);
 			this.txtAccountNumber.TabIndex = 29;
 			// 
@@ -337,6 +355,7 @@
 			// 
 			this.txtEmailPromotion.Location = new System.Drawing.Point(576, 111);
 			this.txtEmailPromotion.Name = "txtEmailPromotion";
+			this.txtEmailPromotion.ReadOnly = true;
 			this.txtEmailPromotion.Size = new System.Drawing.Size(200, 20);
 			this.txtEmailPromotion.TabIndex = 31;
 			// 
@@ -353,6 +372,7 @@
 			// 
 			this.txtBirthDate.Location = new System.Drawing.Point(576, 212);
 			this.txtBirthDate.Name = "txtBirthDate";
+			this.txtBirthDate.ReadOnly = true;
 			this.txtBirthDate.Size = new System.Drawing.Size(200, 20);
 			this.txtBirthDate.TabIndex = 33;
 			// 
@@ -369,6 +389,7 @@
 			// 
 			this.txtDateFirstPurchase.Location = new System.Drawing.Point(576, 175);
 			this.txtDateFirstPurchase.Name = "txtDateFirstPurchase";
+			this.txtDateFirstPurchase.ReadOnly = true;
 			this.txtDateFirstPurchase.Size = new System.Drawing.Size(200, 20);
 			this.txtDateFirstPurchase.TabIndex = 53;
 			// 
@@ -385,6 +406,7 @@
 			// 
 			this.txtTotalPurchaseYTD.Location = new System.Drawing.Point(576, 143);
 			this.txtTotalPurchaseYTD.Name = "txtTotalPurchaseYTD";
+			this.txtTotalPurchaseYTD.ReadOnly = true;
 			this.txtTotalPurchaseYTD.Size = new System.Drawing.Size(200, 20);
 			this.txtTotalPurchaseYTD.TabIndex = 55;
 			// 
@@ -401,6 +423,7 @@
 			// 
 			this.txtYearlyIncome.Location = new System.Drawing.Point(576, 282);
 			this.txtYearlyIncome.Name = "txtYearlyIncome";
+			this.txtYearlyIncome.ReadOnly = true;
 			this.txtYearlyIncome.Size = new System.Drawing.Size(200, 20);
 			this.txtYearlyIncome.TabIndex = 63;
 			// 
@@ -412,13 +435,6 @@
 			this.lblYearlyIncome.Size = new System.Drawing.Size(74, 13);
 			this.lblYearlyIncome.TabIndex = 62;
 			this.lblYearlyIncome.Text = "Yearly Income";
-			// 
-			// txtGender
-			// 
-			this.txtGender.Location = new System.Drawing.Point(576, 314);
-			this.txtGender.Name = "txtGender";
-			this.txtGender.Size = new System.Drawing.Size(200, 20);
-			this.txtGender.TabIndex = 61;
 			// 
 			// lblGender
 			// 
@@ -433,6 +449,7 @@
 			// 
 			this.txtTotalChildren.Location = new System.Drawing.Point(576, 351);
 			this.txtTotalChildren.Name = "txtTotalChildren";
+			this.txtTotalChildren.ReadOnly = true;
 			this.txtTotalChildren.Size = new System.Drawing.Size(200, 20);
 			this.txtTotalChildren.TabIndex = 59;
 			// 
@@ -444,13 +461,6 @@
 			this.lblTotalChildren.Size = new System.Drawing.Size(72, 13);
 			this.lblTotalChildren.TabIndex = 58;
 			this.lblTotalChildren.Text = "Total Children";
-			// 
-			// txtMaritalStatus
-			// 
-			this.txtMaritalStatus.Location = new System.Drawing.Point(576, 250);
-			this.txtMaritalStatus.Name = "txtMaritalStatus";
-			this.txtMaritalStatus.Size = new System.Drawing.Size(200, 20);
-			this.txtMaritalStatus.TabIndex = 57;
 			// 
 			// lblMaritalStatus
 			// 
@@ -465,6 +475,7 @@
 			// 
 			this.txtEducation.Location = new System.Drawing.Point(576, 418);
 			this.txtEducation.Name = "txtEducation";
+			this.txtEducation.ReadOnly = true;
 			this.txtEducation.Size = new System.Drawing.Size(200, 20);
 			this.txtEducation.TabIndex = 71;
 			// 
@@ -481,6 +492,7 @@
 			// 
 			this.txtOccupation.Location = new System.Drawing.Point(576, 450);
 			this.txtOccupation.Name = "txtOccupation";
+			this.txtOccupation.ReadOnly = true;
 			this.txtOccupation.Size = new System.Drawing.Size(200, 20);
 			this.txtOccupation.TabIndex = 69;
 			// 
@@ -492,13 +504,6 @@
 			this.lblOccupation.Size = new System.Drawing.Size(62, 13);
 			this.lblOccupation.TabIndex = 68;
 			this.lblOccupation.Text = "Occupation";
-			// 
-			// txtHomeOwnerFlag
-			// 
-			this.txtHomeOwnerFlag.Location = new System.Drawing.Point(576, 487);
-			this.txtHomeOwnerFlag.Name = "txtHomeOwnerFlag";
-			this.txtHomeOwnerFlag.Size = new System.Drawing.Size(200, 20);
-			this.txtHomeOwnerFlag.TabIndex = 67;
 			// 
 			// lblHomeOwnerFlag
 			// 
@@ -513,6 +518,7 @@
 			// 
 			this.txtNumberChildrenAtHome.Location = new System.Drawing.Point(576, 386);
 			this.txtNumberChildrenAtHome.Name = "txtNumberChildrenAtHome";
+			this.txtNumberChildrenAtHome.ReadOnly = true;
 			this.txtNumberChildrenAtHome.Size = new System.Drawing.Size(200, 20);
 			this.txtNumberChildrenAtHome.TabIndex = 65;
 			// 
@@ -529,6 +535,7 @@
 			// 
 			this.txtNumberCarsOwned.Location = new System.Drawing.Point(576, 523);
 			this.txtNumberCarsOwned.Name = "txtNumberCarsOwned";
+			this.txtNumberCarsOwned.ReadOnly = true;
 			this.txtNumberCarsOwned.Size = new System.Drawing.Size(200, 20);
 			this.txtNumberCarsOwned.TabIndex = 73;
 			// 
@@ -545,6 +552,7 @@
 			// 
 			this.txtCommuteDistance.Location = new System.Drawing.Point(576, 559);
 			this.txtCommuteDistance.Name = "txtCommuteDistance";
+			this.txtCommuteDistance.ReadOnly = true;
 			this.txtCommuteDistance.Size = new System.Drawing.Size(200, 20);
 			this.txtCommuteDistance.TabIndex = 75;
 			// 
@@ -559,7 +567,7 @@
 			// 
 			// btnQuit
 			// 
-			this.btnQuit.Location = new System.Drawing.Point(775, 604);
+			this.btnQuit.Location = new System.Drawing.Point(775, 690);
 			this.btnQuit.Name = "btnQuit";
 			this.btnQuit.Size = new System.Drawing.Size(75, 23);
 			this.btnQuit.TabIndex = 76;
@@ -569,7 +577,8 @@
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(701, 604);
+			this.btnCancel.Enabled = false;
+			this.btnCancel.Location = new System.Drawing.Point(701, 690);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 77;
@@ -579,7 +588,8 @@
 			// 
 			// btnSave
 			// 
-			this.btnSave.Location = new System.Drawing.Point(629, 604);
+			this.btnSave.Enabled = false;
+			this.btnSave.Location = new System.Drawing.Point(629, 690);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(75, 23);
 			this.btnSave.TabIndex = 78;
@@ -587,11 +597,72 @@
 			this.btnSave.UseVisualStyleBackColor = true;
 			this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 			// 
+			// btnEdit
+			// 
+			this.btnEdit.Location = new System.Drawing.Point(764, 12);
+			this.btnEdit.Name = "btnEdit";
+			this.btnEdit.Size = new System.Drawing.Size(75, 23);
+			this.btnEdit.TabIndex = 79;
+			this.btnEdit.Text = "Edit";
+			this.btnEdit.UseVisualStyleBackColor = true;
+			this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+			// 
+			// lblPhoto
+			// 
+			this.lblPhoto.AutoSize = true;
+			this.lblPhoto.Location = new System.Drawing.Point(63, 69);
+			this.lblPhoto.Name = "lblPhoto";
+			this.lblPhoto.Size = new System.Drawing.Size(35, 13);
+			this.lblPhoto.TabIndex = 80;
+			this.lblPhoto.Text = "Photo";
+			// 
+			// pbPhoto
+			// 
+			this.pbPhoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pbPhoto.Location = new System.Drawing.Point(173, 69);
+			this.pbPhoto.Name = "pbPhoto";
+			this.pbPhoto.Size = new System.Drawing.Size(200, 175);
+			this.pbPhoto.TabIndex = 81;
+			this.pbPhoto.TabStop = false;
+			// 
+			// chkHomeOwnerFlag
+			// 
+			this.chkHomeOwnerFlag.AutoSize = true;
+			this.chkHomeOwnerFlag.Enabled = false;
+			this.chkHomeOwnerFlag.Location = new System.Drawing.Point(576, 489);
+			this.chkHomeOwnerFlag.Name = "chkHomeOwnerFlag";
+			this.chkHomeOwnerFlag.Size = new System.Drawing.Size(15, 14);
+			this.chkHomeOwnerFlag.TabIndex = 82;
+			this.chkHomeOwnerFlag.UseVisualStyleBackColor = true;
+			// 
+			// cmboMaritalStatus
+			// 
+			this.cmboMaritalStatus.Enabled = false;
+			this.cmboMaritalStatus.FormattingEnabled = true;
+			this.cmboMaritalStatus.Location = new System.Drawing.Point(576, 249);
+			this.cmboMaritalStatus.Name = "cmboMaritalStatus";
+			this.cmboMaritalStatus.Size = new System.Drawing.Size(200, 21);
+			this.cmboMaritalStatus.TabIndex = 83;
+			// 
+			// cmboGender
+			// 
+			this.cmboGender.FormattingEnabled = true;
+			this.cmboGender.Location = new System.Drawing.Point(576, 317);
+			this.cmboGender.Name = "cmboGender";
+			this.cmboGender.Size = new System.Drawing.Size(200, 21);
+			this.cmboGender.TabIndex = 84;
+			// 
 			// CustomerEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(851, 626);
+			this.ClientSize = new System.Drawing.Size(851, 725);
+			this.Controls.Add(this.cmboGender);
+			this.Controls.Add(this.cmboMaritalStatus);
+			this.Controls.Add(this.chkHomeOwnerFlag);
+			this.Controls.Add(this.pbPhoto);
+			this.Controls.Add(this.lblPhoto);
+			this.Controls.Add(this.btnEdit);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnQuit);
@@ -603,17 +674,14 @@
 			this.Controls.Add(this.lblEducation);
 			this.Controls.Add(this.txtOccupation);
 			this.Controls.Add(this.lblOccupation);
-			this.Controls.Add(this.txtHomeOwnerFlag);
 			this.Controls.Add(this.lblHomeOwnerFlag);
 			this.Controls.Add(this.txtNumberChildrenAtHome);
 			this.Controls.Add(this.lblNumberChildrenAtHome);
 			this.Controls.Add(this.txtYearlyIncome);
 			this.Controls.Add(this.lblYearlyIncome);
-			this.Controls.Add(this.txtGender);
 			this.Controls.Add(this.lblGender);
 			this.Controls.Add(this.txtTotalChildren);
 			this.Controls.Add(this.lblTotalChildren);
-			this.Controls.Add(this.txtMaritalStatus);
 			this.Controls.Add(this.lblMaritalStatus);
 			this.Controls.Add(this.txtTotalPurchaseYTD);
 			this.Controls.Add(this.lblTotalPurchaseYTD);
@@ -655,6 +723,7 @@
 			this.Controls.Add(this.lblCustomerID);
 			this.Name = "CustomerEdit";
 			this.Text = "CustomerEdit";
+			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -702,17 +771,14 @@
 		private System.Windows.Forms.Label lblTotalPurchaseYTD;
 		private System.Windows.Forms.TextBox txtYearlyIncome;
 		private System.Windows.Forms.Label lblYearlyIncome;
-		private System.Windows.Forms.TextBox txtGender;
 		private System.Windows.Forms.Label lblGender;
 		private System.Windows.Forms.TextBox txtTotalChildren;
 		private System.Windows.Forms.Label lblTotalChildren;
-		private System.Windows.Forms.TextBox txtMaritalStatus;
 		private System.Windows.Forms.Label lblMaritalStatus;
 		private System.Windows.Forms.TextBox txtEducation;
 		private System.Windows.Forms.Label lblEducation;
 		private System.Windows.Forms.TextBox txtOccupation;
 		private System.Windows.Forms.Label lblOccupation;
-		private System.Windows.Forms.TextBox txtHomeOwnerFlag;
 		private System.Windows.Forms.Label lblHomeOwnerFlag;
 		private System.Windows.Forms.TextBox txtNumberChildrenAtHome;
 		private System.Windows.Forms.Label lblNumberChildrenAtHome;
@@ -723,5 +789,11 @@
 		private System.Windows.Forms.Button btnQuit;
 		private System.Windows.Forms.Button btnCancel;
 		private System.Windows.Forms.Button btnSave;
+		private System.Windows.Forms.Button btnEdit;
+		private System.Windows.Forms.Label lblPhoto;
+		private System.Windows.Forms.PictureBox pbPhoto;
+		private System.Windows.Forms.CheckBox chkHomeOwnerFlag;
+		private System.Windows.Forms.ComboBox cmboMaritalStatus;
+		private System.Windows.Forms.ComboBox cmboGender;
 	}
 }

@@ -9,6 +9,11 @@ using System.Text;
 
 using SampleDemoWebApi.CustomerApi.Global;
 
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
 namespace customers.Forms
 {
 	public partial class CustomerEdit : Form
@@ -175,13 +180,23 @@ namespace customers.Forms
 
 		private void btnCancel_Click(object sender, System.EventArgs e)
 		{
+			txtMessages.Visible = false;
+			txtMessages.Text = "";
+
 			DisplayCustomerSQL();
 
 		}
 
 		private void btnSave_Click(object sender, System.EventArgs e)
 		{
+			CustomerBO customerBO = new CustomerBO();
 
+			PopulateCustomer();
+
+			customerBO.UpdateCustomer(customer);
+			txtMessages.Visible = true;
+			txtMessages.ForeColor = Color.Green;
+			txtMessages.Text = "Customer saved.";
 		}
 
 		private void btnEdit_Click(object sender, System.EventArgs e)
@@ -219,6 +234,144 @@ namespace customers.Forms
 
 			btnSave.Enabled = true;
 			btnCancel.Enabled = true;
+		}
+
+		private void PopulateCustomer()
+		{
+
+
+
+
+
+
+
+
+			// Name
+			customer.person.title = txtTitle.Text;
+			customer.person.firstName = txtFirstName.Text;
+			customer.person.middleInitial = txtMiddleInitial.Text;
+			customer.person.lastName = txtLastName.Text;
+			customer.person.suffix = txtSuffix.Text;
+
+			// Address
+			customer.person.address1 = txtAddress1.Text;
+			customer.person.address2 = txtAddress2.Text;
+			customer.person.city = txtCity.Text;
+			customer.person.state = txtState.Text;
+			customer.person.zip = txtZip.Text;
+			customer.person.country = txtCountry.Text;
+
+			customer.person.phoneNumber = txtPhone.Text;
+			customer.person.emailAddress = txtEmail.Text;
+			customer.accountNumber = txtAccountNumber.Text;
+
+			if (!Int32.TryParse(txtEmailPromotion.Text, out customer.emailPromotion))
+			{
+				MessageBox.Show("EmailPromotion could not be parsed.");
+				return;
+			}
+
+			decimal totalPurchaseYTD;
+			if (!Decimal.TryParse(txtTotalPurchaseYTD.Text, out totalPurchaseYTD))
+			{
+				MessageBox.Show("TotalPurchaseYTD could not be parsed.");
+				return;
+			}
+			customer.demographics.totalPurchaseYTD = totalPurchaseYTD;
+
+			DateTime dateFirstPurchase;
+			if (!DateTime.TryParse(txtDateFirstPurchase.Text, out dateFirstPurchase))
+			{
+				MessageBox.Show("dateFirstPurchase could not be parsed.");
+				return;
+			}
+			customer.demographics.dateFirstPurchase = dateFirstPurchase;
+
+			DateTime birthDate;
+			if (!DateTime.TryParse(txtBirthDate.Text, out birthDate))
+			{
+				MessageBox.Show("BirthDate could not be parsed.");
+				return;
+			}
+			customer.demographics.birthDate = birthDate;
+
+			//	customer.demographics.totalPurchaseYTD = txtTotalPurchaseYTD.Text;
+			//customer.demographics.dateFirstPurchase = Convert.ToDateTime(txtDateFirstPurchase.Text);
+			//customer.demographics.birthDate = txtBirthDate.Text;
+
+			//((System.Collections.Generic.KeyValuePair<string, string>)cmboMaritalStatus.SelectedItem).Value
+			customer.demographics.maritalStatus = cmboMaritalStatus.Text;
+			//customer.demographics.maritalStatus = cmboMaritalStatus.SelectedValue.ToString();
+
+			//cmboMaritalStatus.DataSource = new BindingSource(Globals.MaritalStatus, null);
+			//cmboMaritalStatus.DisplayMember = "Value";
+			//cmboMaritalStatus.ValueMember = "Key";
+			//cmboMaritalStatus.SelectedIndex = cmboMaritalStatus.FindString(customer.demographics.maritalStatus);
+
+			customer.demographics.yearlyIncome = txtYearlyIncome.Text;
+
+			customer.demographics.gender = cmboGender.Text;
+
+
+			//cmboGender.DataSource = new BindingSource(Globals.Gender, null);
+			//cmboGender.DisplayMember = "Value";
+			//cmboGender.ValueMember = "Key";
+			//cmboGender.SelectedIndex = cmboGender.FindString(customer.demographics.gender);
+
+
+			//txtGender.Text = customer.demographics.gender;
+
+			int totalChildren;
+			if (!Int32.TryParse(txtTotalChildren.Text, out totalChildren))
+			{
+				MessageBox.Show("totalChildren could not be parsed.");
+				return;
+			}
+			customer.demographics.totalChildren = totalChildren;
+
+			//customer.demographics.totalPurchaseYTD = totalPurchaseYTD;
+
+
+			//customer.demographics.totalChildren = txtTotalChildren.Text;
+
+			int numberChildrenAtHome;
+			if (!Int32.TryParse(txtNumberChildrenAtHome.Text, out numberChildrenAtHome))
+			{
+				MessageBox.Show("numberChildrenAtHome could not be parsed.");
+				return;
+			}
+			customer.demographics.numberChildrenAtHome = numberChildrenAtHome;
+
+
+
+			//customer.demographics.numberChildrenAtHome = txtNumberChildrenAtHome.Text;
+
+			customer.demographics.education = txtEducation.Text;
+
+			customer.demographics.occupation = txtOccupation.Text;
+
+			customer.demographics.homeOwnerFlag = chkHomeOwnerFlag.Checked;
+
+			//chkHomeOwnerFlag.Checked = customer.demographics.homeOwnerFlag ?? false | (bool)customer.demographics.homeOwnerFlag;
+
+			int numberCarsOwned;
+			if (!Int32.TryParse(txtNumberChildrenAtHome.Text, out numberCarsOwned))
+			{
+				MessageBox.Show("numberCarsOwned could not be parsed.");
+				return;
+			}
+			customer.demographics.numberCarsOwned = numberCarsOwned;
+
+
+
+			//	customer.demographics.numberCarsOwned = txtNumberCarsOwned.Text;
+
+			customer.demographics.commuteDistance = txtCommuteDistance.Text;
+
+
+
+
+
 		}
 	}
 }

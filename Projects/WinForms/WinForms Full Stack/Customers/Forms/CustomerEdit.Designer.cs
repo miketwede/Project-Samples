@@ -92,6 +92,7 @@
 			this.chkHomeOwnerFlag = new System.Windows.Forms.CheckBox();
 			this.cmboMaritalStatus = new System.Windows.Forms.ComboBox();
 			this.cmboGender = new System.Windows.Forms.ComboBox();
+			this.txtMessages = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -646,17 +647,28 @@
 			// 
 			// cmboGender
 			// 
+			this.cmboGender.Enabled = false;
 			this.cmboGender.FormattingEnabled = true;
 			this.cmboGender.Location = new System.Drawing.Point(576, 317);
 			this.cmboGender.Name = "cmboGender";
 			this.cmboGender.Size = new System.Drawing.Size(200, 21);
 			this.cmboGender.TabIndex = 84;
 			// 
+			// txtMessages
+			// 
+			this.txtMessages.BackColor = System.Drawing.SystemColors.Control;
+			this.txtMessages.Location = new System.Drawing.Point(66, 15);
+			this.txtMessages.Name = "txtMessages";
+			this.txtMessages.Size = new System.Drawing.Size(677, 20);
+			this.txtMessages.TabIndex = 86;
+			this.txtMessages.Visible = false;
+			// 
 			// CustomerEdit
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(851, 725);
+			this.Controls.Add(this.txtMessages);
 			this.Controls.Add(this.cmboGender);
 			this.Controls.Add(this.cmboMaritalStatus);
 			this.Controls.Add(this.chkHomeOwnerFlag);
@@ -795,5 +807,6 @@
 		private System.Windows.Forms.CheckBox chkHomeOwnerFlag;
 		private System.Windows.Forms.ComboBox cmboMaritalStatus;
 		private System.Windows.Forms.ComboBox cmboGender;
+		private System.Windows.Forms.TextBox txtMessages;
 	}
 }

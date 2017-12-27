@@ -38,6 +38,7 @@ namespace SampleDemoWebApi.CustomerApi.Models
 		public string emailAddress;
 		public int phoneNumberID;
 		public string phoneNumber;
-		public string photo;
+		//public string photo;
+		public byte[] photo;
 	}
 }

@@ -101,7 +101,7 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 
 			List<Customer> customers = customerBO.GetCustomers();
 
-			Assert.AreEqual(customers.Count, 3);
+			Assert.AreEqual(customers.Count, 2);
 		}
 
 		[TestMethod]

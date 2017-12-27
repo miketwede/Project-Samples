@@ -36,9 +36,15 @@ namespace SampleDemoWebApi.CustomerApi.Tests.Controllers
 			//customerDO.saveImage(@"C:\Dev\React\ReactTraining\Full Stack - AG-Grid\API\Images", "face8.jpg", 1706);
 			//customerDO.saveImage(@"C:\Dev\React\ReactTraining\Full Stack - AG-Grid\API\Images", "face3.jpg", 1707);
 
-		}
+			//customerDO.saveImage(@"C:\Dev\Web Services\WebAPI\SampleWebApi\SampleDemoWebApi\Images", "FemaleSillouette.jpg", 1708);
+			//	customerDO.saveImage(@"C:\Dev\Web Services\WebAPI\SampleWebApi\SampleDemoWebApi\Images", "generic.png", -1);
+			//customerDO.saveImage(@"C:\Dev\Web Services\WebAPI\SampleWebApi\SampleDemoWebApi\Images", "Female2.jpg", -2);
+			customerDO.saveImage(@"C:\Dev\Web Services\WebAPI\SampleWebApi\SampleDemoWebApi\Images", "MaleSillouette.png", -3);
 
-		[TestMethod]
+		}
+		
+
+	   [TestMethod]
 		public void RetrievePhotos()
 		{
 			CustomerDO customerDO = new CustomerDO();

@@ -312,7 +312,8 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 								emailAddress = reader["EmailAddress"].ToString(),
 								phoneNumberID = (int)reader["PhoneNumberID"],
 								phoneNumber = reader["PhoneNumber"].ToString(),
-								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+								//photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+								photo = reader["Photo"] == System.DBNull.Value ? null : (byte[])reader["Photo"]
 							},
 
 							accountNumber = reader["AccountNumber"].ToString(),
@@ -392,7 +393,8 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 								emailAddress = reader["EmailAddress"].ToString(),
 								phoneNumberID = (int)reader["PhoneNumberID"],
 								phoneNumber = reader["PhoneNumber"].ToString(),
-								photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+								//photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+								photo = reader["Photo"] == System.DBNull.Value ? null : (byte[])reader["Photo"]
 							},
 							accountNumber = reader["AccountNumber"].ToString(),
 							emailPromotion = (int)reader["EmailPromotion"],
@@ -690,7 +692,8 @@ namespace SampleDemoWebApi.CustomerApi.DAL
 
 			try
 			{
-				return Convert.ToBase64String(ba);
+			//	return Convert.ToBase64String(ba);
+				return Convert.ToString(ba);
 				//using (var ms = new MemoryStream(ba))
 				//{
 				//	Convert.ToBase64String(ba);

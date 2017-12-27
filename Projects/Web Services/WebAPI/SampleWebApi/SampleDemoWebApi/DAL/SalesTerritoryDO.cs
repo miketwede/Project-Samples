@@ -178,7 +178,8 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 								country = (reader["CountryRegionCode"] ?? "").ToString(),
 								emailAddress = (reader["EmailAddress"] ?? "").ToString(),
 								phoneNumber = (reader["PhoneNumber"] ?? "").ToString(),
-								photo = (reader["Photo"] ?? "").ToString()
+								//photo = (reader["Photo"] ?? "").ToString()
+								photo = ((byte[])reader["Photo"] ?? new byte[0])
 							},
 							salesYTD = (decimal)reader["SalesYTD"],
 							salesLastYear = (decimal)reader["SalesLastYear"],
@@ -348,8 +349,9 @@ namespace SampleDemoWebApi.SalesTerritoryApi.DAL
 							country = (reader["CountryRegionCode"] ?? "").ToString(),
 							emailAddress = (reader["EmailAddress"] ?? "").ToString(),
 							phoneNumber = (reader["PhoneNumber"] ?? "").ToString(),
-							photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
-						//	photo = (reader["Photo"] ?? "").ToString()
+							photo = reader["Photo"] == System.DBNull.Value ? null : (byte[])reader["Photo"]
+							//photo = reader["Photo"] == System.DBNull.Value ? null : getImage((byte[])reader["Photo"])
+							//	photo = (reader["Photo"] ?? "").ToString()
 						},
 						bonus = (decimal)reader["Bonus"],
 						commissionPct = (decimal)reader["CommissionPct"],

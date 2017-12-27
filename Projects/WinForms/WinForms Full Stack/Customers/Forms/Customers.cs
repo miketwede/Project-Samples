@@ -76,8 +76,8 @@ namespace customers.Forms
 			this.dataGridView1.AutoSize = false;
 			this.dataGridView1.DataSource = bindingSource1;
 			this.dataGridView1.ScrollBars = ScrollBars.Vertical;
-			this.dataGridView1.Height = 600;
-			this.dataGridView1.Width = 1200;
+			this.dataGridView1.Height = 850;
+			this.dataGridView1.Width = 1170;
 
 			// Initialize and add grid columns.
 			DataGridViewColumn column = new DataGridViewTextBoxColumn();

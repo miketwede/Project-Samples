@@ -1,0 +1,2 @@
+MainPackage=c:\work\Siaqodb_Setup\5.5.0.2\Examples\PCL_Example\UniversalApp\bin\ARM\Debug\UniversalApp_1.0.1.0_ARM_Debug.appx
+SymbolPackage=c:\work\Siaqodb_Setup\5.5.0.2\Examples\PCL_Example\UniversalApp\AppPackages\UniversalApp_1.0.1.0_Debug_Test\UniversalApp_1.0.1.0_ARM_Debug.appxsym

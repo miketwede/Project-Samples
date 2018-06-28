@@ -1,0 +1,294 @@
+*****************************************
+Siaqodb 5.5.0.11 (2018.01.15)
+******************************************
+-Fixes for Portal Library Release
+
+*****************************************
+Siaqodb 5.5.0.10 (2017.08.04)
+******************************************
+-Added 'delete_nested' option to Delete() to allow the user to delete all nested objects when a parent object is deleted
+-Added Name field to Transactions and BeginTransaction so that transactions can be named
+-Added method DropAllTypes to reset the database and remove all data
+-bug fixes
+
+*****************************************
+Siaqodb 5.5.0.9 (2017.06.08)
+******************************************
+-Added Transaction support for SaveObjectPartially
+-Added NETSTANDARD compatibility
+-SiaqodbCloud remove WebAPI Client dependecy
+
+*****************************************
+Siaqodb 5.5.0.3 (2016.05.20)
+******************************************
+-improve SiaqodbManager, dbinfo,
+-private parameterless ctor: storable objects may have now only a private parameterless constructor
+-bugfix: range queries for numeric types indexes does not return all values
+-bugfix: thread safety when BeginTransactions is called
+
+*****************************************
+Siaqodb 5.5.0.2
+******************************************
+-add in SiaqodbPortable the Autogrowth feature
+-DocumentDB: Documet's Tag - autoincrement
+-upgrade Xamarin binaries to latest version
+-upgrade Xamarin Tasky sample
+-bug fixes
+
+*****************************************
+Siaqodb 5.5.0.1
+******************************************
+-brand new DocumentStore- now Siaqodb can be fully used as Document Oriented Database
+-automatic growth for database, see SiaqodbConfigurator.AutoGrowthThresholdPercent and SiaqodbConfigurator.AutoGrowthSize
+-SiaqodbCloud which lets you synchronize Siaqodb from client side with a server side NoSQL database like CouchDB or MongoDB. 
+-run queries while a transaction is opened(using same transaction)
+-bug fixing: automatic schema migration when objects were deleted
+-bug fixing: LINQ unoptimized while orderby was used in certain way
+
+*****************************************
+Siaqodb 5.0.0.7
+******************************************
+-new property Siaqodb.DbInfo which expose info about size usage within database.
+-new Siaqodb constructors to allow specify the size of db.
+-new LazyLoad attribute: now a complex field/property can be decorated with Sqo.Attributes.LazyLoad and by default the field will not be loaded when parent object is loaded from db. Using Include(...) will load its value.
+-new MonoMac assemblies
+-SiaqodbManager for x86/x64
+-bug fixing: FirstOrDefault()/SingleOrDefault() cause a crash of a further operation when db is empty.
+
+
+*****************************************
+Siaqodb 5.0
+******************************************
+-storage engine changed to LMDB
+
+Siaqodb 5.0 considerations:
+
+-Siaqodb 4.0 database files are not seen by Siaqodb 5.0. However we offer a smooth migration way: you can reference the assembly from "bin_BackwardCompatible" folder and using Sqo.SiaqodbUtil.Migrate(...) method Siaqodb 4.X objects will be imported into new Siaqodb 5.0 database( see Examples\SiaqodbMigrate_4to5 project).
+
+-Even the storage engine is changed, the API is 99% the same as Siaqodb 4.X API
+
+-Siaqodb 5.0 uses only one database file called "data.mdb" where is kept everything: data, indexes, metadata.
+
+-LMDB storage engine requires to allocate db size in front; Siaqodb sets default size to 50 MB; to increase/decrease this size, use the Open method like this: Sqo.Siaqodb.Open(path,30*1024*1024 ,200);//db size has now 30MB.
+
+-Sqo.Siaqodb class implements now IDisposable since it's using unmanaged code, so Siaqodb must always be closed/disposed to release resources.
+
+-Util methods: Shrink/Reindex/Repair not make sense anymore, so all are removed.
+
+-StartBulkInsert/EndBulkInsert not make sense anymore, so they are removed.
+
+Platform considerations:
+Siaqodb assemblies are still platform independent, but projects requires platforms specific lmdb binaries. However if you use Nuget packages those binaries will be automatically placed into your /bin folder and no action is required. If you manually reference Siaqodb assemblies, be sure you copy also LMDB native binaries for each platform you target.
+
+
+* Requirements for your App project (if the project is a library, this is not required).
+
+-WindowsStore apps: 
+In Visual Studio, besides Siaqodb dlls, you have to add as reference 'Microsoft Visual C++ 2013 Runtime Package for Windows'. Do this by Add Reference->Windows 8.1->Extensions and check: Microsoft Visual C++ 2013 Runtime Package for Windows. Be aware that once you've added this reference, you will have to build the project for a specific platform (ARM/x86/x64); 'Any CPU' will not work. 
+
+-WindowsPhone apps:
+In Visual Studio, besides Siaqodb dlls, you have to add as reference 'Microsoft Visual C++ 2013 Runtime Package for Windows Phone'. Do this by: Add Reference->Windows Phone 8.1->Extensions and check: Microsoft Visual C++ 2013 Runtime Package for Windows Phone. Be aware that once you've added this reference, you will have to build the project for a specific platform (ARM/x86); 'Any CPU' will not work. 
+
+-Xamarin.iOS:
+In XamarinStudio, besides Siaqodb dlls references, you have to add also native lmdb binaries.So right click on project->Add Native Reference->pick /bin/native/ios/liblmdb.a and go.
+
+-Xamarin.Android:
+LMDB native binaries are embedded into Siaqodb.dll so nothing should be done.
+
+
+
+*****************************************
+Siaqodb v.4.0.2.29
+******************************************
+-read speed improvement for WindowsStore version
+-improve Shrink.Total (rawdatainfo file)
+-auto-repair mode on field value level, fix possible index corruption state
+-fix clean-up instances on Close()
+
+
+*****************************************
+Siaqodb v.4.0.2.27
+******************************************
+-Windows App Certification Kit rejected SiaqodbPortable.dll -fixed
+-Shrink with ShrinkType.Total throw error when used on WindowsPhone platform -fixed
+*****************************************
+Siaqodb v.4.0.2.0
+******************************************
+-fix high memory allocation during read operations
+
+*****************************************
+Siaqodb v.4.0.1.0
+******************************************
+-Universal Apps support
+-New SyncMobile assemblies for WindowsPhone 8.1 and Windows 8.1
+-SiaqodbManager sort on columns
+-SiaqodbManager database info
+-Fix: StoreObjectPartially does not update index
+-Fix: SiaqodbManager LINQ on encrypted db
+
+*****************************************
+Siaqodb v.4.0.0.0
+******************************************
+-PCL support and unify assemblies( no more sync/async assemblies, no more trial assemblies)
+-Document database feature-plugable document serializer(ProtoBuf, BSON,MsgPack,etc)
+-Nuget packages for all platforms
+-Azure Mobile Services - synchronization with local Siaqodb database
+-String methods in LINQ expressions: StartsWith,EndsWith,Contains are case sensitive; added extension method Contains to be able to compare case insensitive:SqoStringExtensions.Contains(...)
+-internal improvements
+-Breaking changes:-StartsWith,EndsWith,Contains are case sensitive;
+		  Siaqodb.BeginTransaction(...)	returns Sqo.Transactions.ITransaction instead of Sqo.Transactions.Transaction
+
+*****************************************
+Siaqodb v.3.7.0.0
+******************************************
+-full Async API across frameworks: WinRT, .NET 4.0, .NET 4.5, WindowsPhone 7.1, WindowsPhone 8.0, Silvelright 4, Silvelright 5, Xamarin.iOS, Xamarin.Android
+-WinRT API changed and now has 100% compatible API with other platforms by providing Sync and Async API
+-List<string> supports now [Text] attribute to store unlimited size of string elements.
+-Big improvements on queries that require full scan of a db file by better buffering. Percent of chunk buffer can be adjusted by SiaqodbConfigurator.BufferingChunkPercent, default is 10%.
+-Provide access to uncommitted instances of a transaction by Transaction's class method: IList<T> GetUnCommittedObjects<T>().
+-Better logging capabilities by set SiaqodbConfigurator.LoggingMethod property in combination with SiaqodbConfigurator.VerboseLevel (can be seen now when a query runs un-optimized).
+-fix issues with IndexInfo name when change platform.
+-fix issue with Index when Type definition is changed with an indexed field
+-fix issue when an Automatic Property was declared as virtual in base class and override in derived class.
+-fix issue on DeletedObjectEventArgs that returns always -1 as OID deleted.
+-fix issue with Shrink (when first object is stored after Shrink ALL, space was occupied as before)
+
+
+*****************************************
+Siaqodb v.3.6.0.0
+******************************************
+-OID property is not mandatory anymore for persistent Types, however if OID it is defined, it will be managed automatically by database engine.
+-Shrink is extended and all db files can be shrinked(by using ShrinkType.Total)
+-fix circular reference problem when Indexed field is same Type as DeclaringType.
+
+*****************************************
+Siaqodb v.3.5.0.1
+******************************************
+-Fix compatibility issue between db files from Silverlight to/from other platforms
+-WinRT version: thread-safe on async calls
+
+******************************************
+Siaqodb v.3.5.0.0
+******************************************
+-Siaqodb for WinRT is ready, fully Async API
+-Siaqodb for WindowsPhone 8.0 is ready
+-Indexes resides now in BTree structured files(AVL tree not used anymore)
+-Big improvements brought by new Indexes implementation
+-New Sqo.SiaqodbUtil class: can be used to Shrink database and also to Repair data if exists corrupted bytes
+-Internal changes for better management of space on disk
+-LINQ provider supports "multiple Where"
+-better information about exceptions
+
+To upgrade from version 3.2.X to version 3.5.0.0:
+- before you upgrade the database, it is recommended to backup your database files
+- when first time a database is opened, indexes are re-build and store in a new BTREE structured files. So if you have many indexes, first time you open the database, it might take some extra time.
+
+
+******************************************
+Siaqodb v.3.2.0.6
+******************************************
+-new overloaded method in Siaqodb class:DeleteObjectBy<T>(Dictionary<string,object> criteria) - delete all objects that satisfy field/value criteria
+-new overloaded method in Siaqodb class:StoreObjectPartially(object obj,bool onlyReferences, params string[] properties) - if property to be saved is IList that has complex types as items, it will store only references of exiting complex objects,and only new complex objects will be persisted 
+-new event in Siaqodb class:IndexesSaveAsyncFinished(...) which will notify when async building process of Indexes is finished. 
+-fix reflection issues caused by using VB.NET as development language
+
+******************************************
+Siaqodb v.3.2.0.5
+******************************************
+-fix index issue when only one node is saved and flushed
+-fix compatibility issue between .net version and Silverlight
+-fix upgrade schema bug-deleted objects may became undeleted or coruppted fo Type definition upgrade
+******************************************
+Siaqodb v.3.2.0.2
+******************************************
+-bug fix: nested lists of complex type throw exception when try to Load
+-bug fix: when compare to complex objects with arrays/lists properties in a LINQ query an exception was thrown
+-bug fix: upgrade problem from previous versions to version 3.2
+
+******************************************
+Siaqodb v.3.2.0.0
+******************************************
+-add support for Dictionary<,> types
+-add support for unlimited size jagged arrays types
+-add support for IList<IList<IList...> types
+-add support for IList items properties in LINQ Include() method (ex: .Include("Employees.Nationality"); where Employees is IList<Employee>)
+-performance improved on insert with 30% in same cases 
+-new methods for fast insert: siaqodb.StartBulkInsert(...) and siaqodb.EndBulkInsert(...)
+-better information about exceptions
+-other improvements
+
+******************************************
+Siaqodb v.3.1.0.1
+******************************************
+
+-bug fix: XML Export/Import for Nullable types
+-bug fix: adding Index for existing Text properties cause 'Index as outside the bounds of the array'Exception.
+
+******************************************
+Siaqodb v.3.1.0
+******************************************
+-optimize LINQ methods: OrderBy, OrderByDescending, ThenBy, ThenByDescending
+-new method: StoreObjectPartially(...) added to Siaqodb class; through it you can save only a few prtoperties/fields of and object and not full object.
+-Replace parameter on LoadingObjectEventArgs class to be able to set an object from memory instead from database
+-add support for storing directly generic types.
+-new method:EnableOptimisticConcurrency(...) useful when you work with SiaqodbOffline (in SyncFramework provider context)
+ 
+
+******************************************
+Siaqodb v.3.0.5
+******************************************
+-bug fix:rawdatainfo sys db file not compatible between platforms
+-bug fix: LoadValue() not work when LoadRelatedObjects(false) is set
+-bug fix:deadlock on multi-threading envs. when Load(...) and Store(...) is called in parallel and are involved complex objects
+-DateTimeKind is possible to be set automatically by the engine if is set:SiaqodbConfigurator.SpecifyStoredDateTimeKind(DateTimeKind? kind) method.
+
+******************************************
+Siaqodb v.3.0.4
+******************************************
+Release notes:
+-bug fix: WHERE on a field declared in a Base Type not work correctly
+
+
+******************************************
+Siaqodb v.3.0.3
+******************************************
+Release notes:
+-bug fix Index not work for field of Enum type
+
+******************************************
+Siaqodb v.3.0.2
+******************************************
+Release notes:
+-support for DateTimeOffset as storable type
+
+******************************************
+Siaqodb v.3.0
+******************************************
+Release notes:
+-support for nested objects
+-support for IList/Array of nested objects
+-Eager loading, .Include method
+-fixes and improvements
+
+Upgrade considerations:
+-databases saved with previous version of Siaqodb will be automatically upgraded to new version 3.0 format, however it is very important that a backup of your database is made before upgrading!!!
+
+
+*****************************************
+Siaqodb v.2.6.
+*****************************************
+Release notes:
+-Indexes are now persisted in db as AVL tree structured files. 
+-Support for variable length of String by using [Text] attribute
+-Support for blobs (array of byte[] in efficient way)
+-Support for Arrays of supported types (int,uint,short,string,ushort,byte,sbyte,long,ulong,float,double,decimal,char,bool,TimeSpan,DateTime,Guid, enum)
+-Support for IList and IList<T>
+-new API method:LoadAllLazy<T>() which load all objects but in lazy mode, only when object is accessed by index or by enumerator, it is loaded from database
+
+
+To upgrade from version 2.5.X to version 2.6:
+-it must be considered when first time a database is opened, if there are indexes defined on types stored in database, 
+those indexes are built and made persistent in database index files. So if there are a lot of data objects involved,
+this may take a bit more then usual to open the database,but only first time.
+ 
+

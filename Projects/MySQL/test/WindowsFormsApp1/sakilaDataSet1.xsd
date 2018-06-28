@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="sakilaDataSet" targetNamespace="http://tempuri.org/sakilaDataSet1.xsd" xmlns:mstns="http://tempuri.org/sakilaDataSet1.xsd" xmlns="http://tempuri.org/sakilaDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="sakilaConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="sakilaConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApp1.Properties.Settings.GlobalReference.Default.sakilaConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="actor_infoTableAdapter" GeneratorDataComponentClassName="actor_infoTableAdapter" Name="actor_info" UserDataComponentName="actor_infoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="sakilaConnectionString (Settings)" DbObjectName="sakila.actor_info" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT actor_id, first_name, last_name, film_info FROM sakila.actor_info</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="sakilaDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="sakilaDataSet" msprop:Generator_UserDSName="sakilaDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="actor_info" msprop:Generator_TableClassName="actor_infoDataTable" msprop:Generator_TableVarName="tableactor_info" msprop:Generator_TablePropName="actor_info" msprop:Generator_RowDeletingName="actor_infoRowDeleting" msprop:Generator_RowChangingName="actor_infoRowChanging" msprop:Generator_RowEvHandlerName="actor_infoRowChangeEventHandler" msprop:Generator_RowDeletedName="actor_infoRowDeleted" msprop:Generator_UserTableName="actor_info" msprop:Generator_RowChangedName="actor_infoRowChanged" msprop:Generator_RowEvArgName="actor_infoRowChangeEvent" msprop:Generator_RowClassName="actor_infoRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

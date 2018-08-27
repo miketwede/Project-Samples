@@ -18,7 +18,7 @@
                     
                     <div class="form-group">
                         <label>Subscription Type</label>
-                        <select id="subscription" name="subscription" formControlName="subscriptionControl" class="form-control select-lg" >
+                        <select id="subscription" name="subscription" formControlName="subscriptionControl" class="form-control select-lg" (change)="subscriptionChange($event.target.value)" >
                             <option *ngFor="let subscription of subscriptions" [value]="subscription"> 
                             {{ subscription }} 
                             </option>
@@ -36,12 +36,24 @@
 
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="passwordPattern"/>
-                        <div *ngIf="passwordIsDirty && f.password.errors" class="invalid-feedback">
+<!--                         <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="^(?=.*[a-zA-Z])(?=.*[\W_]).{2}" />
+ -->                        
+ 
+<!--  <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="^(?=.*[a-zA-Z])(?=.*[!@#$%^&*?]).{2}" />
+ --> 
+<!--  <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="^(?=.*[a-zA-Z]).{1}" />
+ --> 
+<!--  <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="^(?=.[a-zA-Z]).{1}" />
+ --> <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password"  />
+                     
+<!--                         <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" [pattern]="passwordPattern"/>
+ -->                        
+<!--  <input type="password" formControlName="password" class="form-control" (blur)="passwordLostFocus()" [ngClass]="{ 'is-invalid': passwordIsDirty && f.password.errors }" [(ngModel)]="password" />
+ -->                        <div *ngIf="passwordIsDirty && f.password.errors" class="invalid-feedback">
                             <div *ngIf="passwordIsDirty && f.password.errors.required">Password is required.</div>
                             <div *ngIf="passwordIsDirty && f.password.errors.minlength">Password must be at least 8 characters.</div>
                             <div *ngIf="passwordIsDirty && f.password.errors.pattern">Password must contain at least one letter and one special character.</div>
-                        </div>
+                    </div>
                     </div>
 
                     <div class="form-group">
@@ -51,6 +63,10 @@
                     </div>                    
  
                 </form>
+
+<router-outlet></router-outlet>
+ <!-- Routed views go here -->
+
             </div>
         </div>
     </div>

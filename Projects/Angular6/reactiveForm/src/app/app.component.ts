@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SummaryComponent } from './summary/summary.component';
+import { Router, RouterModule, Routes } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
     selector: 'app',
@@ -13,19 +16,33 @@ export class AppComponent implements OnInit {
     passwordIsDirty = false;
     password = "";
     email = "";
+    subscriptionSelected = "";
     subscriptions = [ "Basic", "Advanced", "Pro"];
     passwordPattern = "^[a-z]*$";
     errors = [];
 
-    constructor(private formBuilder: FormBuilder) { }
-
+    constructor(private router: Router, private formBuilder: FormBuilder) { }
+   
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.pattern("^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"), Validators.minLength(8)]],
+/*             password: ['', [Validators.required, Validators.pattern("^(?=.*[a-zA-Z])(?=.*[\W_]).{2}"), Validators.minLength(8)]],
+ */            
+/* password: ['', [Validators.required, Validators.pattern("^(?=.*[a-zA-Z])(?=.*[!@#$%^&*?]).{2}"), Validators.minLength(8)]],
+ */
+/* password: ['', [Validators.required, Validators.pattern("^(?=.*[a-zA-Z]).{1}"), Validators.minLength(8)]],
+ */
+/* password: ['', [Validators.required, Validators.pattern("^[A-Za-z]+$"), Validators.minLength(8)]],
+ */
+/* password: ['', [Validators.required, Validators.pattern("^[A-Za-z]+[0-9]+"), Validators.minLength(8)]],
+ */
+/* password: ['', [Validators.required, Validators.pattern("^[A-Za-z]+[!@#$%^&*()]+"), Validators.minLength(8)]],
+ */password: ['', [Validators.required, Validators.pattern("^[A-Za-z]+[!@#$%^&*()]+"), Validators.minLength(8)]],
+            //password: ['', [Validators.required, Validators.minLength(8)]],
             subscriptionControl: ['Advanced'],
             errorMessagesControl: ['']
         });
+        this.subscriptionSelected = 'Advanced';
     }
 
     // convenience getter for easy access to form fields
@@ -59,7 +76,13 @@ export class AppComponent implements OnInit {
                 {
                     this.errors.push("Password must be at least 8 characters.");
                 }
-                if (this.f.password.errors.pattern)
+                // if (this.f.password.errors.pattern)
+                // {
+                //     this.errors.push("Password must contain at least one letter and one special character.");
+                // }     
+                
+                // had to resort to this ar the regex expressions in conjunction with .pattern wasn't working (at least in angular6)
+                if (!this.isValidPassword(this.password))
                 {
                     this.errors.push("Password must contain at least one letter and one special character.");
                 }
@@ -67,7 +90,18 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+///////////////////var SummaryComponent = new SummaryComponent(this.registerForm.get("subscriptionControl").value, this.registerForm.get("email").value, this.registerForm.get("password").value);
+
+//this.router.navigate(['/summary']);
+//this.router.navigate(['summary']);
+
+this.router.navigate(['summary', { subscription: this.subscriptionSelected, email: this.email, password: this.password }]);
+
+// this.authService.socialSignup(provider, response).subscribe(res => { console.log(this.authService.getToken()); 
+//     console.log('redirecting'); **this.zone.run(() => this._router.navigate(['/register-step2']));** });
+
+
+        // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
     }
 
     onClear() {
@@ -77,6 +111,8 @@ export class AppComponent implements OnInit {
             this.submitted = false;
             this.emailIsDirty = false;
             this.passwordIsDirty = false;
+            //this.registerForm.invalid = false;
+            this.registerForm.reset();
           }
       }
 
@@ -88,4 +124,33 @@ export class AppComponent implements OnInit {
         this.passwordIsDirty = true;
       }
 
+      subscriptionChange(selection)
+      {
+        this.subscriptionSelected = selection;
+      }
+      isValidPassword(password)
+      {
+          var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+          var special = "`-=[]\;,./~!@#$%^&*()_+{}|:<>?";
+          var foundLetter = false;
+          var foundSpecial = false;
+
+      for (var i=0; i<password.length; i++)
+      {
+        if (letters.indexOf(password[i]) > -1)
+        {
+            foundLetter = true;
+        }
+        if (special.indexOf(password[i]) > -1)
+        {
+            foundSpecial = true;
+        }
+      }
+
+        if (foundLetter && foundSpecial)
+            return true;
+        else
+            return false;
+
+      }
 }
